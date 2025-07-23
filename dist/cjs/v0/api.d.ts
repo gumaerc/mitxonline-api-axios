@@ -562,6 +562,18 @@ export interface CourseWithCourseRuns {
      */
     'max_weeks': number | null;
     /**
+     * Get the min price of the product from the CMS page.
+     * @type {number}
+     * @memberof CourseWithCourseRuns
+     */
+    'min_price': number | null;
+    /**
+     * Get the max price of the product from the CMS page.
+     * @type {number}
+     * @memberof CourseWithCourseRuns
+     */
+    'max_price': number | null;
+    /**
      * Get the time commitment of the course from the course page CMS.
      * @type {string}
      * @memberof CourseWithCourseRuns
@@ -585,6 +597,18 @@ export interface CourseWithCourseRuns {
      * @memberof CourseWithCourseRuns
      */
     'max_weekly_hours': string | null;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseWithCourseRuns
+     */
+    'include_in_learn_catalog': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseWithCourseRuns
+     */
+    'ingest_content_files_for_ai': boolean;
     /**
      *
      * @type {Array<V2CourseRun>}
@@ -1422,7 +1446,7 @@ export interface PatchedUserRequest {
      * @type {string}
      * @memberof PatchedUserRequest
      */
-    'username'?: string;
+    'username'?: string | null;
     /**
      *
      * @type {string}
@@ -1430,11 +1454,11 @@ export interface PatchedUserRequest {
      */
     'name'?: string;
     /**
-     * Returns the email or None in the case of AnonymousUser
+     *
      * @type {string}
      * @memberof PatchedUserRequest
      */
-    'email'?: string;
+    'email'?: string | null;
     /**
      *
      * @type {string}
@@ -1812,7 +1836,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'username'?: string;
+    'username'?: string | null;
     /**
      *
      * @type {string}
@@ -1820,11 +1844,11 @@ export interface User {
      */
     'name'?: string;
     /**
-     * Returns the email or None in the case of AnonymousUser
+     *
      * @type {string}
      * @memberof User
      */
-    'email'?: string;
+    'email'?: string | null;
     /**
      *
      * @type {LegalAddress}
