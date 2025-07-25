@@ -39,6 +39,74 @@ export declare const BlankEnum: {
 };
 export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
 /**
+ * Serializer for certificate pages, including overrides and signatory items.
+ * @export
+ * @interface CertificatePage
+ */
+export interface CertificatePage {
+    /**
+     *
+     * @type {number}
+     * @memberof CertificatePage
+     */
+    'id': number;
+    /**
+     *
+     * @type {PageMeta}
+     * @memberof CertificatePage
+     */
+    'meta': PageMeta;
+    /**
+     *
+     * @type {string}
+     * @memberof CertificatePage
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CertificatePage
+     */
+    'product_name': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CertificatePage
+     */
+    'CEUs': string;
+    /**
+     *
+     * @type {Array<Override>}
+     * @memberof CertificatePage
+     */
+    'overrides': Array<Override>;
+    /**
+     *
+     * @type {Array<SignatoryItem>}
+     * @memberof CertificatePage
+     */
+    'signatory_items': Array<SignatoryItem>;
+}
+/**
+ * Serializer for a list of certificate pages.
+ * @export
+ * @interface CertificatePageList
+ */
+export interface CertificatePageList {
+    /**
+     *
+     * @type {PageListMeta}
+     * @memberof CertificatePageList
+     */
+    'meta': PageListMeta;
+    /**
+     *
+     * @type {Array<CertificatePage>}
+     * @memberof CertificatePageList
+     */
+    'items': Array<CertificatePage>;
+}
+/**
  * Serializer for starting a user email change
  * @export
  * @interface ChangeEmailRequestCreate
@@ -331,6 +399,188 @@ export interface CoursePage {
     'instructors': Array<any>;
 }
 /**
+ * Serializer for individual course page items, including all relevant fields.
+ * @export
+ * @interface CoursePageItem
+ */
+export interface CoursePageItem {
+    /**
+     *
+     * @type {number}
+     * @memberof CoursePageItem
+     */
+    'id': number;
+    /**
+     *
+     * @type {PageMeta}
+     * @memberof CoursePageItem
+     */
+    'meta': PageMeta;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'description': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'length': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'effort': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'min_weekly_hours': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'max_weekly_hours': string;
+    /**
+     *
+     * @type {number}
+     * @memberof CoursePageItem
+     */
+    'min_weeks': number;
+    /**
+     *
+     * @type {number}
+     * @memberof CoursePageItem
+     */
+    'max_weeks': number;
+    /**
+     *
+     * @type {Array<PriceItem>}
+     * @memberof CoursePageItem
+     */
+    'price': Array<PriceItem>;
+    /**
+     *
+     * @type {number}
+     * @memberof CoursePageItem
+     */
+    'min_price': number;
+    /**
+     *
+     * @type {number}
+     * @memberof CoursePageItem
+     */
+    'max_price': number;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'prerequisites': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'faq_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'about': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'what_you_learn': string;
+    /**
+     *
+     * @type {FeatureImage}
+     * @memberof CoursePageItem
+     */
+    'feature_image': FeatureImage;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'video_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CoursePageItem
+     */
+    'faculty_section_title': string;
+    /**
+     *
+     * @type {Array<Faculty>}
+     * @memberof CoursePageItem
+     */
+    'faculty': Array<Faculty>;
+    /**
+     *
+     * @type {CertificatePage}
+     * @memberof CoursePageItem
+     */
+    'certificate_page': CertificatePage | null;
+    /**
+     *
+     * @type {V2Course}
+     * @memberof CoursePageItem
+     */
+    'course_details': V2Course;
+    /**
+     *
+     * @type {Array<Topic>}
+     * @memberof CoursePageItem
+     */
+    'topic_list': Array<Topic>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CoursePageItem
+     */
+    'include_in_learn_catalog': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CoursePageItem
+     */
+    'ingest_content_files_for_ai': boolean;
+}
+/**
+ * Serializer for a list of course pages, including metadata and items.
+ * @export
+ * @interface CoursePageList
+ */
+export interface CoursePageList {
+    /**
+     *
+     * @type {PageListMeta}
+     * @memberof CoursePageList
+     */
+    'meta': PageListMeta;
+    /**
+     *
+     * @type {Array<CoursePageItem>}
+     * @memberof CoursePageList
+     */
+    'items': Array<CoursePageItem>;
+}
+/**
  * Course model serializer
  * @export
  * @interface CourseRequest
@@ -472,149 +722,6 @@ export interface CourseRunGrade {
      * @memberof CourseRunGrade
      */
     'grade_percent': number;
-}
-/**
- * Course model serializer - also serializes child course runs
- * @export
- * @interface CourseWithCourseRuns
- */
-export interface CourseWithCourseRuns {
-    /**
-     *
-     * @type {number}
-     * @memberof CourseWithCourseRuns
-     */
-    'id': number;
-    /**
-     *
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'title': string;
-    /**
-     *
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'readable_id': string;
-    /**
-     * Get next run id
-     * @type {number}
-     * @memberof CourseWithCourseRuns
-     */
-    'next_run_id': number | null;
-    /**
-     *
-     * @type {Array<Department>}
-     * @memberof CourseWithCourseRuns
-     */
-    'departments': Array<Department>;
-    /**
-     *
-     * @type {CoursePage}
-     * @memberof CourseWithCourseRuns
-     */
-    'page': CoursePage;
-    /**
-     *
-     * @type {Array<{ [key: string]: any; }>}
-     * @memberof CourseWithCourseRuns
-     */
-    'programs': Array<{
-        [key: string]: any;
-    }> | null;
-    /**
-     * List topics of a course
-     * @type {Array<{ [key: string]: any; }>}
-     * @memberof CourseWithCourseRuns
-     */
-    'topics': Array<{
-        [key: string]: any;
-    }>;
-    /**
-     *
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'certificate_type': string;
-    /**
-     * Check if the prerequisites field is populated in the course page CMS. Returns:     bool: True when the prerequisites field is populated in the course page CMS.  False otherwise.
-     * @type {boolean}
-     * @memberof CourseWithCourseRuns
-     */
-    'required_prerequisites': boolean;
-    /**
-     * Get the duration of the course from the course page CMS.
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'duration': string;
-    /**
-     * Get the min weeks of the course from the CMS page.
-     * @type {number}
-     * @memberof CourseWithCourseRuns
-     */
-    'min_weeks': number | null;
-    /**
-     * Get the max weeks of the course from the CMS page.
-     * @type {number}
-     * @memberof CourseWithCourseRuns
-     */
-    'max_weeks': number | null;
-    /**
-     * Get the min price of the product from the CMS page.
-     * @type {number}
-     * @memberof CourseWithCourseRuns
-     */
-    'min_price': number | null;
-    /**
-     * Get the max price of the product from the CMS page.
-     * @type {number}
-     * @memberof CourseWithCourseRuns
-     */
-    'max_price': number | null;
-    /**
-     * Get the time commitment of the course from the course page CMS.
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'time_commitment': string | null;
-    /**
-     * Get course availability
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'availability': string;
-    /**
-     * Get the min weekly hours of the course from the course page CMS.
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'min_weekly_hours': string | null;
-    /**
-     * Get the max weekly hours of the course from the course page CMS.
-     * @type {string}
-     * @memberof CourseWithCourseRuns
-     */
-    'max_weekly_hours': string | null;
-    /**
-     *
-     * @type {boolean}
-     * @memberof CourseWithCourseRuns
-     */
-    'include_in_learn_catalog': boolean;
-    /**
-     *
-     * @type {boolean}
-     * @memberof CourseWithCourseRuns
-     */
-    'ingest_content_files_for_ai': boolean;
-    /**
-     *
-     * @type {Array<V2CourseRun>}
-     * @memberof CourseWithCourseRuns
-     */
-    'courseruns': Array<V2CourseRun>;
 }
 /**
  * Serializer for the result from create_b2b_enrollment.  There\'s always a result, and it should be one of the B2B messages that are defined in main.constants. The other fields appear or not depending on the result type.
@@ -844,6 +951,80 @@ export declare const EnrollmentModeEnum: {
     readonly Verified: "verified";
 };
 export type EnrollmentModeEnum = typeof EnrollmentModeEnum[keyof typeof EnrollmentModeEnum];
+/**
+ * Serializer for faculty details used in course pages.
+ * @export
+ * @interface Faculty
+ */
+export interface Faculty {
+    /**
+     *
+     * @type {number}
+     * @memberof Faculty
+     */
+    'id': number;
+    /**
+     *
+     * @type {string}
+     * @memberof Faculty
+     */
+    'instructor_name': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Faculty
+     */
+    'instructor_title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Faculty
+     */
+    'instructor_bio_short': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Faculty
+     */
+    'instructor_bio_long': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Faculty
+     */
+    'feature_image_src': string;
+}
+/**
+ * Serializer for feature images used in course pages.
+ * @export
+ * @interface FeatureImage
+ */
+export interface FeatureImage {
+    /**
+     *
+     * @type {string}
+     * @memberof FeatureImage
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof FeatureImage
+     */
+    'image_url': string;
+    /**
+     *
+     * @type {number}
+     * @memberof FeatureImage
+     */
+    'height': number;
+    /**
+     *
+     * @type {number}
+     * @memberof FeatureImage
+     */
+    'width': number;
+}
 /**
  * * `m` - Male * `f` - Female * `t` - Transgender * `nb` - Non-binary/non-conforming * `o` - Other/Prefer Not to Say
  * @export
@@ -1168,36 +1349,190 @@ export interface OrganizationPage {
     'contracts': Array<ContractPage>;
 }
 /**
- *
+ * Serializer for overrides used in certificate pages.
  * @export
- * @interface PaginatedCourseWithCourseRunsList
+ * @interface Override
  */
-export interface PaginatedCourseWithCourseRunsList {
+export interface Override {
+    /**
+     *
+     * @type {string}
+     * @memberof Override
+     */
+    'type': string;
+    /**
+     *
+     * @type {OverrideValue}
+     * @memberof Override
+     */
+    'value': OverrideValue;
+    /**
+     *
+     * @type {string}
+     * @memberof Override
+     */
+    'id': string;
+}
+/**
+ * Serializer for override values used in certificate pages.
+ * @export
+ * @interface OverrideValue
+ */
+export interface OverrideValue {
+    /**
+     *
+     * @type {string}
+     * @memberof OverrideValue
+     */
+    'readable_id': string;
+    /**
+     *
+     * @type {string}
+     * @memberof OverrideValue
+     */
+    'CEUs': string;
+}
+/**
+ * Serializer for individual Wagtail pages.
+ * @export
+ * @interface Page
+ */
+export interface Page {
     /**
      *
      * @type {number}
-     * @memberof PaginatedCourseWithCourseRunsList
+     * @memberof Page
      */
-    'count': number;
+    'id': number;
     /**
      *
      * @type {string}
-     * @memberof PaginatedCourseWithCourseRunsList
+     * @memberof Page
      */
-    'next'?: string | null;
+    'title': string;
     /**
      *
-     * @type {string}
-     * @memberof PaginatedCourseWithCourseRunsList
+     * @type {PageMeta}
+     * @memberof Page
      */
-    'previous'?: string | null;
-    /**
-     *
-     * @type {Array<CourseWithCourseRuns>}
-     * @memberof PaginatedCourseWithCourseRunsList
-     */
-    'results': Array<CourseWithCourseRuns>;
+    'meta': PageMeta;
 }
+/**
+ * Serializer for a list of Wagtail pages.
+ * @export
+ * @interface PageList
+ */
+export interface PageList {
+    /**
+     *
+     * @type {PageListMeta}
+     * @memberof PageList
+     */
+    'meta': PageListMeta;
+    /**
+     *
+     * @type {Array<Page>}
+     * @memberof PageList
+     */
+    'items': Array<Page>;
+}
+/**
+ * Serializer for metadata of a list of Wagtail pages.
+ * @export
+ * @interface PageListMeta
+ */
+export interface PageListMeta {
+    /**
+     *
+     * @type {number}
+     * @memberof PageListMeta
+     */
+    'total_count': number;
+}
+/**
+ * Serializer for page metadata used in various Wagtail pages.
+ * @export
+ * @interface PageMeta
+ */
+export interface PageMeta {
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'type': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'detail_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'html_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'slug': string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PageMeta
+     */
+    'show_in_menus': boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'seo_title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'search_description': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'first_published_at': string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'alias_of': string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'locale': string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PageMeta
+     */
+    'live': boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMeta
+     */
+    'last_published_at': string | null;
+}
+/**
+ * @type PagesRetrieve200Response
+ * @export
+ */
+export type PagesRetrieve200Response = CertificatePage | CoursePageItem | Page | ProgramPageItem;
 /**
  *
  * @export
@@ -1290,6 +1625,37 @@ export interface PaginatedV1ProgramList {
      * @memberof PaginatedV1ProgramList
      */
     'results': Array<V1Program>;
+}
+/**
+ *
+ * @export
+ * @interface PaginatedV2CourseWithCourseRunsList
+ */
+export interface PaginatedV2CourseWithCourseRunsList {
+    /**
+     *
+     * @type {number}
+     * @memberof PaginatedV2CourseWithCourseRunsList
+     */
+    'count': number;
+    /**
+     *
+     * @type {string}
+     * @memberof PaginatedV2CourseWithCourseRunsList
+     */
+    'next'?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof PaginatedV2CourseWithCourseRunsList
+     */
+    'previous'?: string | null;
+    /**
+     *
+     * @type {Array<V2CourseWithCourseRuns>}
+     * @memberof PaginatedV2CourseWithCourseRunsList
+     */
+    'results': Array<V2CourseWithCourseRuns>;
 }
 /**
  *
@@ -1517,6 +1883,33 @@ export declare const PaymentTypeEnum: {
 };
 export type PaymentTypeEnum = typeof PaymentTypeEnum[keyof typeof PaymentTypeEnum];
 /**
+ * Serializer for price items used in course pages.
+ * @export
+ * @interface PriceItem
+ */
+export interface PriceItem {
+    /**
+     *
+     * @type {string}
+     * @memberof PriceItem
+     */
+    'type': string;
+    /**
+     *
+     * @type {{ [key: string]: any; }}
+     * @memberof PriceItem
+     */
+    'value': {
+        [key: string]: any;
+    };
+    /**
+     *
+     * @type {string}
+     * @memberof PriceItem
+     */
+    'id': string;
+}
+/**
  * Simple serializer for Product without related purchasable objects
  * @export
  * @interface ProductFlexibilePrice
@@ -1678,6 +2071,170 @@ export interface ProgramPage {
     'price': string;
 }
 /**
+ * Serializer for individual program page items, including all relevant fields.
+ * @export
+ * @interface ProgramPageItem
+ */
+export interface ProgramPageItem {
+    /**
+     *
+     * @type {number}
+     * @memberof ProgramPageItem
+     */
+    'id': number;
+    /**
+     *
+     * @type {PageMeta}
+     * @memberof ProgramPageItem
+     */
+    'meta': PageMeta;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'description': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'length': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'effort': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'min_weekly_hours': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'max_weekly_hours': string;
+    /**
+     *
+     * @type {number}
+     * @memberof ProgramPageItem
+     */
+    'min_weeks': number;
+    /**
+     *
+     * @type {number}
+     * @memberof ProgramPageItem
+     */
+    'max_weeks': number;
+    /**
+     *
+     * @type {Array<PriceItem>}
+     * @memberof ProgramPageItem
+     */
+    'price': Array<PriceItem>;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'min_price': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'max_price': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'prerequisites': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'faq_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'about': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'what_you_learn': string;
+    /**
+     *
+     * @type {FeatureImage}
+     * @memberof ProgramPageItem
+     */
+    'feature_image': FeatureImage;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'video_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramPageItem
+     */
+    'faculty_section_title': string;
+    /**
+     *
+     * @type {Array<Faculty>}
+     * @memberof ProgramPageItem
+     */
+    'faculty': Array<Faculty>;
+    /**
+     *
+     * @type {CertificatePage}
+     * @memberof ProgramPageItem
+     */
+    'certificate_page': CertificatePage;
+    /**
+     *
+     * @type {V2Program}
+     * @memberof ProgramPageItem
+     */
+    'program_details': V2Program;
+}
+/**
+ * Serializer for a list of program pages, including metadata and items.
+ * @export
+ * @interface ProgramPageList
+ */
+export interface ProgramPageList {
+    /**
+     *
+     * @type {PageListMeta}
+     * @memberof ProgramPageList
+     */
+    'meta': PageListMeta;
+    /**
+     *
+     * @type {Array<ProgramPageItem>}
+     * @memberof ProgramPageList
+     */
+    'items': Array<ProgramPageItem>;
+}
+/**
  * Serializer for public user data
  * @export
  * @interface PublicUser
@@ -1771,6 +2328,43 @@ export declare const ResultEnum: {
 };
 export type ResultEnum = typeof ResultEnum[keyof typeof ResultEnum];
 /**
+ * Serializer for signatory items used in certificate pages.
+ * @export
+ * @interface SignatoryItem
+ */
+export interface SignatoryItem {
+    /**
+     *
+     * @type {string}
+     * @memberof SignatoryItem
+     */
+    'name': string;
+    /**
+     *
+     * @type {string}
+     * @memberof SignatoryItem
+     */
+    'title_1': string;
+    /**
+     *
+     * @type {string}
+     * @memberof SignatoryItem
+     */
+    'title_2': string;
+    /**
+     *
+     * @type {string}
+     * @memberof SignatoryItem
+     */
+    'organization': string;
+    /**
+     *
+     * @type {string}
+     * @memberof SignatoryItem
+     */
+    'signature_image': string;
+}
+/**
  * Serializer for data we care about in the staff dashboard
  * @export
  * @interface StaffDashboardUser
@@ -1818,6 +2412,25 @@ export interface StaffDashboardUser {
      * @memberof StaffDashboardUser
      */
     'is_superuser'?: boolean;
+}
+/**
+ * Serializer for topics used in course pages.
+ * @export
+ * @interface Topic
+ */
+export interface Topic {
+    /**
+     *
+     * @type {string}
+     * @memberof Topic
+     */
+    'name': string;
+    /**
+     *
+     * @type {string}
+     * @memberof Topic
+     */
+    'parent'?: string;
 }
 /**
  * Serializer for users
@@ -2780,6 +3393,143 @@ export interface V1ProgramRequirements {
  */
 export type V1ProgramRequirementsRequiredInner = number;
 /**
+ * Course model serializer
+ * @export
+ * @interface V2Course
+ */
+export interface V2Course {
+    /**
+     *
+     * @type {number}
+     * @memberof V2Course
+     */
+    'id': number;
+    /**
+     *
+     * @type {string}
+     * @memberof V2Course
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof V2Course
+     */
+    'readable_id': string;
+    /**
+     * Get next run id
+     * @type {number}
+     * @memberof V2Course
+     */
+    'next_run_id': number | null;
+    /**
+     *
+     * @type {Array<Department>}
+     * @memberof V2Course
+     */
+    'departments': Array<Department>;
+    /**
+     *
+     * @type {CoursePage}
+     * @memberof V2Course
+     */
+    'page': CoursePage;
+    /**
+     *
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof V2Course
+     */
+    'programs': Array<{
+        [key: string]: any;
+    }> | null;
+    /**
+     * List topics of a course
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof V2Course
+     */
+    'topics': Array<{
+        [key: string]: any;
+    }>;
+    /**
+     *
+     * @type {string}
+     * @memberof V2Course
+     */
+    'certificate_type': string;
+    /**
+     * Check if the prerequisites field is populated in the course page CMS. Returns:     bool: True when the prerequisites field is populated in the course page CMS.  False otherwise.
+     * @type {boolean}
+     * @memberof V2Course
+     */
+    'required_prerequisites': boolean;
+    /**
+     * Get the duration of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2Course
+     */
+    'duration': string;
+    /**
+     * Get the min weeks of the course from the CMS page.
+     * @type {number}
+     * @memberof V2Course
+     */
+    'min_weeks': number | null;
+    /**
+     * Get the max weeks of the course from the CMS page.
+     * @type {number}
+     * @memberof V2Course
+     */
+    'max_weeks': number | null;
+    /**
+     * Get the min price of the product from the CMS page.
+     * @type {number}
+     * @memberof V2Course
+     */
+    'min_price': number | null;
+    /**
+     * Get the max price of the product from the CMS page.
+     * @type {number}
+     * @memberof V2Course
+     */
+    'max_price': number | null;
+    /**
+     * Get the time commitment of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2Course
+     */
+    'time_commitment': string | null;
+    /**
+     * Get course availability
+     * @type {string}
+     * @memberof V2Course
+     */
+    'availability': string;
+    /**
+     * Get the min weekly hours of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2Course
+     */
+    'min_weekly_hours': string | null;
+    /**
+     * Get the max weekly hours of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2Course
+     */
+    'max_weekly_hours': string | null;
+    /**
+     *
+     * @type {boolean}
+     * @memberof V2Course
+     */
+    'include_in_learn_catalog': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof V2Course
+     */
+    'ingest_content_files_for_ai': boolean;
+}
+/**
  * CourseRun model serializer
  * @export
  * @interface V2CourseRun
@@ -2913,6 +3663,149 @@ export interface V2CourseRun {
     'b2b_contract'?: number | null;
 }
 /**
+ * Course model serializer - also serializes child course runs
+ * @export
+ * @interface V2CourseWithCourseRuns
+ */
+export interface V2CourseWithCourseRuns {
+    /**
+     *
+     * @type {number}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'id': number;
+    /**
+     *
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'readable_id': string;
+    /**
+     * Get next run id
+     * @type {number}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'next_run_id': number | null;
+    /**
+     *
+     * @type {Array<Department>}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'departments': Array<Department>;
+    /**
+     *
+     * @type {CoursePage}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'page': CoursePage;
+    /**
+     *
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'programs': Array<{
+        [key: string]: any;
+    }> | null;
+    /**
+     * List topics of a course
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'topics': Array<{
+        [key: string]: any;
+    }>;
+    /**
+     *
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'certificate_type': string;
+    /**
+     * Check if the prerequisites field is populated in the course page CMS. Returns:     bool: True when the prerequisites field is populated in the course page CMS.  False otherwise.
+     * @type {boolean}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'required_prerequisites': boolean;
+    /**
+     * Get the duration of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'duration': string;
+    /**
+     * Get the min weeks of the course from the CMS page.
+     * @type {number}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'min_weeks': number | null;
+    /**
+     * Get the max weeks of the course from the CMS page.
+     * @type {number}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'max_weeks': number | null;
+    /**
+     * Get the min price of the product from the CMS page.
+     * @type {number}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'min_price': number | null;
+    /**
+     * Get the max price of the product from the CMS page.
+     * @type {number}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'max_price': number | null;
+    /**
+     * Get the time commitment of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'time_commitment': string | null;
+    /**
+     * Get course availability
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'availability': string;
+    /**
+     * Get the min weekly hours of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'min_weekly_hours': string | null;
+    /**
+     * Get the max weekly hours of the course from the course page CMS.
+     * @type {string}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'max_weekly_hours': string | null;
+    /**
+     *
+     * @type {boolean}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'include_in_learn_catalog': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'ingest_content_files_for_ai': boolean;
+    /**
+     *
+     * @type {Array<V2CourseRun>}
+     * @memberof V2CourseWithCourseRuns
+     */
+    'courseruns': Array<V2CourseRun>;
+}
+/**
  * Program Model Serializer v2
  * @export
  * @interface V2Program
@@ -2944,10 +3837,16 @@ export interface V2Program {
     'courses': Array<number>;
     /**
      *
-     * @type {V1ProgramRequirements}
+     * @type {Array<number>}
      * @memberof V2Program
      */
-    'requirements': V1ProgramRequirements;
+    'collections': Array<number>;
+    /**
+     *
+     * @type {V2ProgramRequirements}
+     * @memberof V2Program
+     */
+    'requirements': V2ProgramRequirements;
     /**
      *
      * @type {Array<V2ProgramRequirement>}
@@ -3196,6 +4095,63 @@ export declare const V2ProgramRequirementDataNodeTypeEnum: {
     readonly Course: "course";
 };
 export type V2ProgramRequirementDataNodeTypeEnum = typeof V2ProgramRequirementDataNodeTypeEnum[keyof typeof V2ProgramRequirementDataNodeTypeEnum];
+/**
+ *
+ * @export
+ * @interface V2ProgramRequirements
+ */
+export interface V2ProgramRequirements {
+    /**
+     *
+     * @type {V2ProgramRequirementsCourses}
+     * @memberof V2ProgramRequirements
+     */
+    'courses'?: V2ProgramRequirementsCourses;
+    /**
+     *
+     * @type {V2ProgramRequirementsPrograms}
+     * @memberof V2ProgramRequirements
+     */
+    'programs'?: V2ProgramRequirementsPrograms;
+}
+/**
+ *
+ * @export
+ * @interface V2ProgramRequirementsCourses
+ */
+export interface V2ProgramRequirementsCourses {
+    /**
+     * List of required course IDs
+     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * @memberof V2ProgramRequirementsCourses
+     */
+    'required'?: Array<V1ProgramRequirementsRequiredInner>;
+    /**
+     * List of elective course IDs
+     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * @memberof V2ProgramRequirementsCourses
+     */
+    'electives'?: Array<V1ProgramRequirementsRequiredInner>;
+}
+/**
+ *
+ * @export
+ * @interface V2ProgramRequirementsPrograms
+ */
+export interface V2ProgramRequirementsPrograms {
+    /**
+     * List of required program IDs
+     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * @memberof V2ProgramRequirementsPrograms
+     */
+    'required'?: Array<V1ProgramRequirementsRequiredInner>;
+    /**
+     * List of elective program IDs
+     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * @memberof V2ProgramRequirementsPrograms
+     */
+    'electives'?: Array<V1ProgramRequirementsRequiredInner>;
+}
 /**
  *
  * @export
@@ -4073,14 +5029,14 @@ export declare const CoursesApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesList(courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCourseWithCourseRunsList>>;
+    apiV2CoursesList(courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV2CourseWithCourseRunsList>>;
     /**
      * Retrieve a specific course - API v2
      * @param {number} id A unique integer value identifying this course.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CourseWithCourseRuns>>;
+    apiV2CoursesRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V2CourseWithCourseRuns>>;
 };
 /**
  * CoursesApi - factory interface
@@ -4107,14 +5063,14 @@ export declare const CoursesApiFactory: (configuration?: Configuration, basePath
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedCourseWithCourseRunsList>;
+    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedV2CourseWithCourseRunsList>;
     /**
      * Retrieve a specific course - API v2
      * @param {CoursesApiApiV2CoursesRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<CourseWithCourseRuns>;
+    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<V2CourseWithCourseRuns>;
 };
 /**
  * Request parameters for apiV1CoursesList operation in CoursesApi.
@@ -4282,7 +5238,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedCourseWithCourseRunsList, any>>;
+    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV2CourseWithCourseRunsList, any>>;
     /**
      * Retrieve a specific course - API v2
      * @param {CoursesApiApiV2CoursesRetrieveRequest} requestParameters Request parameters.
@@ -4290,7 +5246,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseWithCourseRuns, any>>;
+    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2CourseWithCourseRuns, any>>;
 }
 /**
  * DepartmentsApi - axios parameter creator
@@ -4711,6 +5667,227 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @memberof EnrollmentsApi
      */
     enrollmentsUpdate(requestParameters: EnrollmentsApiEnrollmentsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any>>;
+}
+/**
+ * PagesApi - axios parameter creator
+ * @export
+ */
+export declare const PagesApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Returns pages of all types
+     * @summary List all Wagtail Pages
+     * @param {string} [fields] Specify fields (e.g. &#x60;*&#x60;)
+     * @param {string} [type] Filter by Wagtail page type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesList: (fields?: string, type?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns details of a specific Wagtail page by ID
+     * @summary Get Wagtail Page Details
+     * @param {number} id ID of the Wagtail page
+     * @param {number} [revision_id] Optional certificate revision ID to retrieve a specific revision of the certificate page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesRetrieve: (id: number, revision_id?: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns pages of type cms.CertificatePage
+     * @summary List all Certificate Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsCertificatePageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns pages of type cms.CoursePage
+     * @summary List all Course Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsCoursePageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns pages of type cms.ProgramPage
+     * @summary List all Program Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsProgramPageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * PagesApi - functional programming interface
+ * @export
+ */
+export declare const PagesApiFp: (configuration?: Configuration) => {
+    /**
+     * Returns pages of all types
+     * @summary List all Wagtail Pages
+     * @param {string} [fields] Specify fields (e.g. &#x60;*&#x60;)
+     * @param {string} [type] Filter by Wagtail page type
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesList(fields?: string, type?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageList>>;
+    /**
+     * Returns details of a specific Wagtail page by ID
+     * @summary Get Wagtail Page Details
+     * @param {number} id ID of the Wagtail page
+     * @param {number} [revision_id] Optional certificate revision ID to retrieve a specific revision of the certificate page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesRetrieve(id: number, revision_id?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PagesRetrieve200Response>>;
+    /**
+     * Returns pages of type cms.CertificatePage
+     * @summary List all Certificate Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsCertificatePageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CertificatePageList>>;
+    /**
+     * Returns pages of type cms.CoursePage
+     * @summary List all Course Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsCoursePageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoursePageList>>;
+    /**
+     * Returns pages of type cms.ProgramPage
+     * @summary List all Program Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProgramPageList>>;
+};
+/**
+ * PagesApi - factory interface
+ * @export
+ */
+export declare const PagesApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Returns pages of all types
+     * @summary List all Wagtail Pages
+     * @param {PagesApiPagesListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesList(requestParameters?: PagesApiPagesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PageList>;
+    /**
+     * Returns details of a specific Wagtail page by ID
+     * @summary Get Wagtail Page Details
+     * @param {PagesApiPagesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesRetrieve(requestParameters: PagesApiPagesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<PagesRetrieve200Response>;
+    /**
+     * Returns pages of type cms.CertificatePage
+     * @summary List all Certificate Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsCertificatePageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<CertificatePageList>;
+    /**
+     * Returns pages of type cms.CoursePage
+     * @summary List all Course Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsCoursePageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<CoursePageList>;
+    /**
+     * Returns pages of type cms.ProgramPage
+     * @summary List all Program Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<ProgramPageList>;
+};
+/**
+ * Request parameters for pagesList operation in PagesApi.
+ * @export
+ * @interface PagesApiPagesListRequest
+ */
+export interface PagesApiPagesListRequest {
+    /**
+     * Specify fields (e.g. &#x60;*&#x60;)
+     * @type {string}
+     * @memberof PagesApiPagesList
+     */
+    readonly fields?: string;
+    /**
+     * Filter by Wagtail page type
+     * @type {string}
+     * @memberof PagesApiPagesList
+     */
+    readonly type?: string;
+}
+/**
+ * Request parameters for pagesRetrieve operation in PagesApi.
+ * @export
+ * @interface PagesApiPagesRetrieveRequest
+ */
+export interface PagesApiPagesRetrieveRequest {
+    /**
+     * ID of the Wagtail page
+     * @type {number}
+     * @memberof PagesApiPagesRetrieve
+     */
+    readonly id: number;
+    /**
+     * Optional certificate revision ID to retrieve a specific revision of the certificate page
+     * @type {number}
+     * @memberof PagesApiPagesRetrieve
+     */
+    readonly revision_id?: number;
+}
+/**
+ * PagesApi - object-oriented interface
+ * @export
+ * @class PagesApi
+ * @extends {BaseAPI}
+ */
+export declare class PagesApi extends BaseAPI {
+    /**
+     * Returns pages of all types
+     * @summary List all Wagtail Pages
+     * @param {PagesApiPagesListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesList(requestParameters?: PagesApiPagesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PageList, any>>;
+    /**
+     * Returns details of a specific Wagtail page by ID
+     * @summary Get Wagtail Page Details
+     * @param {PagesApiPagesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesRetrieve(requestParameters: PagesApiPagesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PagesRetrieve200Response, any>>;
+    /**
+     * Returns pages of type cms.CertificatePage
+     * @summary List all Certificate Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesfieldstypecmsCertificatePageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CertificatePageList, any>>;
+    /**
+     * Returns pages of type cms.CoursePage
+     * @summary List all Course Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesfieldstypecmsCoursePageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CoursePageList, any>>;
+    /**
+     * Returns pages of type cms.ProgramPage
+     * @summary List all Program Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ProgramPageList, any>>;
 }
 /**
  * ProgramCollectionsApi - axios parameter creator

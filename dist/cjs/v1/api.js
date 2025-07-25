@@ -25,8 +25,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProgramCollectionsApiFactory = exports.ProgramCollectionsApiFp = exports.ProgramCollectionsApiAxiosParamCreator = exports.EnrollmentsApi = exports.EnrollmentsApiFactory = exports.EnrollmentsApiFp = exports.EnrollmentsApiAxiosParamCreator = exports.DepartmentsApi = exports.DepartmentsApiFactory = exports.DepartmentsApiFp = exports.DepartmentsApiAxiosParamCreator = exports.CoursesApi = exports.CoursesApiFactory = exports.CoursesApiFp = exports.CoursesApiAxiosParamCreator = exports.CourseRunsApi = exports.CourseRunsApiFactory = exports.CourseRunsApiFp = exports.CourseRunsApiAxiosParamCreator = exports.CountriesApi = exports.CountriesApiFactory = exports.CountriesApiFp = exports.CountriesApiAxiosParamCreator = exports.ChangeEmailsApi = exports.ChangeEmailsApiFactory = exports.ChangeEmailsApiFp = exports.ChangeEmailsApiAxiosParamCreator = exports.B2bApi = exports.B2bApiFactory = exports.B2bApiFp = exports.B2bApiAxiosParamCreator = exports.ApiApi = exports.ApiApiFactory = exports.ApiApiFp = exports.ApiApiAxiosParamCreator = exports.YearsExperienceEnum = exports.V2ProgramRequirementDataNodeTypeEnum = exports.V1ProgramRequirementDataNodeTypeEnum = exports.ResultEnum = exports.RedemptionTypeEnum = exports.PaymentTypeEnum = exports.NullEnum = exports.IntegrationTypeEnum = exports.HighestEducationEnum = exports.GenderEnum = exports.EnrollmentModeEnum = exports.DiscountTypeEnum = exports.CompanySizeEnum = exports.BlankEnum = exports.AvailabilityEnum = void 0;
-exports.UsersApi = exports.UsersApiFactory = exports.UsersApiFp = exports.UsersApiAxiosParamCreator = exports.UserSearchApi = exports.UserSearchApiFactory = exports.UserSearchApiFp = exports.UserSearchApiAxiosParamCreator = exports.ProgramsApi = exports.ProgramsApiFactory = exports.ProgramsApiFp = exports.ProgramsApiAxiosParamCreator = exports.ProgramEnrollmentsApi = exports.ProgramEnrollmentsApiFactory = exports.ProgramEnrollmentsApiFp = exports.ProgramEnrollmentsApiAxiosParamCreator = exports.ProgramCollectionsApi = void 0;
+exports.PagesApiFactory = exports.PagesApiFp = exports.PagesApiAxiosParamCreator = exports.EnrollmentsApi = exports.EnrollmentsApiFactory = exports.EnrollmentsApiFp = exports.EnrollmentsApiAxiosParamCreator = exports.DepartmentsApi = exports.DepartmentsApiFactory = exports.DepartmentsApiFp = exports.DepartmentsApiAxiosParamCreator = exports.CoursesApi = exports.CoursesApiFactory = exports.CoursesApiFp = exports.CoursesApiAxiosParamCreator = exports.CourseRunsApi = exports.CourseRunsApiFactory = exports.CourseRunsApiFp = exports.CourseRunsApiAxiosParamCreator = exports.CountriesApi = exports.CountriesApiFactory = exports.CountriesApiFp = exports.CountriesApiAxiosParamCreator = exports.ChangeEmailsApi = exports.ChangeEmailsApiFactory = exports.ChangeEmailsApiFp = exports.ChangeEmailsApiAxiosParamCreator = exports.B2bApi = exports.B2bApiFactory = exports.B2bApiFp = exports.B2bApiAxiosParamCreator = exports.ApiApi = exports.ApiApiFactory = exports.ApiApiFp = exports.ApiApiAxiosParamCreator = exports.YearsExperienceEnum = exports.V2ProgramRequirementDataNodeTypeEnum = exports.V1ProgramRequirementDataNodeTypeEnum = exports.ResultEnum = exports.RedemptionTypeEnum = exports.PaymentTypeEnum = exports.NullEnum = exports.IntegrationTypeEnum = exports.HighestEducationEnum = exports.GenderEnum = exports.EnrollmentModeEnum = exports.DiscountTypeEnum = exports.CompanySizeEnum = exports.BlankEnum = exports.AvailabilityEnum = void 0;
+exports.UsersApi = exports.UsersApiFactory = exports.UsersApiFp = exports.UsersApiAxiosParamCreator = exports.UserSearchApi = exports.UserSearchApiFactory = exports.UserSearchApiFp = exports.UserSearchApiAxiosParamCreator = exports.ProgramsApi = exports.ProgramsApiFactory = exports.ProgramsApiFp = exports.ProgramsApiAxiosParamCreator = exports.ProgramEnrollmentsApi = exports.ProgramEnrollmentsApiFactory = exports.ProgramEnrollmentsApiFp = exports.ProgramEnrollmentsApiAxiosParamCreator = exports.ProgramCollectionsApi = exports.ProgramCollectionsApiFactory = exports.ProgramCollectionsApiFp = exports.ProgramCollectionsApiAxiosParamCreator = exports.PagesApi = void 0;
 const axios_1 = __importDefault(require("axios"));
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -2526,6 +2526,363 @@ class EnrollmentsApi extends base_1.BaseAPI {
     }
 }
 exports.EnrollmentsApi = EnrollmentsApi;
+/**
+ * PagesApi - axios parameter creator
+ * @export
+ */
+const PagesApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Returns pages of all types
+         * @summary List all Wagtail Pages
+         * @param {string} [fields] Specify fields (e.g. &#x60;*&#x60;)
+         * @param {string} [type] Filter by Wagtail page type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesList: (fields_1, type_1, ...args_1) => __awaiter(this, [fields_1, type_1, ...args_1], void 0, function* (fields, type, options = {}) {
+            const localVarPath = `/api/v2/pages/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            if (fields !== undefined) {
+                localVarQueryParameter['fields'] = fields;
+            }
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns details of a specific Wagtail page by ID
+         * @summary Get Wagtail Page Details
+         * @param {number} id ID of the Wagtail page
+         * @param {number} [revision_id] Optional certificate revision ID to retrieve a specific revision of the certificate page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesRetrieve: (id_1, revision_id_1, ...args_1) => __awaiter(this, [id_1, revision_id_1, ...args_1], void 0, function* (id, revision_id, options = {}) {
+            // verify required parameter 'id' is not null or undefined
+            (0, common_1.assertParamExists)('pagesRetrieve', 'id', id);
+            const localVarPath = `/api/v2/pages/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            if (revision_id !== undefined) {
+                localVarQueryParameter['revision_id'] = revision_id;
+            }
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns pages of type cms.CertificatePage
+         * @summary List all Certificate Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsCertificatePageRetrieve: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v2/pages/?fields=*&type=cms.CertificatePage`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns pages of type cms.CoursePage
+         * @summary List all Course Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsCoursePageRetrieve: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v2/pages/?fields=*&type=cms.CoursePage`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns pages of type cms.ProgramPage
+         * @summary List all Program Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsProgramPageRetrieve: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v2/pages/?fields=*&type=cms.ProgramPage`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+exports.PagesApiAxiosParamCreator = PagesApiAxiosParamCreator;
+/**
+ * PagesApi - functional programming interface
+ * @export
+ */
+const PagesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.PagesApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * Returns pages of all types
+         * @summary List all Wagtail Pages
+         * @param {string} [fields] Specify fields (e.g. &#x60;*&#x60;)
+         * @param {string} [type] Filter by Wagtail page type
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesList(fields, type, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.pagesList(fields, type, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PagesApi.pagesList']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         * Returns details of a specific Wagtail page by ID
+         * @summary Get Wagtail Page Details
+         * @param {number} id ID of the Wagtail page
+         * @param {number} [revision_id] Optional certificate revision ID to retrieve a specific revision of the certificate page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesRetrieve(id, revision_id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.pagesRetrieve(id, revision_id, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PagesApi.pagesRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         * Returns pages of type cms.CertificatePage
+         * @summary List all Certificate Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsCertificatePageRetrieve(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.pagesfieldstypecmsCertificatePageRetrieve(options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PagesApi.pagesfieldstypecmsCertificatePageRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         * Returns pages of type cms.CoursePage
+         * @summary List all Course Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsCoursePageRetrieve(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.pagesfieldstypecmsCoursePageRetrieve(options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PagesApi.pagesfieldstypecmsCoursePageRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         * Returns pages of type cms.ProgramPage
+         * @summary List all Program Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsProgramPageRetrieve(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.pagesfieldstypecmsProgramPageRetrieve(options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PagesApi.pagesfieldstypecmsProgramPageRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+    };
+};
+exports.PagesApiFp = PagesApiFp;
+/**
+ * PagesApi - factory interface
+ * @export
+ */
+const PagesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.PagesApiFp)(configuration);
+    return {
+        /**
+         * Returns pages of all types
+         * @summary List all Wagtail Pages
+         * @param {PagesApiPagesListRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesList(requestParameters = {}, options) {
+            return localVarFp.pagesList(requestParameters.fields, requestParameters.type, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns details of a specific Wagtail page by ID
+         * @summary Get Wagtail Page Details
+         * @param {PagesApiPagesRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesRetrieve(requestParameters, options) {
+            return localVarFp.pagesRetrieve(requestParameters.id, requestParameters.revision_id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns pages of type cms.CertificatePage
+         * @summary List all Certificate Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsCertificatePageRetrieve(options) {
+            return localVarFp.pagesfieldstypecmsCertificatePageRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns pages of type cms.CoursePage
+         * @summary List all Course Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsCoursePageRetrieve(options) {
+            return localVarFp.pagesfieldstypecmsCoursePageRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns pages of type cms.ProgramPage
+         * @summary List all Program Pages
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pagesfieldstypecmsProgramPageRetrieve(options) {
+            return localVarFp.pagesfieldstypecmsProgramPageRetrieve(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+exports.PagesApiFactory = PagesApiFactory;
+/**
+ * PagesApi - object-oriented interface
+ * @export
+ * @class PagesApi
+ * @extends {BaseAPI}
+ */
+class PagesApi extends base_1.BaseAPI {
+    /**
+     * Returns pages of all types
+     * @summary List all Wagtail Pages
+     * @param {PagesApiPagesListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesList(requestParameters = {}, options) {
+        return (0, exports.PagesApiFp)(this.configuration).pagesList(requestParameters.fields, requestParameters.type, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns details of a specific Wagtail page by ID
+     * @summary Get Wagtail Page Details
+     * @param {PagesApiPagesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesRetrieve(requestParameters, options) {
+        return (0, exports.PagesApiFp)(this.configuration).pagesRetrieve(requestParameters.id, requestParameters.revision_id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns pages of type cms.CertificatePage
+     * @summary List all Certificate Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesfieldstypecmsCertificatePageRetrieve(options) {
+        return (0, exports.PagesApiFp)(this.configuration).pagesfieldstypecmsCertificatePageRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns pages of type cms.CoursePage
+     * @summary List all Course Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesfieldstypecmsCoursePageRetrieve(options) {
+        return (0, exports.PagesApiFp)(this.configuration).pagesfieldstypecmsCoursePageRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns pages of type cms.ProgramPage
+     * @summary List all Program Pages
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PagesApi
+     */
+    pagesfieldstypecmsProgramPageRetrieve(options) {
+        return (0, exports.PagesApiFp)(this.configuration).pagesfieldstypecmsProgramPageRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+exports.PagesApi = PagesApi;
 /**
  * ProgramCollectionsApi - axios parameter creator
  * @export
