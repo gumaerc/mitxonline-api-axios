@@ -107,6 +107,55 @@ export interface CertificatePageList {
     'items': Array<CertificatePage>;
 }
 /**
+ * Extends the CertificatePageSerializer to work with a model object.
+ * @export
+ * @interface CertificatePageModel
+ */
+export interface CertificatePageModel {
+    /**
+     *
+     * @type {number}
+     * @memberof CertificatePageModel
+     */
+    'id': number;
+    /**
+     *
+     * @type {PageMetaModel}
+     * @memberof CertificatePageModel
+     */
+    'meta': PageMetaModel;
+    /**
+     *
+     * @type {string}
+     * @memberof CertificatePageModel
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CertificatePageModel
+     */
+    'product_name': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CertificatePageModel
+     */
+    'CEUs': string;
+    /**
+     *
+     * @type {Array<Override>}
+     * @memberof CertificatePageModel
+     */
+    'overrides': Array<Override>;
+    /**
+     *
+     * @type {Array<SignatoryItem>}
+     * @memberof CertificatePageModel
+     */
+    'signatory_items': Array<SignatoryItem>;
+}
+/**
  * Serializer for starting a user email change
  * @export
  * @interface ChangeEmailRequestCreate
@@ -1525,6 +1574,85 @@ export interface PageMeta {
      *
      * @type {string}
      * @memberof PageMeta
+     */
+    'last_published_at': string | null;
+}
+/**
+ * Extends the PageMetaSerializer to work with a Page object
+ * @export
+ * @interface PageMetaModel
+ */
+export interface PageMetaModel {
+    /**
+     * Get the page type, in a more simple manner than Wagtail.  The Wagtail version of this is PageTypeField, and it tries to modify the context, which we neither need nor is in the correct format for it.
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'type': string;
+    /**
+     * Get the detail URL, which should be the API call for this page.  The Wagtail version of this is DetailUrlField and it also tries to make changes to the context that we don\'t need.
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'detail_url': string;
+    /**
+     * Return PageHtmlUrlField. This is wrapped for OpenAPI schema generation.
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'html_url': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'slug': string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PageMetaModel
+     */
+    'show_in_menus': boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'seo_title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'search_description': string;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'first_published_at': string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'alias_of': string | null;
+    /**
+     * Return PageLocaleField. This is wrapped for OpenAPI schema generation.
+     * @type {string}
+     * @memberof PageMetaModel
+     */
+    'locale': string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof PageMetaModel
+     */
+    'live': boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof PageMetaModel
      */
     'last_published_at': string | null;
 }
@@ -3663,6 +3791,49 @@ export interface V2CourseRun {
     'b2b_contract'?: number | null;
 }
 /**
+ * Serializer for course certificates.
+ * @export
+ * @interface V2CourseRunCertificate
+ */
+export interface V2CourseRunCertificate {
+    /**
+     *
+     * @type {PublicUser}
+     * @memberof V2CourseRunCertificate
+     */
+    'user': PublicUser;
+    /**
+     *
+     * @type {string}
+     * @memberof V2CourseRunCertificate
+     */
+    'uuid': string;
+    /**
+     * Indicates whether or not the certificate is revoked
+     * @type {boolean}
+     * @memberof V2CourseRunCertificate
+     */
+    'is_revoked': boolean;
+    /**
+     *
+     * @type {CertificatePageModel}
+     * @memberof V2CourseRunCertificate
+     */
+    'certificate_page': CertificatePageModel;
+    /**
+     *
+     * @type {number}
+     * @memberof V2CourseRunCertificate
+     */
+    'course_run': number;
+    /**
+     *
+     * @type {number}
+     * @memberof V2CourseRunCertificate
+     */
+    'certificate_page_revision': number | null;
+}
+/**
  * Course model serializer - also serializes child course runs
  * @export
  * @interface V2CourseWithCourseRuns
@@ -3961,6 +4132,49 @@ export interface V2Program {
      * @memberof V2Program
      */
     'max_weekly_hours': string | null;
+}
+/**
+ * Serializer for course certificates.
+ * @export
+ * @interface V2ProgramCertificate
+ */
+export interface V2ProgramCertificate {
+    /**
+     *
+     * @type {PublicUser}
+     * @memberof V2ProgramCertificate
+     */
+    'user': PublicUser;
+    /**
+     *
+     * @type {string}
+     * @memberof V2ProgramCertificate
+     */
+    'uuid': string;
+    /**
+     * Indicates whether or not the certificate is revoked
+     * @type {boolean}
+     * @memberof V2ProgramCertificate
+     */
+    'is_revoked': boolean;
+    /**
+     *
+     * @type {CertificatePageModel}
+     * @memberof V2ProgramCertificate
+     */
+    'certificate_page': CertificatePageModel;
+    /**
+     *
+     * @type {number}
+     * @memberof V2ProgramCertificate
+     */
+    'program': number;
+    /**
+     *
+     * @type {number}
+     * @memberof V2ProgramCertificate
+     */
+    'certificate_page_revision': number | null;
 }
 /**
  * Serializer for ProgramCollection
@@ -4823,6 +5037,74 @@ export declare class CountriesApi extends BaseAPI {
      * @memberof CountriesApi
      */
     countriesList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Country[], any>>;
+}
+/**
+ * CourseCertificatesApi - axios parameter creator
+ * @export
+ */
+export declare const CourseCertificatesApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Get a course certificate by UUID.
+     * @param {string} cert_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    courseCertificatesRetrieve: (cert_uuid: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * CourseCertificatesApi - functional programming interface
+ * @export
+ */
+export declare const CourseCertificatesApiFp: (configuration?: Configuration) => {
+    /**
+     * Get a course certificate by UUID.
+     * @param {string} cert_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    courseCertificatesRetrieve(cert_uuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V2CourseRunCertificate>>;
+};
+/**
+ * CourseCertificatesApi - factory interface
+ * @export
+ */
+export declare const CourseCertificatesApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Get a course certificate by UUID.
+     * @param {CourseCertificatesApiCourseCertificatesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    courseCertificatesRetrieve(requestParameters: CourseCertificatesApiCourseCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<V2CourseRunCertificate>;
+};
+/**
+ * Request parameters for courseCertificatesRetrieve operation in CourseCertificatesApi.
+ * @export
+ * @interface CourseCertificatesApiCourseCertificatesRetrieveRequest
+ */
+export interface CourseCertificatesApiCourseCertificatesRetrieveRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CourseCertificatesApiCourseCertificatesRetrieve
+     */
+    readonly cert_uuid: string;
+}
+/**
+ * CourseCertificatesApi - object-oriented interface
+ * @export
+ * @class CourseCertificatesApi
+ * @extends {BaseAPI}
+ */
+export declare class CourseCertificatesApi extends BaseAPI {
+    /**
+     * Get a course certificate by UUID.
+     * @param {CourseCertificatesApiCourseCertificatesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CourseCertificatesApi
+     */
+    courseCertificatesRetrieve(requestParameters: CourseCertificatesApiCourseCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2CourseRunCertificate, any>>;
 }
 /**
  * CourseRunsApi - axios parameter creator
@@ -5888,6 +6170,74 @@ export declare class PagesApi extends BaseAPI {
      * @memberof PagesApi
      */
     pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ProgramPageList, any>>;
+}
+/**
+ * ProgramCertificatesApi - axios parameter creator
+ * @export
+ */
+export declare const ProgramCertificatesApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Get a program certificate by UUID.
+     * @param {string} cert_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    programCertificatesRetrieve: (cert_uuid: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * ProgramCertificatesApi - functional programming interface
+ * @export
+ */
+export declare const ProgramCertificatesApiFp: (configuration?: Configuration) => {
+    /**
+     * Get a program certificate by UUID.
+     * @param {string} cert_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    programCertificatesRetrieve(cert_uuid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V2ProgramCertificate>>;
+};
+/**
+ * ProgramCertificatesApi - factory interface
+ * @export
+ */
+export declare const ProgramCertificatesApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Get a program certificate by UUID.
+     * @param {ProgramCertificatesApiProgramCertificatesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    programCertificatesRetrieve(requestParameters: ProgramCertificatesApiProgramCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<V2ProgramCertificate>;
+};
+/**
+ * Request parameters for programCertificatesRetrieve operation in ProgramCertificatesApi.
+ * @export
+ * @interface ProgramCertificatesApiProgramCertificatesRetrieveRequest
+ */
+export interface ProgramCertificatesApiProgramCertificatesRetrieveRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ProgramCertificatesApiProgramCertificatesRetrieve
+     */
+    readonly cert_uuid: string;
+}
+/**
+ * ProgramCertificatesApi - object-oriented interface
+ * @export
+ * @class ProgramCertificatesApi
+ * @extends {BaseAPI}
+ */
+export declare class ProgramCertificatesApi extends BaseAPI {
+    /**
+     * Get a program certificate by UUID.
+     * @param {ProgramCertificatesApiProgramCertificatesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramCertificatesApi
+     */
+    programCertificatesRetrieve(requestParameters: ProgramCertificatesApiProgramCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2ProgramCertificate, any>>;
 }
 /**
  * ProgramCollectionsApi - axios parameter creator

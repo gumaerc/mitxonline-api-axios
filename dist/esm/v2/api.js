@@ -1302,6 +1302,102 @@ export class CountriesApi extends BaseAPI {
     }
 }
 /**
+ * CourseCertificatesApi - axios parameter creator
+ * @export
+ */
+export const CourseCertificatesApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Get a course certificate by UUID.
+         * @param {string} cert_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        courseCertificatesRetrieve: (cert_uuid_1, ...args_1) => __awaiter(this, [cert_uuid_1, ...args_1], void 0, function* (cert_uuid, options = {}) {
+            // verify required parameter 'cert_uuid' is not null or undefined
+            assertParamExists('courseCertificatesRetrieve', 'cert_uuid', cert_uuid);
+            const localVarPath = `/api/v2/course_certificates/{cert_uuid}/`
+                .replace(`{${"cert_uuid"}}`, encodeURIComponent(String(cert_uuid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+/**
+ * CourseCertificatesApi - functional programming interface
+ * @export
+ */
+export const CourseCertificatesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = CourseCertificatesApiAxiosParamCreator(configuration);
+    return {
+        /**
+         * Get a course certificate by UUID.
+         * @param {string} cert_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        courseCertificatesRetrieve(cert_uuid, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.courseCertificatesRetrieve(cert_uuid, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = operationServerMap['CourseCertificatesApi.courseCertificatesRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+    };
+};
+/**
+ * CourseCertificatesApi - factory interface
+ * @export
+ */
+export const CourseCertificatesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = CourseCertificatesApiFp(configuration);
+    return {
+        /**
+         * Get a course certificate by UUID.
+         * @param {CourseCertificatesApiCourseCertificatesRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        courseCertificatesRetrieve(requestParameters, options) {
+            return localVarFp.courseCertificatesRetrieve(requestParameters.cert_uuid, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+/**
+ * CourseCertificatesApi - object-oriented interface
+ * @export
+ * @class CourseCertificatesApi
+ * @extends {BaseAPI}
+ */
+export class CourseCertificatesApi extends BaseAPI {
+    /**
+     * Get a course certificate by UUID.
+     * @param {CourseCertificatesApiCourseCertificatesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CourseCertificatesApi
+     */
+    courseCertificatesRetrieve(requestParameters, options) {
+        return CourseCertificatesApiFp(this.configuration).courseCertificatesRetrieve(requestParameters.cert_uuid, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+/**
  * CourseRunsApi - axios parameter creator
  * @export
  */
@@ -2838,6 +2934,102 @@ export class PagesApi extends BaseAPI {
      */
     pagesfieldstypecmsProgramPageRetrieve(options) {
         return PagesApiFp(this.configuration).pagesfieldstypecmsProgramPageRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+/**
+ * ProgramCertificatesApi - axios parameter creator
+ * @export
+ */
+export const ProgramCertificatesApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Get a program certificate by UUID.
+         * @param {string} cert_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        programCertificatesRetrieve: (cert_uuid_1, ...args_1) => __awaiter(this, [cert_uuid_1, ...args_1], void 0, function* (cert_uuid, options = {}) {
+            // verify required parameter 'cert_uuid' is not null or undefined
+            assertParamExists('programCertificatesRetrieve', 'cert_uuid', cert_uuid);
+            const localVarPath = `/api/v2/program_certificates/{cert_uuid}/`
+                .replace(`{${"cert_uuid"}}`, encodeURIComponent(String(cert_uuid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+/**
+ * ProgramCertificatesApi - functional programming interface
+ * @export
+ */
+export const ProgramCertificatesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = ProgramCertificatesApiAxiosParamCreator(configuration);
+    return {
+        /**
+         * Get a program certificate by UUID.
+         * @param {string} cert_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        programCertificatesRetrieve(cert_uuid, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.programCertificatesRetrieve(cert_uuid, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = operationServerMap['ProgramCertificatesApi.programCertificatesRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+    };
+};
+/**
+ * ProgramCertificatesApi - factory interface
+ * @export
+ */
+export const ProgramCertificatesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = ProgramCertificatesApiFp(configuration);
+    return {
+        /**
+         * Get a program certificate by UUID.
+         * @param {ProgramCertificatesApiProgramCertificatesRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        programCertificatesRetrieve(requestParameters, options) {
+            return localVarFp.programCertificatesRetrieve(requestParameters.cert_uuid, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+/**
+ * ProgramCertificatesApi - object-oriented interface
+ * @export
+ * @class ProgramCertificatesApi
+ * @extends {BaseAPI}
+ */
+export class ProgramCertificatesApi extends BaseAPI {
+    /**
+     * Get a program certificate by UUID.
+     * @param {ProgramCertificatesApiProgramCertificatesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramCertificatesApi
+     */
+    programCertificatesRetrieve(requestParameters, options) {
+        return ProgramCertificatesApiFp(this.configuration).programCertificatesRetrieve(requestParameters.cert_uuid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 /**
