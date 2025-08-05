@@ -3231,14 +3231,38 @@ export const ProgramEnrollmentsApiAxiosParamCreator = function (configuration) {
         }),
         /**
          * Returns a unified set of program and course enrollments for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        programEnrollmentsList: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v1/program_enrollments/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Retrieve a specific program enrollment.
          * @param {number} id Program enrollment ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        programEnrollmentsList: (id_1, ...args_1) => __awaiter(this, [id_1, ...args_1], void 0, function* (id, options = {}) {
+        programEnrollmentsRetrieve: (id_1, ...args_1) => __awaiter(this, [id_1, ...args_1], void 0, function* (id, options = {}) {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('programEnrollmentsList', 'id', id);
-            const localVarPath = `/api/v1/program_enrollments/`
+            assertParamExists('programEnrollmentsRetrieve', 'id', id);
+            const localVarPath = `/api/v1/program_enrollments/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3283,16 +3307,30 @@ export const ProgramEnrollmentsApiFp = function (configuration) {
         },
         /**
          * Returns a unified set of program and course enrollments for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        programEnrollmentsList(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.programEnrollmentsList(options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = operationServerMap['ProgramEnrollmentsApi.programEnrollmentsList']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         * Retrieve a specific program enrollment.
          * @param {number} id Program enrollment ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        programEnrollmentsList(id, options) {
+        programEnrollmentsRetrieve(id, options) {
             return __awaiter(this, void 0, void 0, function* () {
                 var _a, _b, _c;
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.programEnrollmentsList(id, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.programEnrollmentsRetrieve(id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-                const localVarOperationServerBasePath = (_c = (_b = operationServerMap['ProgramEnrollmentsApi.programEnrollmentsList']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                const localVarOperationServerBasePath = (_c = (_b = operationServerMap['ProgramEnrollmentsApi.programEnrollmentsRetrieve']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
             });
         },
@@ -3316,12 +3354,20 @@ export const ProgramEnrollmentsApiFactory = function (configuration, basePath, a
         },
         /**
          * Returns a unified set of program and course enrollments for the current user.
-         * @param {ProgramEnrollmentsApiProgramEnrollmentsListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        programEnrollmentsList(requestParameters, options) {
-            return localVarFp.programEnrollmentsList(requestParameters.id, options).then((request) => request(axios, basePath));
+        programEnrollmentsList(options) {
+            return localVarFp.programEnrollmentsList(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a specific program enrollment.
+         * @param {ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        programEnrollmentsRetrieve(requestParameters, options) {
+            return localVarFp.programEnrollmentsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3344,13 +3390,22 @@ export class ProgramEnrollmentsApi extends BaseAPI {
     }
     /**
      * Returns a unified set of program and course enrollments for the current user.
-     * @param {ProgramEnrollmentsApiProgramEnrollmentsListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProgramEnrollmentsApi
      */
-    programEnrollmentsList(requestParameters, options) {
-        return ProgramEnrollmentsApiFp(this.configuration).programEnrollmentsList(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    programEnrollmentsList(options) {
+        return ProgramEnrollmentsApiFp(this.configuration).programEnrollmentsList(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Retrieve a specific program enrollment.
+     * @param {ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramEnrollmentsApi
+     */
+    programEnrollmentsRetrieve(requestParameters, options) {
+        return ProgramEnrollmentsApiFp(this.configuration).programEnrollmentsRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 /**

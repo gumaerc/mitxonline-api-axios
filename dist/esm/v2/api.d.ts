@@ -6371,11 +6371,17 @@ export declare const ProgramEnrollmentsApiAxiosParamCreator: (configuration?: Co
     programEnrollmentsDestroy: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns a unified set of program and course enrollments for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    programEnrollmentsList: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Retrieve a specific program enrollment.
      * @param {number} id Program enrollment ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programEnrollmentsList: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    programEnrollmentsRetrieve: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * ProgramEnrollmentsApi - functional programming interface
@@ -6391,11 +6397,17 @@ export declare const ProgramEnrollmentsApiFp: (configuration?: Configuration) =>
     programEnrollmentsDestroy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserProgramEnrollmentDetail>>;
     /**
      * Returns a unified set of program and course enrollments for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    programEnrollmentsList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UserProgramEnrollmentDetail>>>;
+    /**
+     * Retrieve a specific program enrollment.
      * @param {number} id Program enrollment ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programEnrollmentsList(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UserProgramEnrollmentDetail>>>;
+    programEnrollmentsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserProgramEnrollmentDetail>>;
 };
 /**
  * ProgramEnrollmentsApi - factory interface
@@ -6411,11 +6423,17 @@ export declare const ProgramEnrollmentsApiFactory: (configuration?: Configuratio
     programEnrollmentsDestroy(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserProgramEnrollmentDetail>;
     /**
      * Returns a unified set of program and course enrollments for the current user.
-     * @param {ProgramEnrollmentsApiProgramEnrollmentsListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programEnrollmentsList(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<UserProgramEnrollmentDetail>>;
+    programEnrollmentsList(options?: RawAxiosRequestConfig): AxiosPromise<Array<UserProgramEnrollmentDetail>>;
+    /**
+     * Retrieve a specific program enrollment.
+     * @param {ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    programEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserProgramEnrollmentDetail>;
 };
 /**
  * Request parameters for programEnrollmentsDestroy operation in ProgramEnrollmentsApi.
@@ -6431,15 +6449,15 @@ export interface ProgramEnrollmentsApiProgramEnrollmentsDestroyRequest {
     readonly id: number;
 }
 /**
- * Request parameters for programEnrollmentsList operation in ProgramEnrollmentsApi.
+ * Request parameters for programEnrollmentsRetrieve operation in ProgramEnrollmentsApi.
  * @export
- * @interface ProgramEnrollmentsApiProgramEnrollmentsListRequest
+ * @interface ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest
  */
-export interface ProgramEnrollmentsApiProgramEnrollmentsListRequest {
+export interface ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest {
     /**
      * Program enrollment ID
      * @type {number}
-     * @memberof ProgramEnrollmentsApiProgramEnrollmentsList
+     * @memberof ProgramEnrollmentsApiProgramEnrollmentsRetrieve
      */
     readonly id: number;
 }
@@ -6460,12 +6478,19 @@ export declare class ProgramEnrollmentsApi extends BaseAPI {
     programEnrollmentsDestroy(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail, any>>;
     /**
      * Returns a unified set of program and course enrollments for the current user.
-     * @param {ProgramEnrollmentsApiProgramEnrollmentsListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProgramEnrollmentsApi
      */
-    programEnrollmentsList(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail[], any>>;
+    programEnrollmentsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail[], any>>;
+    /**
+     * Retrieve a specific program enrollment.
+     * @param {ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramEnrollmentsApi
+     */
+    programEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail, any>>;
 }
 /**
  * ProgramsApi - axios parameter creator
