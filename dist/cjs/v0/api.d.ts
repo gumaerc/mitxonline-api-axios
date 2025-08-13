@@ -736,6 +736,86 @@ export interface CourseRunEnrollmentRequest {
     'run_id': number;
 }
 /**
+ * CourseRunEnrollment model serializer
+ * @export
+ * @interface CourseRunEnrollmentRequestV2
+ */
+export interface CourseRunEnrollmentRequestV2 {
+    /**
+     *
+     * @type {V2CourseRunWithCourse}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'run': V2CourseRunWithCourse;
+    /**
+     *
+     * @type {number}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'id': number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'edx_emails_subscription'?: boolean;
+    /**
+     *
+     * @type {CourseRunCertificate}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'certificate': CourseRunCertificate | null;
+    /**
+     *
+     * @type {EnrollmentModeEnum}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'enrollment_mode': EnrollmentModeEnum;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'approved_flexible_price_exists': boolean;
+    /**
+     *
+     * @type {Array<CourseRunGrade>}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'grades': Array<CourseRunGrade>;
+    /**
+     *
+     * @type {number}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'b2b_organization_id': number | null;
+    /**
+     *
+     * @type {number}
+     * @memberof CourseRunEnrollmentRequestV2
+     */
+    'b2b_contract_id': number | null;
+}
+/**
+ * CourseRunEnrollment model serializer
+ * @export
+ * @interface CourseRunEnrollmentRequestV2Request
+ */
+export interface CourseRunEnrollmentRequestV2Request {
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseRunEnrollmentRequestV2Request
+     */
+    'edx_emails_subscription'?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof CourseRunEnrollmentRequestV2Request
+     */
+    'run_id': number;
+}
+/**
  * CourseRunGrade serializer
  * @export
  * @interface CourseRunGrade
@@ -771,6 +851,282 @@ export interface CourseRunGrade {
      * @memberof CourseRunGrade
      */
     'grade_percent': number;
+}
+/**
+ * CourseRun model serializer
+ * @export
+ * @interface CourseRunV2
+ */
+export interface CourseRunV2 {
+    /**
+     * The title of the course. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'title': string;
+    /**
+     * The day the course begins. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'start_date'?: string | null;
+    /**
+     * The last day the course is active. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'end_date'?: string | null;
+    /**
+     * The first day students can enroll. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'enrollment_start'?: string | null;
+    /**
+     * The last day students can enroll. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'enrollment_end'?: string | null;
+    /**
+     * The date beyond which the learner should not see link to this course run on their dashboard.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'expiration_date'?: string | null;
+    /**
+     * Get the courseware URL
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'courseware_url': string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'courseware_id': string;
+    /**
+     * The day certificates should be available to users. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'certificate_available_date'?: string | null;
+    /**
+     * The date beyond which the learner can not enroll in paid course mode.
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'upgrade_deadline'?: string | null;
+    /**
+     * Check if the course run is upgradable
+     * @type {boolean}
+     * @memberof CourseRunV2
+     */
+    'is_upgradable': boolean;
+    /**
+     * Check if the course run is enrollable
+     * @type {boolean}
+     * @memberof CourseRunV2
+     */
+    'is_enrollable': boolean;
+    /**
+     * Check if the course run is archived
+     * @type {boolean}
+     * @memberof CourseRunV2
+     */
+    'is_archived': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseRunV2
+     */
+    'is_self_paced'?: boolean;
+    /**
+     * A string that identifies the set of runs that this run belongs to (example: \'R2\')
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'run_tag': string;
+    /**
+     *
+     * @type {number}
+     * @memberof CourseRunV2
+     */
+    'id': number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseRunV2
+     */
+    'live'?: boolean;
+    /**
+     * Get the course number
+     * @type {string}
+     * @memberof CourseRunV2
+     */
+    'course_number': string;
+    /**
+     *
+     * @type {Array<ProductFlexibilePrice>}
+     * @memberof CourseRunV2
+     */
+    'products': Array<ProductFlexibilePrice>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseRunV2
+     */
+    'approved_flexible_price_exists': boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof CourseRunV2
+     */
+    'b2b_contract'?: number | null;
+}
+/**
+ * Course model serializer - also serializes child course runs
+ * @export
+ * @interface CourseWithCourseRunsSerializerV2
+ */
+export interface CourseWithCourseRunsSerializerV2 {
+    /**
+     *
+     * @type {number}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'id': number;
+    /**
+     *
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'title': string;
+    /**
+     *
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'readable_id': string;
+    /**
+     * Get next run id
+     * @type {number}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'next_run_id': number | null;
+    /**
+     *
+     * @type {Array<Department>}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'departments': Array<Department>;
+    /**
+     *
+     * @type {CoursePage}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'page': CoursePage;
+    /**
+     *
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'programs': Array<{
+        [key: string]: any;
+    }> | null;
+    /**
+     * List topics of a course
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'topics': Array<{
+        [key: string]: any;
+    }>;
+    /**
+     *
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'certificate_type': string;
+    /**
+     * Check if the prerequisites field is populated in the course page CMS. Returns:     bool: True when the prerequisites field is populated in the course page CMS.  False otherwise.
+     * @type {boolean}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'required_prerequisites': boolean;
+    /**
+     * Get the duration of the course from the course page CMS.
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'duration': string;
+    /**
+     * Get the min weeks of the course from the CMS page.
+     * @type {number}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'min_weeks': number | null;
+    /**
+     * Get the max weeks of the course from the CMS page.
+     * @type {number}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'max_weeks': number | null;
+    /**
+     * Get the min price of the product from the CMS page.
+     * @type {number}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'min_price': number | null;
+    /**
+     * Get the max price of the product from the CMS page.
+     * @type {number}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'max_price': number | null;
+    /**
+     * Get the time commitment of the course from the course page CMS.
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'time_commitment': string | null;
+    /**
+     * Get course availability
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'availability': string;
+    /**
+     * Get the min weekly hours of the course from the course page CMS.
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'min_weekly_hours': string | null;
+    /**
+     * Get the max weekly hours of the course from the course page CMS.
+     * @type {string}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'max_weekly_hours': string | null;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'include_in_learn_catalog': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'ingest_content_files_for_ai': boolean;
+    /**
+     *
+     * @type {Array<CourseRunV2>}
+     * @memberof CourseWithCourseRunsSerializerV2
+     */
+    'courseruns': Array<CourseRunV2>;
 }
 /**
  * Serializer for the result from create_b2b_enrollment.  There\'s always a result, and it should be one of the B2B messages that are defined in main.constants. The other fields appear or not depending on the result type.
@@ -1664,6 +2020,37 @@ export type PagesRetrieve200Response = CertificatePage | CoursePageItem | Page |
 /**
  *
  * @export
+ * @interface PaginatedCourseWithCourseRunsSerializerV2List
+ */
+export interface PaginatedCourseWithCourseRunsSerializerV2List {
+    /**
+     *
+     * @type {number}
+     * @memberof PaginatedCourseWithCourseRunsSerializerV2List
+     */
+    'count': number;
+    /**
+     *
+     * @type {string}
+     * @memberof PaginatedCourseWithCourseRunsSerializerV2List
+     */
+    'next'?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof PaginatedCourseWithCourseRunsSerializerV2List
+     */
+    'previous'?: string | null;
+    /**
+     *
+     * @type {Array<CourseWithCourseRunsSerializerV2>}
+     * @memberof PaginatedCourseWithCourseRunsSerializerV2List
+     */
+    'results': Array<CourseWithCourseRunsSerializerV2>;
+}
+/**
+ *
+ * @export
  * @interface PaginatedStaffDashboardUserList
  */
 export interface PaginatedStaffDashboardUserList {
@@ -1753,37 +2140,6 @@ export interface PaginatedV1ProgramList {
      * @memberof PaginatedV1ProgramList
      */
     'results': Array<V1Program>;
-}
-/**
- *
- * @export
- * @interface PaginatedV2CourseWithCourseRunsList
- */
-export interface PaginatedV2CourseWithCourseRunsList {
-    /**
-     *
-     * @type {number}
-     * @memberof PaginatedV2CourseWithCourseRunsList
-     */
-    'count': number;
-    /**
-     *
-     * @type {string}
-     * @memberof PaginatedV2CourseWithCourseRunsList
-     */
-    'next'?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof PaginatedV2CourseWithCourseRunsList
-     */
-    'previous'?: string | null;
-    /**
-     *
-     * @type {Array<V2CourseWithCourseRuns>}
-     * @memberof PaginatedV2CourseWithCourseRunsList
-     */
-    'results': Array<V2CourseWithCourseRuns>;
 }
 /**
  *
@@ -3658,137 +4014,23 @@ export interface V2Course {
     'ingest_content_files_for_ai': boolean;
 }
 /**
- * CourseRun model serializer
+ * Course model serializer
  * @export
- * @interface V2CourseRun
+ * @interface V2CourseRequest
  */
-export interface V2CourseRun {
+export interface V2CourseRequest {
     /**
-     * The title of the course. This value is synced automatically with edX studio.
+     *
      * @type {string}
-     * @memberof V2CourseRun
+     * @memberof V2CourseRequest
      */
     'title': string;
     /**
-     * The day the course begins. This value is synced automatically with edX studio.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'start_date'?: string | null;
-    /**
-     * The last day the course is active. This value is synced automatically with edX studio.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'end_date'?: string | null;
-    /**
-     * The first day students can enroll. This value is synced automatically with edX studio.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'enrollment_start'?: string | null;
-    /**
-     * The last day students can enroll. This value is synced automatically with edX studio.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'enrollment_end'?: string | null;
-    /**
-     * The date beyond which the learner should not see link to this course run on their dashboard.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'expiration_date'?: string | null;
-    /**
-     * Get the courseware URL
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'courseware_url': string | null;
-    /**
      *
      * @type {string}
-     * @memberof V2CourseRun
+     * @memberof V2CourseRequest
      */
-    'courseware_id': string;
-    /**
-     * The day certificates should be available to users. This value is synced automatically with edX studio.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'certificate_available_date'?: string | null;
-    /**
-     * The date beyond which the learner can not enroll in paid course mode.
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'upgrade_deadline'?: string | null;
-    /**
-     * Check if the course run is upgradable
-     * @type {boolean}
-     * @memberof V2CourseRun
-     */
-    'is_upgradable': boolean;
-    /**
-     * Check if the course run is enrollable
-     * @type {boolean}
-     * @memberof V2CourseRun
-     */
-    'is_enrollable': boolean;
-    /**
-     * Check if the course run is archived
-     * @type {boolean}
-     * @memberof V2CourseRun
-     */
-    'is_archived': boolean;
-    /**
-     *
-     * @type {boolean}
-     * @memberof V2CourseRun
-     */
-    'is_self_paced'?: boolean;
-    /**
-     * A string that identifies the set of runs that this run belongs to (example: \'R2\')
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'run_tag': string;
-    /**
-     *
-     * @type {number}
-     * @memberof V2CourseRun
-     */
-    'id': number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof V2CourseRun
-     */
-    'live'?: boolean;
-    /**
-     * Get the course number
-     * @type {string}
-     * @memberof V2CourseRun
-     */
-    'course_number': string;
-    /**
-     *
-     * @type {Array<ProductFlexibilePrice>}
-     * @memberof V2CourseRun
-     */
-    'products': Array<ProductFlexibilePrice>;
-    /**
-     *
-     * @type {boolean}
-     * @memberof V2CourseRun
-     */
-    'approved_flexible_price_exists': boolean;
-    /**
-     *
-     * @type {number}
-     * @memberof V2CourseRun
-     */
-    'b2b_contract'?: number | null;
+    'readable_id': string;
 }
 /**
  * Serializer for course certificates.
@@ -3822,10 +4064,10 @@ export interface V2CourseRunCertificate {
     'certificate_page': CertificatePageModel;
     /**
      *
-     * @type {number}
+     * @type {V2CourseRunWithCourse}
      * @memberof V2CourseRunCertificate
      */
-    'course_run': number;
+    'course_run': V2CourseRunWithCourse;
     /**
      *
      * @type {number}
@@ -3834,147 +4076,228 @@ export interface V2CourseRunCertificate {
     'certificate_page_revision': number | null;
 }
 /**
- * Course model serializer - also serializes child course runs
+ * CourseRun model serializer - also serializes the parent Course.
  * @export
- * @interface V2CourseWithCourseRuns
+ * @interface V2CourseRunWithCourse
  */
-export interface V2CourseWithCourseRuns {
+export interface V2CourseRunWithCourse {
+    /**
+     * The title of the course. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'title': string;
+    /**
+     * The day the course begins. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'start_date'?: string | null;
+    /**
+     * The last day the course is active. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'end_date'?: string | null;
+    /**
+     * The first day students can enroll. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'enrollment_start'?: string | null;
+    /**
+     * The last day students can enroll. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'enrollment_end'?: string | null;
+    /**
+     * The date beyond which the learner should not see link to this course run on their dashboard.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'expiration_date'?: string | null;
+    /**
+     * Get the courseware URL
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'courseware_url': string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'courseware_id': string;
+    /**
+     * The day certificates should be available to users. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'certificate_available_date'?: string | null;
+    /**
+     * The date beyond which the learner can not enroll in paid course mode.
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'upgrade_deadline'?: string | null;
+    /**
+     * Check if the course run is upgradable
+     * @type {boolean}
+     * @memberof V2CourseRunWithCourse
+     */
+    'is_upgradable': boolean;
+    /**
+     * Check if the course run is enrollable
+     * @type {boolean}
+     * @memberof V2CourseRunWithCourse
+     */
+    'is_enrollable': boolean;
+    /**
+     * Check if the course run is archived
+     * @type {boolean}
+     * @memberof V2CourseRunWithCourse
+     */
+    'is_archived': boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof V2CourseRunWithCourse
+     */
+    'is_self_paced'?: boolean;
+    /**
+     * A string that identifies the set of runs that this run belongs to (example: \'R2\')
+     * @type {string}
+     * @memberof V2CourseRunWithCourse
+     */
+    'run_tag': string;
     /**
      *
      * @type {number}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourse
      */
     'id': number;
     /**
      *
+     * @type {boolean}
+     * @memberof V2CourseRunWithCourse
+     */
+    'live'?: boolean;
+    /**
+     * Get the course number
      * @type {string}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourse
+     */
+    'course_number': string;
+    /**
+     *
+     * @type {Array<ProductFlexibilePrice>}
+     * @memberof V2CourseRunWithCourse
+     */
+    'products': Array<ProductFlexibilePrice>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof V2CourseRunWithCourse
+     */
+    'approved_flexible_price_exists': boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof V2CourseRunWithCourse
+     */
+    'b2b_contract'?: number | null;
+    /**
+     *
+     * @type {V2Course}
+     * @memberof V2CourseRunWithCourse
+     */
+    'course': V2Course;
+}
+/**
+ * CourseRun model serializer - also serializes the parent Course.
+ * @export
+ * @interface V2CourseRunWithCourseRequest
+ */
+export interface V2CourseRunWithCourseRequest {
+    /**
+     * The title of the course. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourseRequest
      */
     'title': string;
     /**
-     *
+     * The day the course begins. This value is synced automatically with edX studio.
      * @type {string}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'readable_id': string;
+    'start_date'?: string | null;
     /**
-     * Get next run id
-     * @type {number}
-     * @memberof V2CourseWithCourseRuns
+     * The last day the course is active. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'next_run_id': number | null;
+    'end_date'?: string | null;
     /**
-     *
-     * @type {Array<Department>}
-     * @memberof V2CourseWithCourseRuns
+     * The first day students can enroll. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'departments': Array<Department>;
+    'enrollment_start'?: string | null;
     /**
-     *
-     * @type {CoursePage}
-     * @memberof V2CourseWithCourseRuns
+     * The last day students can enroll. This value is synced automatically with edX studio.
+     * @type {string}
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'page': CoursePage;
+    'enrollment_end'?: string | null;
     /**
-     *
-     * @type {Array<{ [key: string]: any; }>}
-     * @memberof V2CourseWithCourseRuns
+     * The date beyond which the learner should not see link to this course run on their dashboard.
+     * @type {string}
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'programs': Array<{
-        [key: string]: any;
-    }> | null;
-    /**
-     * List topics of a course
-     * @type {Array<{ [key: string]: any; }>}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'topics': Array<{
-        [key: string]: any;
-    }>;
+    'expiration_date'?: string | null;
     /**
      *
      * @type {string}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'certificate_type': string;
+    'courseware_id': string;
     /**
-     * Check if the prerequisites field is populated in the course page CMS. Returns:     bool: True when the prerequisites field is populated in the course page CMS.  False otherwise.
-     * @type {boolean}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'required_prerequisites': boolean;
-    /**
-     * Get the duration of the course from the course page CMS.
+     * The day certificates should be available to users. This value is synced automatically with edX studio.
      * @type {string}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'duration': string;
+    'certificate_available_date'?: string | null;
     /**
-     * Get the min weeks of the course from the CMS page.
-     * @type {number}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'min_weeks': number | null;
-    /**
-     * Get the max weeks of the course from the CMS page.
-     * @type {number}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'max_weeks': number | null;
-    /**
-     * Get the min price of the product from the CMS page.
-     * @type {number}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'min_price': number | null;
-    /**
-     * Get the max price of the product from the CMS page.
-     * @type {number}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'max_price': number | null;
-    /**
-     * Get the time commitment of the course from the course page CMS.
+     * The date beyond which the learner can not enroll in paid course mode.
      * @type {string}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'time_commitment': string | null;
-    /**
-     * Get course availability
-     * @type {string}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'availability': string;
-    /**
-     * Get the min weekly hours of the course from the course page CMS.
-     * @type {string}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'min_weekly_hours': string | null;
-    /**
-     * Get the max weekly hours of the course from the course page CMS.
-     * @type {string}
-     * @memberof V2CourseWithCourseRuns
-     */
-    'max_weekly_hours': string | null;
+    'upgrade_deadline'?: string | null;
     /**
      *
      * @type {boolean}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'include_in_learn_catalog': boolean;
+    'is_self_paced'?: boolean;
+    /**
+     * A string that identifies the set of runs that this run belongs to (example: \'R2\')
+     * @type {string}
+     * @memberof V2CourseRunWithCourseRequest
+     */
+    'run_tag': string;
     /**
      *
      * @type {boolean}
-     * @memberof V2CourseWithCourseRuns
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'ingest_content_files_for_ai': boolean;
+    'live'?: boolean;
     /**
      *
-     * @type {Array<V2CourseRun>}
-     * @memberof V2CourseWithCourseRuns
+     * @type {number}
+     * @memberof V2CourseRunWithCourseRequest
      */
-    'courseruns': Array<V2CourseRun>;
+    'b2b_contract'?: number | null;
 }
 /**
  * Program Model Serializer v2
@@ -4165,10 +4488,10 @@ export interface V2ProgramCertificate {
     'certificate_page': CertificatePageModel;
     /**
      *
-     * @type {number}
+     * @type {V2Program}
      * @memberof V2ProgramCertificate
      */
-    'program': number;
+    'program': V2Program;
     /**
      *
      * @type {number}
@@ -4623,6 +4946,13 @@ export declare class ApiApi extends BaseAPI {
  */
 export declare const B2bApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * @param {string} enrollment_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    b2bAttachCreate: (enrollment_code: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
      * Viewset for the ContractPage model.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4661,6 +4991,13 @@ export declare const B2bApiAxiosParamCreator: (configuration?: Configuration) =>
  * @export
  */
 export declare const B2bApiFp: (configuration?: Configuration) => {
+    /**
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * @param {string} enrollment_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    b2bAttachCreate(enrollment_code: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContractPage>>>;
     /**
      * Viewset for the ContractPage model.
      * @param {*} [options] Override http request option.
@@ -4701,6 +5038,13 @@ export declare const B2bApiFp: (configuration?: Configuration) => {
  */
 export declare const B2bApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
     /**
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * @param {B2bApiB2bAttachCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    b2bAttachCreate(requestParameters: B2bApiB2bAttachCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<ContractPage>>;
+    /**
      * Viewset for the ContractPage model.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4734,6 +5078,19 @@ export declare const B2bApiFactory: (configuration?: Configuration, basePath?: s
      */
     b2bOrganizationsRetrieve(requestParameters: B2bApiB2bOrganizationsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<OrganizationPage>;
 };
+/**
+ * Request parameters for b2bAttachCreate operation in B2bApi.
+ * @export
+ * @interface B2bApiB2bAttachCreateRequest
+ */
+export interface B2bApiB2bAttachCreateRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof B2bApiB2bAttachCreate
+     */
+    readonly enrollment_code: string;
+}
 /**
  * Request parameters for b2bContractsRetrieve operation in B2bApi.
  * @export
@@ -4780,6 +5137,14 @@ export interface B2bApiB2bOrganizationsRetrieveRequest {
  * @extends {BaseAPI}
  */
 export declare class B2bApi extends BaseAPI {
+    /**
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * @param {B2bApiB2bAttachCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof B2bApi
+     */
+    b2bAttachCreate(requestParameters: B2bApiB2bAttachCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage[], any>>;
     /**
      * Viewset for the ContractPage model.
      * @param {*} [options] Override http request option.
@@ -5311,14 +5676,14 @@ export declare const CoursesApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesList(courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV2CourseWithCourseRunsList>>;
+    apiV2CoursesList(courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCourseWithCourseRunsSerializerV2List>>;
     /**
      * Retrieve a specific course - API v2
      * @param {number} id A unique integer value identifying this course.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V2CourseWithCourseRuns>>;
+    apiV2CoursesRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CourseWithCourseRunsSerializerV2>>;
 };
 /**
  * CoursesApi - factory interface
@@ -5345,14 +5710,14 @@ export declare const CoursesApiFactory: (configuration?: Configuration, basePath
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedV2CourseWithCourseRunsList>;
+    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedCourseWithCourseRunsSerializerV2List>;
     /**
      * Retrieve a specific course - API v2
      * @param {CoursesApiApiV2CoursesRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<V2CourseWithCourseRuns>;
+    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<CourseWithCourseRunsSerializerV2>;
 };
 /**
  * Request parameters for apiV1CoursesList operation in CoursesApi.
@@ -5520,7 +5885,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV2CourseWithCourseRunsList, any>>;
+    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedCourseWithCourseRunsSerializerV2List, any>>;
     /**
      * Retrieve a specific course - API v2
      * @param {CoursesApiApiV2CoursesRetrieveRequest} requestParameters Request parameters.
@@ -5528,7 +5893,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2CourseWithCourseRuns, any>>;
+    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseWithCourseRunsSerializerV2, any>>;
 }
 /**
  * DepartmentsApi - axios parameter creator
@@ -5737,6 +6102,28 @@ export declare const EnrollmentsApiAxiosParamCreator: (configuration?: Configura
      * @throws {RequiredError}
      */
     enrollmentsUpdate: (id: number, CourseRunEnrollmentRequest: CourseRunEnrollmentRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Create a new user enrollment - API v2
+     * @param {CourseRunEnrollmentRequestV2Request} CourseRunEnrollmentRequestV2Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsCreateV2: (CourseRunEnrollmentRequestV2Request: CourseRunEnrollmentRequestV2Request, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Unenroll from a course - API v2
+     * @param {number} id A unique integer value identifying this course run enrollment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsDestroyV2: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * List user enrollments with B2B organization and contract information - API v2. Use ?exclude_b2b=true to filter out enrollments linked to course runs with B2B contracts. Use ?org_id=<id> to filter enrollments by specific B2B organization.
+     * @param {boolean} [exclude_b2b] Exclude B2B enrollments (enrollments linked to course runs with B2B contracts)
+     * @param {number} [org_id] Filter by B2B organization ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsListV2: (exclude_b2b?: boolean, org_id?: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * EnrollmentsApi - functional programming interface
@@ -5785,6 +6172,28 @@ export declare const EnrollmentsApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     enrollmentsUpdate(id: number, CourseRunEnrollmentRequest: CourseRunEnrollmentRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CourseRunEnrollment>>;
+    /**
+     * Create a new user enrollment - API v2
+     * @param {CourseRunEnrollmentRequestV2Request} CourseRunEnrollmentRequestV2Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsCreateV2(CourseRunEnrollmentRequestV2Request: CourseRunEnrollmentRequestV2Request, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CourseRunEnrollmentRequestV2>>;
+    /**
+     * Unenroll from a course - API v2
+     * @param {number} id A unique integer value identifying this course run enrollment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsDestroyV2(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * List user enrollments with B2B organization and contract information - API v2. Use ?exclude_b2b=true to filter out enrollments linked to course runs with B2B contracts. Use ?org_id=<id> to filter enrollments by specific B2B organization.
+     * @param {boolean} [exclude_b2b] Exclude B2B enrollments (enrollments linked to course runs with B2B contracts)
+     * @param {number} [org_id] Filter by B2B organization ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsListV2(exclude_b2b?: boolean, org_id?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CourseRunEnrollmentRequestV2>>>;
 };
 /**
  * EnrollmentsApi - factory interface
@@ -5831,6 +6240,27 @@ export declare const EnrollmentsApiFactory: (configuration?: Configuration, base
      * @throws {RequiredError}
      */
     enrollmentsUpdate(requestParameters: EnrollmentsApiEnrollmentsUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<CourseRunEnrollment>;
+    /**
+     * Create a new user enrollment - API v2
+     * @param {EnrollmentsApiUserEnrollmentsCreateV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsCreateV2(requestParameters: EnrollmentsApiUserEnrollmentsCreateV2Request, options?: RawAxiosRequestConfig): AxiosPromise<CourseRunEnrollmentRequestV2>;
+    /**
+     * Unenroll from a course - API v2
+     * @param {EnrollmentsApiUserEnrollmentsDestroyV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsDestroyV2(requestParameters: EnrollmentsApiUserEnrollmentsDestroyV2Request, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     * List user enrollments with B2B organization and contract information - API v2. Use ?exclude_b2b=true to filter out enrollments linked to course runs with B2B contracts. Use ?org_id=<id> to filter enrollments by specific B2B organization.
+     * @param {EnrollmentsApiUserEnrollmentsListV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userEnrollmentsListV2(requestParameters?: EnrollmentsApiUserEnrollmentsListV2Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<CourseRunEnrollmentRequestV2>>;
 };
 /**
  * Request parameters for enrollmentsCreate operation in EnrollmentsApi.
@@ -5897,6 +6327,51 @@ export interface EnrollmentsApiEnrollmentsUpdateRequest {
     readonly CourseRunEnrollmentRequest: CourseRunEnrollmentRequest;
 }
 /**
+ * Request parameters for userEnrollmentsCreateV2 operation in EnrollmentsApi.
+ * @export
+ * @interface EnrollmentsApiUserEnrollmentsCreateV2Request
+ */
+export interface EnrollmentsApiUserEnrollmentsCreateV2Request {
+    /**
+     *
+     * @type {CourseRunEnrollmentRequestV2Request}
+     * @memberof EnrollmentsApiUserEnrollmentsCreateV2
+     */
+    readonly CourseRunEnrollmentRequestV2Request: CourseRunEnrollmentRequestV2Request;
+}
+/**
+ * Request parameters for userEnrollmentsDestroyV2 operation in EnrollmentsApi.
+ * @export
+ * @interface EnrollmentsApiUserEnrollmentsDestroyV2Request
+ */
+export interface EnrollmentsApiUserEnrollmentsDestroyV2Request {
+    /**
+     * A unique integer value identifying this course run enrollment.
+     * @type {number}
+     * @memberof EnrollmentsApiUserEnrollmentsDestroyV2
+     */
+    readonly id: number;
+}
+/**
+ * Request parameters for userEnrollmentsListV2 operation in EnrollmentsApi.
+ * @export
+ * @interface EnrollmentsApiUserEnrollmentsListV2Request
+ */
+export interface EnrollmentsApiUserEnrollmentsListV2Request {
+    /**
+     * Exclude B2B enrollments (enrollments linked to course runs with B2B contracts)
+     * @type {boolean}
+     * @memberof EnrollmentsApiUserEnrollmentsListV2
+     */
+    readonly exclude_b2b?: boolean;
+    /**
+     * Filter by B2B organization ID
+     * @type {number}
+     * @memberof EnrollmentsApiUserEnrollmentsListV2
+     */
+    readonly org_id?: number;
+}
+/**
  * EnrollmentsApi - object-oriented interface
  * @export
  * @class EnrollmentsApi
@@ -5949,6 +6424,30 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @memberof EnrollmentsApi
      */
     enrollmentsUpdate(requestParameters: EnrollmentsApiEnrollmentsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any>>;
+    /**
+     * Create a new user enrollment - API v2
+     * @param {EnrollmentsApiUserEnrollmentsCreateV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnrollmentsApi
+     */
+    userEnrollmentsCreateV2(requestParameters: EnrollmentsApiUserEnrollmentsCreateV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollmentRequestV2, any>>;
+    /**
+     * Unenroll from a course - API v2
+     * @param {EnrollmentsApiUserEnrollmentsDestroyV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnrollmentsApi
+     */
+    userEnrollmentsDestroyV2(requestParameters: EnrollmentsApiUserEnrollmentsDestroyV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * List user enrollments with B2B organization and contract information - API v2. Use ?exclude_b2b=true to filter out enrollments linked to course runs with B2B contracts. Use ?org_id=<id> to filter enrollments by specific B2B organization.
+     * @param {EnrollmentsApiUserEnrollmentsListV2Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnrollmentsApi
+     */
+    userEnrollmentsListV2(requestParameters?: EnrollmentsApiUserEnrollmentsListV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollmentRequestV2[], any>>;
 }
 /**
  * PagesApi - axios parameter creator
