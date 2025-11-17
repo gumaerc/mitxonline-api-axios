@@ -1,6 +1,6 @@
 {
   "name": "@mitodl/mitxonline-api-axios",
-  "version": "2025.7.28",
+  "version": "2025.11.12.1",
   "description": "Library for requesting data from mitxonline APIs",
   "main": "dist/cjs/index.js",
   "scripts": {
@@ -44,5 +44,5 @@
     "@types/node": "^20.11.19",
     "axios": "^1.6.5"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.10.3"
 }

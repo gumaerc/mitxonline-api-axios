@@ -216,7 +216,7 @@ export interface ChangeEmailRequestUpdateRequest {
 /**
  * * `None` - ---- * `1` - Small/Start-up (1+ employees) * `9` - Small/Home office (1-9 employees) * `99` - Small (10-99 employees) * `999` - Small to medium-sized (100-999 employees) * `9999` - Medium-sized (1000-9999 employees) * `10000` - Large Enterprise (10,000+ employees) * `0` - Other (N/A or Don\'t know)
  * @export
- * @enum {number}
+ * @enum {string}
  */
 export declare const CompanySizeEnum: {
     /**
@@ -274,13 +274,31 @@ export interface ContractPage {
      */
     'description': string;
     /**
-     * The type of integration for this contract.  * `sso` - SSO * `non-sso` - Non-SSO
+     * A welcome message for learners.
+     * @type {string}
+     * @memberof ContractPage
+     */
+    'welcome_message': string;
+    /**
+     * Additional welcome message content for learners.
+     * @type {string}
+     * @memberof ContractPage
+     */
+    'welcome_message_extra': string;
+    /**
+     *
      * @type {IntegrationTypeEnum}
      * @memberof ContractPage
      */
     'integration_type': IntegrationTypeEnum;
     /**
-     * The organization this contract is with.
+     *
+     * @type {string}
+     * @memberof ContractPage
+     */
+    'membership_type': string;
+    /**
+     * The organization that owns this contract.
      * @type {number}
      * @memberof ContractPage
      */
@@ -309,6 +327,12 @@ export interface ContractPage {
      * @memberof ContractPage
      */
     'slug': string;
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof ContractPage
+     */
+    'programs': Array<number>;
 }
 /**
  * Serializer for pycountry countries, with states for US/CA
@@ -405,7 +429,7 @@ export interface CoursePage {
      */
     'page_url': string;
     /**
-     *
+     * Get cleaned description text.
      * @type {string}
      * @memberof CoursePage
      */
@@ -417,13 +441,13 @@ export interface CoursePage {
      */
     'live': boolean;
     /**
-     *
+     * Get cleaned length text.
      * @type {string}
      * @memberof CoursePage
      */
     'length': string;
     /**
-     *
+     * Get cleaned effort text.
      * @type {string}
      * @memberof CoursePage
      */
@@ -435,13 +459,13 @@ export interface CoursePage {
      */
     'financial_assistance_form_url': string;
     /**
-     *
+     * Get the current price of the course product.
      * @type {number}
      * @memberof CoursePage
      */
     'current_price': number | null;
     /**
-     *
+     * Get instructor information
      * @type {Array<any>}
      * @memberof CoursePage
      */
@@ -466,53 +490,53 @@ export interface CoursePageItem {
      */
     'meta': PageMeta;
     /**
-     *
+     * The page title as you\'d like it to be seen by the public
      * @type {string}
      * @memberof CoursePageItem
      */
     'title': string;
     /**
-     *
+     * The description shown on the home page and product page.
      * @type {string}
      * @memberof CoursePageItem
      */
     'description': string;
     /**
-     *
+     * A short description indicating how long it takes to complete (e.g. \'4 weeks\').
      * @type {string}
      * @memberof CoursePageItem
      */
     'length': string;
     /**
-     *
+     * A short description indicating how much effort is required (e.g. 1-3 hours per week).
      * @type {string}
      * @memberof CoursePageItem
      */
-    'effort': string;
+    'effort': string | null;
     /**
-     *
+     * The minimum number of hours per week required to complete the course.
      * @type {string}
      * @memberof CoursePageItem
      */
     'min_weekly_hours': string;
     /**
-     *
+     * The maximum number of hours per week required to complete the course.
      * @type {string}
      * @memberof CoursePageItem
      */
     'max_weekly_hours': string;
     /**
-     *
+     * The minimum number of weeks required to complete the course/program.
      * @type {number}
      * @memberof CoursePageItem
      */
-    'min_weeks': number;
+    'min_weeks': number | null;
     /**
-     *
+     * The maximum number of weeks required to complete the course/program.
      * @type {number}
      * @memberof CoursePageItem
      */
-    'max_weeks': number;
+    'max_weeks': number | null;
     /**
      *
      * @type {Array<PriceItem>}
@@ -520,41 +544,41 @@ export interface CoursePageItem {
      */
     'price': Array<PriceItem>;
     /**
-     *
+     * Specify the minimum product price. This is used by MIT Learn.
      * @type {number}
      * @memberof CoursePageItem
      */
-    'min_price': number;
+    'min_price': number | null;
     /**
-     *
+     * Specify the maximum product price. This is used by MIT Learn.
      * @type {number}
      * @memberof CoursePageItem
      */
-    'max_price': number;
+    'max_price': number | null;
     /**
-     *
+     * A short description indicating prerequisites of this course/program.
      * @type {string}
      * @memberof CoursePageItem
      */
-    'prerequisites': string;
+    'prerequisites': string | null;
     /**
-     *
+     * URL a relevant FAQ page or entry for the course/program.
      * @type {string}
      * @memberof CoursePageItem
      */
-    'faq_url': string;
+    'faq_url': string | null;
     /**
-     *
+     * Details about this course/program.
      * @type {string}
      * @memberof CoursePageItem
      */
-    'about': string;
+    'about': string | null;
     /**
-     *
+     * What you will learn from this course.
      * @type {string}
      * @memberof CoursePageItem
      */
-    'what_you_learn': string;
+    'what_you_learn': string | null;
     /**
      *
      * @type {FeatureImage}
@@ -562,17 +586,17 @@ export interface CoursePageItem {
      */
     'feature_image': FeatureImage;
     /**
-     *
+     * URL to the video to be displayed for this course/program. It can be an HLS or Youtube video URL.
      * @type {string}
      * @memberof CoursePageItem
      */
-    'video_url': string;
+    'video_url': string | null;
     /**
-     *
+     * The title text to display in the faculty cards section of the product page.
      * @type {string}
      * @memberof CoursePageItem
      */
-    'faculty_section_title': string;
+    'faculty_section_title': string | null;
     /**
      *
      * @type {Array<Faculty>}
@@ -598,17 +622,17 @@ export interface CoursePageItem {
      */
     'topic_list': Array<Topic>;
     /**
-     *
+     * If true, Learn should include this in its catalog.
      * @type {boolean}
      * @memberof CoursePageItem
      */
-    'include_in_learn_catalog': boolean;
+    'include_in_learn_catalog': boolean | null;
     /**
-     *
+     * If true, allow the AI chatbots to ingest the course\'s content files.
      * @type {boolean}
      * @memberof CoursePageItem
      */
-    'ingest_content_files_for_ai': boolean;
+    'ingest_content_files_for_ai': boolean | null;
 }
 /**
  * Serializer for a list of course pages, including metadata and items.
@@ -1236,16 +1260,16 @@ export interface DepartmentWithCoursesAndPrograms {
     'slug': string;
     /**
      *
-     * @type {Array<any>}
+     * @type {Array<number>}
      * @memberof DepartmentWithCoursesAndPrograms
      */
-    'course_ids': Array<any>;
+    'course_ids': Array<number>;
     /**
      *
-     * @type {Array<any>}
+     * @type {Array<number>}
      * @memberof DepartmentWithCoursesAndPrograms
      */
-    'program_ids': Array<any>;
+    'program_ids': Array<number>;
 }
 /**
  *
@@ -1540,7 +1564,7 @@ export declare const HighestEducationEnum: {
 };
 export type HighestEducationEnum = typeof HighestEducationEnum[keyof typeof HighestEducationEnum];
 /**
- * * `sso` - SSO * `non-sso` - Non-SSO
+ * * `sso` - SSO * `non-sso` - Non-SSO * `managed` - Managed * `code` - Enrollment Code * `auto` - Auto Enrollment
  * @export
  * @enum {string}
  */
@@ -1553,6 +1577,18 @@ export declare const IntegrationTypeEnum: {
     * Non-SSO
     */
     readonly NonSso: "non-sso";
+    /**
+    * Managed
+    */
+    readonly Managed: "managed";
+    /**
+    * Enrollment Code
+    */
+    readonly Code: "code";
+    /**
+    * Auto Enrollment
+    */
+    readonly Auto: "auto";
 };
 export type IntegrationTypeEnum = typeof IntegrationTypeEnum[keyof typeof IntegrationTypeEnum];
 /**
@@ -1652,18 +1688,6 @@ export interface LegalAddress {
      * @type {string}
      * @memberof LegalAddress
      */
-    'first_name': string;
-    /**
-     *
-     * @type {string}
-     * @memberof LegalAddress
-     */
-    'last_name': string;
-    /**
-     *
-     * @type {string}
-     * @memberof LegalAddress
-     */
     'country': string;
     /**
      *
@@ -1683,18 +1707,6 @@ export interface LegalAddressRequest {
      * @type {string}
      * @memberof LegalAddressRequest
      */
-    'first_name': string;
-    /**
-     *
-     * @type {string}
-     * @memberof LegalAddressRequest
-     */
-    'last_name': string;
-    /**
-     *
-     * @type {string}
-     * @memberof LegalAddressRequest
-     */
     'country': string;
     /**
      *
@@ -1708,7 +1720,9 @@ export interface LegalAddressRequest {
  * @export
  * @enum {string}
  */
-export declare const NullEnum: {};
+export declare const NullEnum: {
+    readonly Null: "null";
+};
 export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
 /**
  * Serializer for the OrganizationPage model.
@@ -2548,7 +2562,7 @@ export interface ProgramPage {
      */
     'effort'?: string | null;
     /**
-     *
+     * Get the price text from the program page.
      * @type {string}
      * @memberof ProgramPage
      */
@@ -2573,53 +2587,53 @@ export interface ProgramPageItem {
      */
     'meta': PageMeta;
     /**
-     *
+     * The page title as you\'d like it to be seen by the public
      * @type {string}
      * @memberof ProgramPageItem
      */
     'title': string;
     /**
-     *
+     * The description shown on the home page and product page.
      * @type {string}
      * @memberof ProgramPageItem
      */
     'description': string;
     /**
-     *
+     * A short description indicating how long it takes to complete (e.g. \'4 weeks\').
      * @type {string}
      * @memberof ProgramPageItem
      */
     'length': string;
     /**
-     *
+     * A short description indicating how much effort is required (e.g. 1-3 hours per week).
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'effort': string;
+    'effort': string | null;
     /**
-     *
+     * The minimum number of hours per week required to complete the course.
      * @type {string}
      * @memberof ProgramPageItem
      */
     'min_weekly_hours': string;
     /**
-     *
+     * The maximum number of hours per week required to complete the course.
      * @type {string}
      * @memberof ProgramPageItem
      */
     'max_weekly_hours': string;
     /**
-     *
+     * The minimum number of weeks required to complete the course/program.
      * @type {number}
      * @memberof ProgramPageItem
      */
-    'min_weeks': number;
+    'min_weeks': number | null;
     /**
-     *
+     * The maximum number of weeks required to complete the course/program.
      * @type {number}
      * @memberof ProgramPageItem
      */
-    'max_weeks': number;
+    'max_weeks': number | null;
     /**
      *
      * @type {Array<PriceItem>}
@@ -2627,41 +2641,41 @@ export interface ProgramPageItem {
      */
     'price': Array<PriceItem>;
     /**
-     *
-     * @type {string}
+     * Specify the minimum product price. This is used by MIT Learn.
+     * @type {number}
      * @memberof ProgramPageItem
      */
-    'min_price': string;
+    'min_price': number | null;
     /**
-     *
-     * @type {string}
+     * Specify the maximum product price. This is used by MIT Learn.
+     * @type {number}
      * @memberof ProgramPageItem
      */
-    'max_price': string;
+    'max_price': number | null;
     /**
-     *
+     * A short description indicating prerequisites of this course/program.
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'prerequisites': string;
+    'prerequisites': string | null;
     /**
-     *
+     * URL a relevant FAQ page or entry for the course/program.
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'faq_url': string;
+    'faq_url': string | null;
     /**
-     *
+     * Details about this course/program.
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'about': string;
+    'about': string | null;
     /**
-     *
+     * What you will learn from this course.
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'what_you_learn': string;
+    'what_you_learn': string | null;
     /**
      *
      * @type {FeatureImage}
@@ -2669,17 +2683,17 @@ export interface ProgramPageItem {
      */
     'feature_image': FeatureImage;
     /**
-     *
+     * URL to the video to be displayed for this course/program. It can be an HLS or Youtube video URL.
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'video_url': string;
+    'video_url': string | null;
     /**
-     *
+     * The title text to display in the faculty cards section of the product page.
      * @type {string}
      * @memberof ProgramPageItem
      */
-    'faculty_section_title': string;
+    'faculty_section_title': string | null;
     /**
      *
      * @type {Array<Faculty>}
@@ -2735,7 +2749,7 @@ export interface PublicUser {
      * @type {string}
      * @memberof PublicUser
      */
-    'username': string;
+    'username'?: string | null;
     /**
      *
      * @type {string}
@@ -2835,6 +2849,12 @@ export interface SignatoryItem {
      * @memberof SignatoryItem
      */
     'title_2': string;
+    /**
+     *
+     * @type {string}
+     * @memberof SignatoryItem
+     */
+    'title_3': string;
     /**
      *
      * @type {string}
@@ -3014,53 +3034,10 @@ export interface User {
     'is_active'?: boolean;
     /**
      *
-     * @type {Array<UserOrganization>}
+     * @type {Array<OrganizationPage>}
      * @memberof User
      */
-    'b2b_organizations': Array<UserOrganization>;
-}
-/**
- * Serializer for user organization data.  Slightly different from the OrganizationPageSerializer; we only need the user\'s orgs and contracts.
- * @export
- * @interface UserOrganization
- */
-export interface UserOrganization {
-    /**
-     *
-     * @type {number}
-     * @memberof UserOrganization
-     */
-    'id': number;
-    /**
-     * The name of the organization
-     * @type {string}
-     * @memberof UserOrganization
-     */
-    'name': string;
-    /**
-     * Any useful extra information about the organization
-     * @type {string}
-     * @memberof UserOrganization
-     */
-    'description': string;
-    /**
-     * The organization\'s logo. Will be displayed in the app in various places.
-     * @type {string}
-     * @memberof UserOrganization
-     */
-    'logo': string;
-    /**
-     * The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/
-     * @type {string}
-     * @memberof UserOrganization
-     */
-    'slug': string;
-    /**
-     *
-     * @type {Array<ContractPage>}
-     * @memberof UserOrganization
-     */
-    'contracts': Array<ContractPage>;
+    'b2b_organizations': Array<OrganizationPage>;
 }
 /**
  * Serializer for profile
@@ -4438,6 +4415,18 @@ export interface V2Program {
      */
     'max_weeks': number | null;
     /**
+     * Get the min price of the product from the CMS page.
+     * @type {number}
+     * @memberof V2Program
+     */
+    'min_price': number | null;
+    /**
+     * Get the max price of the product from the CMS page.
+     * @type {number}
+     * @memberof V2Program
+     */
+    'max_price': number | null;
+    /**
      * Get the effort/time_commitment field from the program page CMS.
      * @type {string}
      * @memberof V2Program
@@ -4525,10 +4514,10 @@ export interface V2ProgramCollection {
     'description': string;
     /**
      *
-     * @type {Array<number>}
+     * @type {Array<V2ProgramCollectionProgramsInner>}
      * @memberof V2ProgramCollection
      */
-    'programs': Array<number>;
+    'programs': Array<V2ProgramCollectionProgramsInner>;
     /**
      *
      * @type {string}
@@ -4541,6 +4530,31 @@ export interface V2ProgramCollection {
      * @memberof V2ProgramCollection
      */
     'updated_on': string;
+}
+/**
+ *
+ * @export
+ * @interface V2ProgramCollectionProgramsInner
+ */
+export interface V2ProgramCollectionProgramsInner {
+    /**
+     *
+     * @type {number}
+     * @memberof V2ProgramCollectionProgramsInner
+     */
+    'id'?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof V2ProgramCollectionProgramsInner
+     */
+    'title'?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof V2ProgramCollectionProgramsInner
+     */
+    'order'?: number;
 }
 /**
  * Serializer for a ProgramRequirement
@@ -4581,16 +4595,22 @@ export interface V2ProgramRequirementData {
     'node_type': V2ProgramRequirementDataNodeTypeEnum;
     /**
      *
-     * @type {string}
+     * @type {number}
      * @memberof V2ProgramRequirementData
      */
-    'course'?: string | null;
+    'course'?: number | null;
     /**
      *
-     * @type {string}
+     * @type {number}
      * @memberof V2ProgramRequirementData
      */
-    'program'?: string;
+    'program'?: number | null;
+    /**
+     *
+     * @type {number}
+     * @memberof V2ProgramRequirementData
+     */
+    'required_program'?: number | null;
     /**
      *
      * @type {string}
@@ -4617,19 +4637,23 @@ export interface V2ProgramRequirementData {
     'elective_flag'?: boolean | null;
 }
 /**
- * * `operator` - operator * `course` - course
+ * * `course` - course * `program` - program * `operator` - operator
  * @export
  * @enum {string}
  */
 export declare const V2ProgramRequirementDataNodeTypeEnum: {
     /**
-    * operator
-    */
-    readonly Operator: "operator";
-    /**
     * course
     */
     readonly Course: "course";
+    /**
+    * program
+    */
+    readonly Program: "program";
+    /**
+    * operator
+    */
+    readonly Operator: "operator";
 };
 export type V2ProgramRequirementDataNodeTypeEnum = typeof V2ProgramRequirementDataNodeTypeEnum[keyof typeof V2ProgramRequirementDataNodeTypeEnum];
 /**
@@ -4658,17 +4682,36 @@ export interface V2ProgramRequirements {
  */
 export interface V2ProgramRequirementsCourses {
     /**
-     * List of required course IDs
-     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * List of required courses with id and readable_id
+     * @type {Array<V2ProgramRequirementsCoursesRequiredInner>}
      * @memberof V2ProgramRequirementsCourses
      */
-    'required'?: Array<V1ProgramRequirementsRequiredInner>;
+    'required'?: Array<V2ProgramRequirementsCoursesRequiredInner>;
     /**
-     * List of elective course IDs
-     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * List of elective courses with id and readable_id
+     * @type {Array<V2ProgramRequirementsCoursesRequiredInner>}
      * @memberof V2ProgramRequirementsCourses
      */
-    'electives'?: Array<V1ProgramRequirementsRequiredInner>;
+    'electives'?: Array<V2ProgramRequirementsCoursesRequiredInner>;
+}
+/**
+ *
+ * @export
+ * @interface V2ProgramRequirementsCoursesRequiredInner
+ */
+export interface V2ProgramRequirementsCoursesRequiredInner {
+    /**
+     *
+     * @type {number}
+     * @memberof V2ProgramRequirementsCoursesRequiredInner
+     */
+    'id'?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof V2ProgramRequirementsCoursesRequiredInner
+     */
+    'readable_id'?: string;
 }
 /**
  *
@@ -4677,17 +4720,17 @@ export interface V2ProgramRequirementsCourses {
  */
 export interface V2ProgramRequirementsPrograms {
     /**
-     * List of required program IDs
-     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * List of required programs with id and readable_id
+     * @type {Array<V2ProgramRequirementsCoursesRequiredInner>}
      * @memberof V2ProgramRequirementsPrograms
      */
-    'required'?: Array<V1ProgramRequirementsRequiredInner>;
+    'required'?: Array<V2ProgramRequirementsCoursesRequiredInner>;
     /**
-     * List of elective program IDs
-     * @type {Array<V1ProgramRequirementsRequiredInner>}
+     * List of elective programs with id and readable_id
+     * @type {Array<V2ProgramRequirementsCoursesRequiredInner>}
      * @memberof V2ProgramRequirementsPrograms
      */
-    'electives'?: Array<V1ProgramRequirementsRequiredInner>;
+    'electives'?: Array<V2ProgramRequirementsCoursesRequiredInner>;
 }
 /**
  *
@@ -4703,9 +4746,38 @@ export interface V2ProgramTopicsInner {
     'name'?: string;
 }
 /**
+ * Serializer for user program enrollments with associated course enrollments.  This aggregates a program, its course enrollments for the user, and any program certificate that has been earned.
+ * @export
+ * @interface V2UserProgramEnrollmentDetail
+ */
+export interface V2UserProgramEnrollmentDetail {
+    /**
+     *
+     * @type {V2Program}
+     * @memberof V2UserProgramEnrollmentDetail
+     */
+    'program': V2Program;
+    /**
+     *
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof V2UserProgramEnrollmentDetail
+     */
+    'enrollments': Array<{
+        [key: string]: any;
+    }>;
+    /**
+     *
+     * @type {{ [key: string]: any; }}
+     * @memberof V2UserProgramEnrollmentDetail
+     */
+    'certificate': {
+        [key: string]: any;
+    } | null;
+}
+/**
  * * `None` - ---- * `2` - Less than 2 years * `5` - 2-5 years * `10` - 6 - 10 years * `15` - 11 - 15 years * `20` - 16 - 20 years * `21` - More than 20 years * `0` - Prefer not to say
  * @export
- * @enum {number}
+ * @enum {string}
  */
 export declare const YearsExperienceEnum: {
     /**
@@ -4914,7 +4986,7 @@ export declare class ApiApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ApiApi
      */
-    apiRecordsProgramRevokeCreate(requestParameters: ApiApiApiRecordsProgramRevokeCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any>>;
+    apiRecordsProgramRevokeCreate(requestParameters: ApiApiApiRecordsProgramRevokeCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any, {}>>;
     /**
      * Sets up a sharing link for the learner\'s record. Returns back the entire learner record.
      * @param {ApiApiApiRecordsProgramShareCreateRequest} requestParameters Request parameters.
@@ -4922,7 +4994,7 @@ export declare class ApiApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ApiApi
      */
-    apiRecordsProgramShareCreate(requestParameters: ApiApiApiRecordsProgramShareCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any>>;
+    apiRecordsProgramShareCreate(requestParameters: ApiApiApiRecordsProgramShareCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any, {}>>;
     /**
      * Get learner record using program ID
      * @param {ApiApiLearnerRecordRetrieveByIdRequest} requestParameters Request parameters.
@@ -4930,7 +5002,7 @@ export declare class ApiApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ApiApi
      */
-    learnerRecordRetrieveById(requestParameters: ApiApiLearnerRecordRetrieveByIdRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any>>;
+    learnerRecordRetrieveById(requestParameters: ApiApiLearnerRecordRetrieveByIdRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any, {}>>;
     /**
      * Get learner record using share UUID
      * @param {ApiApiLearnerRecordRetrieveByUuidRequest} requestParameters Request parameters.
@@ -4938,7 +5010,7 @@ export declare class ApiApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ApiApi
      */
-    learnerRecordRetrieveByUuid(requestParameters: ApiApiLearnerRecordRetrieveByUuidRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any>>;
+    learnerRecordRetrieveByUuid(requestParameters: ApiApiLearnerRecordRetrieveByUuidRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LearnerRecord, any, {}>>;
 }
 /**
  * B2bApi - axios parameter creator
@@ -4946,7 +5018,7 @@ export declare class ApiApi extends BaseAPI {
  */
 export declare const B2bApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
-     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract. It will also make sure the code hasn\'t been used for attachment purposes before.  If the user is already in the contract, then we skip it.  Returns: - 201: Code successfully redeemed and user attached to new contract(s) - 200: Code valid but user already attached to all associated contracts - 404: Invalid or expired enrollment code - list of ContractPageSerializer - the contracts for the user
      * @param {string} enrollment_code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4992,7 +5064,7 @@ export declare const B2bApiAxiosParamCreator: (configuration?: Configuration) =>
  */
 export declare const B2bApiFp: (configuration?: Configuration) => {
     /**
-     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract. It will also make sure the code hasn\'t been used for attachment purposes before.  If the user is already in the contract, then we skip it.  Returns: - 201: Code successfully redeemed and user attached to new contract(s) - 200: Code valid but user already attached to all associated contracts - 404: Invalid or expired enrollment code - list of ContractPageSerializer - the contracts for the user
      * @param {string} enrollment_code
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5038,7 +5110,7 @@ export declare const B2bApiFp: (configuration?: Configuration) => {
  */
 export declare const B2bApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
     /**
-     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract. It will also make sure the code hasn\'t been used for attachment purposes before.  If the user is already in the contract, then we skip it.  Returns: - 201: Code successfully redeemed and user attached to new contract(s) - 200: Code valid but user already attached to all associated contracts - 404: Invalid or expired enrollment code - list of ContractPageSerializer - the contracts for the user
      * @param {B2bApiB2bAttachCreateRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5138,20 +5210,20 @@ export interface B2bApiB2bOrganizationsRetrieveRequest {
  */
 export declare class B2bApi extends BaseAPI {
     /**
-     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract.  If the user is already in the contract, then we skip it.  Returns: - list of ContractPageSerializer - the contracts for the user
+     * Use the provided enrollment code to attach the user to a B2B contract.  This will not create an order, nor will it enroll the user. It will attach the user to the contract and log that the code was used for this purpose (but will _not_ invalidate the code, since we\'re not actually using it at this point).  This will respect the activation and expiration dates (of both the contract and the discount), and will make sure there\'s sufficient available seats in the contract. It will also make sure the code hasn\'t been used for attachment purposes before.  If the user is already in the contract, then we skip it.  Returns: - 201: Code successfully redeemed and user attached to new contract(s) - 200: Code valid but user already attached to all associated contracts - 404: Invalid or expired enrollment code - list of ContractPageSerializer - the contracts for the user
      * @param {B2bApiB2bAttachCreateRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof B2bApi
      */
-    b2bAttachCreate(requestParameters: B2bApiB2bAttachCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage[], any>>;
+    b2bAttachCreate(requestParameters: B2bApiB2bAttachCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage[], any, {}>>;
     /**
      * Viewset for the ContractPage model.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof B2bApi
      */
-    b2bContractsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage[], any>>;
+    b2bContractsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage[], any, {}>>;
     /**
      * Viewset for the ContractPage model.
      * @param {B2bApiB2bContractsRetrieveRequest} requestParameters Request parameters.
@@ -5159,7 +5231,7 @@ export declare class B2bApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof B2bApi
      */
-    b2bContractsRetrieve(requestParameters: B2bApiB2bContractsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage, any>>;
+    b2bContractsRetrieve(requestParameters: B2bApiB2bContractsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ContractPage, any, {}>>;
     /**
      * Create an enrollment for the given course run.
      * @param {B2bApiB2bEnrollCreateRequest} requestParameters Request parameters.
@@ -5167,14 +5239,14 @@ export declare class B2bApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof B2bApi
      */
-    b2bEnrollCreate(requestParameters: B2bApiB2bEnrollCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CreateB2BEnrollment, any>>;
+    b2bEnrollCreate(requestParameters: B2bApiB2bEnrollCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CreateB2BEnrollment, any, {}>>;
     /**
      * Viewset for the OrganizationPage model.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof B2bApi
      */
-    b2bOrganizationsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<OrganizationPage[], any>>;
+    b2bOrganizationsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<OrganizationPage[], any, {}>>;
     /**
      * Viewset for the OrganizationPage model.
      * @param {B2bApiB2bOrganizationsRetrieveRequest} requestParameters Request parameters.
@@ -5182,7 +5254,7 @@ export declare class B2bApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof B2bApi
      */
-    b2bOrganizationsRetrieve(requestParameters: B2bApiB2bOrganizationsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<OrganizationPage, any>>;
+    b2bOrganizationsRetrieve(requestParameters: B2bApiB2bOrganizationsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<OrganizationPage, any, {}>>;
 }
 /**
  * ChangeEmailsApi - axios parameter creator
@@ -5334,7 +5406,7 @@ export declare class ChangeEmailsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChangeEmailsApi
      */
-    changeEmailsCreate(requestParameters: ChangeEmailsApiChangeEmailsCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChangeEmailRequestCreate, any>>;
+    changeEmailsCreate(requestParameters: ChangeEmailsApiChangeEmailsCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChangeEmailRequestCreate, any, {}>>;
     /**
      * Viewset for creating and updating email change requests
      * @param {ChangeEmailsApiChangeEmailsPartialUpdateRequest} requestParameters Request parameters.
@@ -5342,7 +5414,7 @@ export declare class ChangeEmailsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChangeEmailsApi
      */
-    changeEmailsPartialUpdate(requestParameters: ChangeEmailsApiChangeEmailsPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChangeEmailRequestUpdate, any>>;
+    changeEmailsPartialUpdate(requestParameters: ChangeEmailsApiChangeEmailsPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChangeEmailRequestUpdate, any, {}>>;
     /**
      * Viewset for creating and updating email change requests
      * @param {ChangeEmailsApiChangeEmailsUpdateRequest} requestParameters Request parameters.
@@ -5350,7 +5422,7 @@ export declare class ChangeEmailsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChangeEmailsApi
      */
-    changeEmailsUpdate(requestParameters: ChangeEmailsApiChangeEmailsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChangeEmailRequestUpdate, any>>;
+    changeEmailsUpdate(requestParameters: ChangeEmailsApiChangeEmailsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChangeEmailRequestUpdate, any, {}>>;
 }
 /**
  * CountriesApi - axios parameter creator
@@ -5401,7 +5473,7 @@ export declare class CountriesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CountriesApi
      */
-    countriesList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Country[], any>>;
+    countriesList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Country[], any, {}>>;
 }
 /**
  * CourseCertificatesApi - axios parameter creator
@@ -5469,7 +5541,7 @@ export declare class CourseCertificatesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CourseCertificatesApi
      */
-    courseCertificatesRetrieve(requestParameters: CourseCertificatesApiCourseCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2CourseRunCertificate, any>>;
+    courseCertificatesRetrieve(requestParameters: CourseCertificatesApiCourseCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2CourseRunCertificate, any, {}>>;
 }
 /**
  * CourseRunsApi - axios parameter creator
@@ -5579,7 +5651,7 @@ export declare class CourseRunsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CourseRunsApi
      */
-    courseRunsList(requestParameters?: CourseRunsApiCourseRunsListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1CourseRunWithCourse[], any>>;
+    courseRunsList(requestParameters?: CourseRunsApiCourseRunsListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1CourseRunWithCourse[], any, {}>>;
     /**
      * API view set for CourseRuns
      * @param {CourseRunsApiCourseRunsRetrieveRequest} requestParameters Request parameters.
@@ -5587,7 +5659,7 @@ export declare class CourseRunsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CourseRunsApi
      */
-    courseRunsRetrieve(requestParameters: CourseRunsApiCourseRunsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1CourseRunWithCourse, any>>;
+    courseRunsRetrieve(requestParameters: CourseRunsApiCourseRunsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1CourseRunWithCourse, any, {}>>;
 }
 /**
  * CoursesApi - axios parameter creator
@@ -5869,7 +5941,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV1CoursesList(requestParameters?: CoursesApiApiV1CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV1CourseWithCourseRunsList, any>>;
+    apiV1CoursesList(requestParameters?: CoursesApiApiV1CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV1CourseWithCourseRunsList, any, {}>>;
     /**
      * Retrieve a specific course - API v1
      * @param {CoursesApiApiV1CoursesRetrieveRequest} requestParameters Request parameters.
@@ -5877,7 +5949,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV1CoursesRetrieve(requestParameters: CoursesApiApiV1CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1CourseWithCourseRuns, any>>;
+    apiV1CoursesRetrieve(requestParameters: CoursesApiApiV1CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1CourseWithCourseRuns, any, {}>>;
     /**
      * List all courses - API v2
      * @param {CoursesApiApiV2CoursesListRequest} requestParameters Request parameters.
@@ -5885,7 +5957,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedCourseWithCourseRunsSerializerV2List, any>>;
+    apiV2CoursesList(requestParameters?: CoursesApiApiV2CoursesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedCourseWithCourseRunsSerializerV2List, any, {}>>;
     /**
      * Retrieve a specific course - API v2
      * @param {CoursesApiApiV2CoursesRetrieveRequest} requestParameters Request parameters.
@@ -5893,7 +5965,7 @@ export declare class CoursesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CoursesApi
      */
-    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseWithCourseRunsSerializerV2, any>>;
+    apiV2CoursesRetrieve(requestParameters: CoursesApiApiV2CoursesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseWithCourseRunsSerializerV2, any, {}>>;
 }
 /**
  * DepartmentsApi - axios parameter creator
@@ -6030,14 +6102,14 @@ export declare class DepartmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DepartmentsApi
      */
-    departmentsListV1(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCount[], any>>;
+    departmentsListV1(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCount[], any, {}>>;
     /**
      * List departments - v2
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DepartmentsApi
      */
-    departmentsListV2(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCoursesAndPrograms[], any>>;
+    departmentsListV2(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCoursesAndPrograms[], any, {}>>;
     /**
      * Get department details - v1
      * @param {DepartmentsApiDepartmentsRetrieveV1Request} requestParameters Request parameters.
@@ -6045,7 +6117,7 @@ export declare class DepartmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DepartmentsApi
      */
-    departmentsRetrieveV1(requestParameters: DepartmentsApiDepartmentsRetrieveV1Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCount, any>>;
+    departmentsRetrieveV1(requestParameters: DepartmentsApiDepartmentsRetrieveV1Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCount, any, {}>>;
     /**
      * Get department details - v2
      * @param {DepartmentsApiDepartmentsRetrieveV2Request} requestParameters Request parameters.
@@ -6053,7 +6125,7 @@ export declare class DepartmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DepartmentsApi
      */
-    departmentsRetrieveV2(requestParameters: DepartmentsApiDepartmentsRetrieveV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCoursesAndPrograms, any>>;
+    departmentsRetrieveV2(requestParameters: DepartmentsApiDepartmentsRetrieveV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepartmentWithCoursesAndPrograms, any, {}>>;
 }
 /**
  * EnrollmentsApi - axios parameter creator
@@ -6384,7 +6456,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    apiEnrollmentsCreate(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    apiEnrollmentsCreate(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
     /**
      * API view set for user enrollments
      * @param {EnrollmentsApiEnrollmentsCreateRequest} requestParameters Request parameters.
@@ -6392,7 +6464,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    enrollmentsCreate(requestParameters: EnrollmentsApiEnrollmentsCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any>>;
+    enrollmentsCreate(requestParameters: EnrollmentsApiEnrollmentsCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any, {}>>;
     /**
      * API view set for user enrollments
      * @param {EnrollmentsApiEnrollmentsDestroyRequest} requestParameters Request parameters.
@@ -6400,14 +6472,14 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    enrollmentsDestroy(requestParameters: EnrollmentsApiEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    enrollmentsDestroy(requestParameters: EnrollmentsApiEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
     /**
      * API view set for user enrollments
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    enrollmentsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment[], any>>;
+    enrollmentsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment[], any, {}>>;
     /**
      * Update enrollment email preferences
      * @param {EnrollmentsApiEnrollmentsPartialUpdateRequest} requestParameters Request parameters.
@@ -6415,7 +6487,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    enrollmentsPartialUpdate(requestParameters: EnrollmentsApiEnrollmentsPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any>>;
+    enrollmentsPartialUpdate(requestParameters: EnrollmentsApiEnrollmentsPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any, {}>>;
     /**
      * API view set for user enrollments
      * @param {EnrollmentsApiEnrollmentsUpdateRequest} requestParameters Request parameters.
@@ -6423,7 +6495,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    enrollmentsUpdate(requestParameters: EnrollmentsApiEnrollmentsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any>>;
+    enrollmentsUpdate(requestParameters: EnrollmentsApiEnrollmentsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollment, any, {}>>;
     /**
      * Create a new user enrollment - API v2
      * @param {EnrollmentsApiUserEnrollmentsCreateV2Request} requestParameters Request parameters.
@@ -6431,7 +6503,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    userEnrollmentsCreateV2(requestParameters: EnrollmentsApiUserEnrollmentsCreateV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollmentRequestV2, any>>;
+    userEnrollmentsCreateV2(requestParameters: EnrollmentsApiUserEnrollmentsCreateV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollmentRequestV2, any, {}>>;
     /**
      * Unenroll from a course - API v2
      * @param {EnrollmentsApiUserEnrollmentsDestroyV2Request} requestParameters Request parameters.
@@ -6439,7 +6511,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    userEnrollmentsDestroyV2(requestParameters: EnrollmentsApiUserEnrollmentsDestroyV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    userEnrollmentsDestroyV2(requestParameters: EnrollmentsApiUserEnrollmentsDestroyV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
     /**
      * List user enrollments with B2B organization and contract information - API v2. Use ?exclude_b2b=true to filter out enrollments linked to course runs with B2B contracts. Use ?org_id=<id> to filter enrollments by specific B2B organization.
      * @param {EnrollmentsApiUserEnrollmentsListV2Request} requestParameters Request parameters.
@@ -6447,7 +6519,7 @@ export declare class EnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EnrollmentsApi
      */
-    userEnrollmentsListV2(requestParameters?: EnrollmentsApiUserEnrollmentsListV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollmentRequestV2[], any>>;
+    userEnrollmentsListV2(requestParameters?: EnrollmentsApiUserEnrollmentsListV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CourseRunEnrollmentRequestV2[], any, {}>>;
 }
 /**
  * PagesApi - axios parameter creator
@@ -6478,21 +6550,23 @@ export declare const PagesApiAxiosParamCreator: (configuration?: Configuration) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsCertificatePageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    pagesfieldstypecmsCertificatepageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns pages of type cms.CoursePage
      * @summary List all Course Pages
+     * @param {string} [readable_id] filter by course readable_id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsCoursePageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    pagesfieldstypecmsCoursepageRetrieve: (readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Returns pages of type cms.ProgramPage
      * @summary List all Program Pages
+     * @param {string} [readable_id] filter by program readable_id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsProgramPageRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    pagesfieldstypecmsProgrampageRetrieve: (readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * PagesApi - functional programming interface
@@ -6523,21 +6597,23 @@ export declare const PagesApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsCertificatePageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CertificatePageList>>;
+    pagesfieldstypecmsCertificatepageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CertificatePageList>>;
     /**
      * Returns pages of type cms.CoursePage
      * @summary List all Course Pages
+     * @param {string} [readable_id] filter by course readable_id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsCoursePageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoursePageList>>;
+    pagesfieldstypecmsCoursepageRetrieve(readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoursePageList>>;
     /**
      * Returns pages of type cms.ProgramPage
      * @summary List all Program Pages
+     * @param {string} [readable_id] filter by program readable_id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProgramPageList>>;
+    pagesfieldstypecmsProgrampageRetrieve(readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProgramPageList>>;
 };
 /**
  * PagesApi - factory interface
@@ -6566,21 +6642,23 @@ export declare const PagesApiFactory: (configuration?: Configuration, basePath?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsCertificatePageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<CertificatePageList>;
+    pagesfieldstypecmsCertificatepageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<CertificatePageList>;
     /**
      * Returns pages of type cms.CoursePage
      * @summary List all Course Pages
+     * @param {PagesApiPagesfieldstypecmsCoursepageRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsCoursePageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<CoursePageList>;
+    pagesfieldstypecmsCoursepageRetrieve(requestParameters?: PagesApiPagesfieldstypecmsCoursepageRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<CoursePageList>;
     /**
      * Returns pages of type cms.ProgramPage
      * @summary List all Program Pages
+     * @param {PagesApiPagesfieldstypecmsProgrampageRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<ProgramPageList>;
+    pagesfieldstypecmsProgrampageRetrieve(requestParameters?: PagesApiPagesfieldstypecmsProgrampageRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProgramPageList>;
 };
 /**
  * Request parameters for pagesList operation in PagesApi.
@@ -6621,6 +6699,32 @@ export interface PagesApiPagesRetrieveRequest {
     readonly revision_id?: number;
 }
 /**
+ * Request parameters for pagesfieldstypecmsCoursepageRetrieve operation in PagesApi.
+ * @export
+ * @interface PagesApiPagesfieldstypecmsCoursepageRetrieveRequest
+ */
+export interface PagesApiPagesfieldstypecmsCoursepageRetrieveRequest {
+    /**
+     * filter by course readable_id
+     * @type {string}
+     * @memberof PagesApiPagesfieldstypecmsCoursepageRetrieve
+     */
+    readonly readable_id?: string;
+}
+/**
+ * Request parameters for pagesfieldstypecmsProgrampageRetrieve operation in PagesApi.
+ * @export
+ * @interface PagesApiPagesfieldstypecmsProgrampageRetrieveRequest
+ */
+export interface PagesApiPagesfieldstypecmsProgrampageRetrieveRequest {
+    /**
+     * filter by program readable_id
+     * @type {string}
+     * @memberof PagesApiPagesfieldstypecmsProgrampageRetrieve
+     */
+    readonly readable_id?: string;
+}
+/**
  * PagesApi - object-oriented interface
  * @export
  * @class PagesApi
@@ -6635,7 +6739,7 @@ export declare class PagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PagesApi
      */
-    pagesList(requestParameters?: PagesApiPagesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PageList, any>>;
+    pagesList(requestParameters?: PagesApiPagesListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PageList, any, {}>>;
     /**
      * Returns details of a specific Wagtail page by ID
      * @summary Get Wagtail Page Details
@@ -6644,7 +6748,7 @@ export declare class PagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PagesApi
      */
-    pagesRetrieve(requestParameters: PagesApiPagesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PagesRetrieve200Response, any>>;
+    pagesRetrieve(requestParameters: PagesApiPagesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PagesRetrieve200Response, any, {}>>;
     /**
      * Returns pages of type cms.CertificatePage
      * @summary List all Certificate Pages
@@ -6652,23 +6756,25 @@ export declare class PagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PagesApi
      */
-    pagesfieldstypecmsCertificatePageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CertificatePageList, any>>;
+    pagesfieldstypecmsCertificatepageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CertificatePageList, any, {}>>;
     /**
      * Returns pages of type cms.CoursePage
      * @summary List all Course Pages
+     * @param {PagesApiPagesfieldstypecmsCoursepageRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PagesApi
      */
-    pagesfieldstypecmsCoursePageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CoursePageList, any>>;
+    pagesfieldstypecmsCoursepageRetrieve(requestParameters?: PagesApiPagesfieldstypecmsCoursepageRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CoursePageList, any, {}>>;
     /**
      * Returns pages of type cms.ProgramPage
      * @summary List all Program Pages
+     * @param {PagesApiPagesfieldstypecmsProgrampageRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PagesApi
      */
-    pagesfieldstypecmsProgramPageRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ProgramPageList, any>>;
+    pagesfieldstypecmsProgrampageRetrieve(requestParameters?: PagesApiPagesfieldstypecmsProgrampageRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ProgramPageList, any, {}>>;
 }
 /**
  * ProgramCertificatesApi - axios parameter creator
@@ -6736,7 +6842,7 @@ export declare class ProgramCertificatesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramCertificatesApi
      */
-    programCertificatesRetrieve(requestParameters: ProgramCertificatesApiProgramCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2ProgramCertificate, any>>;
+    programCertificatesRetrieve(requestParameters: ProgramCertificatesApiProgramCertificatesRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2ProgramCertificate, any, {}>>;
 }
 /**
  * ProgramCollectionsApi - axios parameter creator
@@ -6846,7 +6952,7 @@ export declare class ProgramCollectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramCollectionsApi
      */
-    programCollectionsList(requestParameters?: ProgramCollectionsApiProgramCollectionsListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV2ProgramCollectionList, any>>;
+    programCollectionsList(requestParameters?: ProgramCollectionsApiProgramCollectionsListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV2ProgramCollectionList, any, {}>>;
     /**
      * Readonly viewset for ProgramCollection objects.
      * @param {ProgramCollectionsApiProgramCollectionsRetrieveRequest} requestParameters Request parameters.
@@ -6854,7 +6960,7 @@ export declare class ProgramCollectionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramCollectionsApi
      */
-    programCollectionsRetrieve(requestParameters: ProgramCollectionsApiProgramCollectionsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2ProgramCollection, any>>;
+    programCollectionsRetrieve(requestParameters: ProgramCollectionsApiProgramCollectionsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2ProgramCollection, any, {}>>;
 }
 /**
  * ProgramEnrollmentsApi - axios parameter creator
@@ -6881,6 +6987,26 @@ export declare const ProgramEnrollmentsApiAxiosParamCreator: (configuration?: Co
      * @throws {RequiredError}
      */
     programEnrollmentsRetrieve: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Unenroll the user from this program. This is simpler than the corresponding function for CourseRunEnrollments; edX doesn\'t really know what programs are so there\'s nothing to process there.
+     * @param {number} id Program enrollment ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsDestroy: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns a unified set of program and course enrollments for the current user using v2 serializers.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsList: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Retrieve a specific program enrollment using v2 serializers.
+     * @param {number} id Program enrollment ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsRetrieve: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * ProgramEnrollmentsApi - functional programming interface
@@ -6907,6 +7033,26 @@ export declare const ProgramEnrollmentsApiFp: (configuration?: Configuration) =>
      * @throws {RequiredError}
      */
     programEnrollmentsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserProgramEnrollmentDetail>>;
+    /**
+     * Unenroll the user from this program. This is simpler than the corresponding function for CourseRunEnrollments; edX doesn\'t really know what programs are so there\'s nothing to process there.
+     * @param {number} id Program enrollment ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsDestroy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<V2UserProgramEnrollmentDetail>>>;
+    /**
+     * Returns a unified set of program and course enrollments for the current user using v2 serializers.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<V2UserProgramEnrollmentDetail>>>;
+    /**
+     * Retrieve a specific program enrollment using v2 serializers.
+     * @param {number} id Program enrollment ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V2UserProgramEnrollmentDetail>>;
 };
 /**
  * ProgramEnrollmentsApi - factory interface
@@ -6933,6 +7079,26 @@ export declare const ProgramEnrollmentsApiFactory: (configuration?: Configuratio
      * @throws {RequiredError}
      */
     programEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserProgramEnrollmentDetail>;
+    /**
+     * Unenroll the user from this program. This is simpler than the corresponding function for CourseRunEnrollments; edX doesn\'t really know what programs are so there\'s nothing to process there.
+     * @param {ProgramEnrollmentsApiV2ProgramEnrollmentsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsDestroy(requestParameters: ProgramEnrollmentsApiV2ProgramEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<V2UserProgramEnrollmentDetail>>;
+    /**
+     * Returns a unified set of program and course enrollments for the current user using v2 serializers.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsList(options?: RawAxiosRequestConfig): AxiosPromise<Array<V2UserProgramEnrollmentDetail>>;
+    /**
+     * Retrieve a specific program enrollment using v2 serializers.
+     * @param {ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    v2ProgramEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<V2UserProgramEnrollmentDetail>;
 };
 /**
  * Request parameters for programEnrollmentsDestroy operation in ProgramEnrollmentsApi.
@@ -6961,6 +7127,32 @@ export interface ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest {
     readonly id: number;
 }
 /**
+ * Request parameters for v2ProgramEnrollmentsDestroy operation in ProgramEnrollmentsApi.
+ * @export
+ * @interface ProgramEnrollmentsApiV2ProgramEnrollmentsDestroyRequest
+ */
+export interface ProgramEnrollmentsApiV2ProgramEnrollmentsDestroyRequest {
+    /**
+     * Program enrollment ID
+     * @type {number}
+     * @memberof ProgramEnrollmentsApiV2ProgramEnrollmentsDestroy
+     */
+    readonly id: number;
+}
+/**
+ * Request parameters for v2ProgramEnrollmentsRetrieve operation in ProgramEnrollmentsApi.
+ * @export
+ * @interface ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieveRequest
+ */
+export interface ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieveRequest {
+    /**
+     * Program enrollment ID
+     * @type {number}
+     * @memberof ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieve
+     */
+    readonly id: number;
+}
+/**
  * ProgramEnrollmentsApi - object-oriented interface
  * @export
  * @class ProgramEnrollmentsApi
@@ -6974,14 +7166,14 @@ export declare class ProgramEnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramEnrollmentsApi
      */
-    programEnrollmentsDestroy(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail, any>>;
+    programEnrollmentsDestroy(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail, any, {}>>;
     /**
      * Returns a unified set of program and course enrollments for the current user.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProgramEnrollmentsApi
      */
-    programEnrollmentsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail[], any>>;
+    programEnrollmentsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail[], any, {}>>;
     /**
      * Retrieve a specific program enrollment.
      * @param {ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
@@ -6989,7 +7181,30 @@ export declare class ProgramEnrollmentsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramEnrollmentsApi
      */
-    programEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail, any>>;
+    programEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserProgramEnrollmentDetail, any, {}>>;
+    /**
+     * Unenroll the user from this program. This is simpler than the corresponding function for CourseRunEnrollments; edX doesn\'t really know what programs are so there\'s nothing to process there.
+     * @param {ProgramEnrollmentsApiV2ProgramEnrollmentsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramEnrollmentsApi
+     */
+    v2ProgramEnrollmentsDestroy(requestParameters: ProgramEnrollmentsApiV2ProgramEnrollmentsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2UserProgramEnrollmentDetail[], any, {}>>;
+    /**
+     * Returns a unified set of program and course enrollments for the current user using v2 serializers.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramEnrollmentsApi
+     */
+    v2ProgramEnrollmentsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2UserProgramEnrollmentDetail[], any, {}>>;
+    /**
+     * Retrieve a specific program enrollment using v2 serializers.
+     * @param {ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProgramEnrollmentsApi
+     */
+    v2ProgramEnrollmentsRetrieve(requestParameters: ProgramEnrollmentsApiV2ProgramEnrollmentsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2UserProgramEnrollmentDetail, any, {}>>;
 }
 /**
  * ProgramsApi - axios parameter creator
@@ -7009,7 +7224,7 @@ export declare const ProgramsApiAxiosParamCreator: (configuration?: Configuratio
     programsListV1: (id?: number, live?: boolean, page?: number, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * List Programs - v2
-     * @param {number} [id]
+     * @param {Array<number>} [id] Multiple values may be separated by commas.
      * @param {boolean} [live]
      * @param {number} [org_id]
      * @param {number} [page] A page number within the paginated result set.
@@ -7019,7 +7234,7 @@ export declare const ProgramsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programsListV2: (id?: number, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    programsListV2: (id?: Array<number>, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * API view set for Programs - v1
      * @param {number} id A unique integer value identifying this program.
@@ -7053,7 +7268,7 @@ export declare const ProgramsApiFp: (configuration?: Configuration) => {
     programsListV1(id?: number, live?: boolean, page?: number, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV1ProgramList>>;
     /**
      * List Programs - v2
-     * @param {number} [id]
+     * @param {Array<number>} [id] Multiple values may be separated by commas.
      * @param {boolean} [live]
      * @param {number} [org_id]
      * @param {number} [page] A page number within the paginated result set.
@@ -7063,7 +7278,7 @@ export declare const ProgramsApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programsListV2(id?: number, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV2ProgramList>>;
+    programsListV2(id?: Array<number>, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV2ProgramList>>;
     /**
      * API view set for Programs - v1
      * @param {number} id A unique integer value identifying this program.
@@ -7157,11 +7372,11 @@ export interface ProgramsApiProgramsListV1Request {
  */
 export interface ProgramsApiProgramsListV2Request {
     /**
-     *
-     * @type {number}
+     * Multiple values may be separated by commas.
+     * @type {Array<number>}
      * @memberof ProgramsApiProgramsListV2
      */
-    readonly id?: number;
+    readonly id?: Array<number>;
     /**
      *
      * @type {boolean}
@@ -7239,7 +7454,7 @@ export declare class ProgramsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramsApi
      */
-    programsListV1(requestParameters?: ProgramsApiProgramsListV1Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV1ProgramList, any>>;
+    programsListV1(requestParameters?: ProgramsApiProgramsListV1Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV1ProgramList, any, {}>>;
     /**
      * List Programs - v2
      * @param {ProgramsApiProgramsListV2Request} requestParameters Request parameters.
@@ -7247,7 +7462,7 @@ export declare class ProgramsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramsApi
      */
-    programsListV2(requestParameters?: ProgramsApiProgramsListV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV2ProgramList, any>>;
+    programsListV2(requestParameters?: ProgramsApiProgramsListV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedV2ProgramList, any, {}>>;
     /**
      * API view set for Programs - v1
      * @param {ProgramsApiProgramsRetrieveV1Request} requestParameters Request parameters.
@@ -7255,7 +7470,7 @@ export declare class ProgramsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramsApi
      */
-    programsRetrieveV1(requestParameters: ProgramsApiProgramsRetrieveV1Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1Program, any>>;
+    programsRetrieveV1(requestParameters: ProgramsApiProgramsRetrieveV1Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V1Program, any, {}>>;
     /**
      * API view set for Programs - v2
      * @param {ProgramsApiProgramsRetrieveV2Request} requestParameters Request parameters.
@@ -7263,7 +7478,7 @@ export declare class ProgramsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProgramsApi
      */
-    programsRetrieveV2(requestParameters: ProgramsApiProgramsRetrieveV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2Program, any>>;
+    programsRetrieveV2(requestParameters: ProgramsApiProgramsRetrieveV2Request, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<V2Program, any, {}>>;
 }
 /**
  * UserSearchApi - axios parameter creator
@@ -7381,7 +7596,7 @@ export declare class UserSearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserSearchApi
      */
-    userSearchList(requestParameters?: UserSearchApiUserSearchListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedStaffDashboardUserList, any>>;
+    userSearchList(requestParameters?: UserSearchApiUserSearchListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PaginatedStaffDashboardUserList, any, {}>>;
     /**
      * Provides an API for listing system users. This is for the staff dashboard.
      * @param {UserSearchApiUserSearchRetrieveRequest} requestParameters Request parameters.
@@ -7389,7 +7604,58 @@ export declare class UserSearchApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserSearchApi
      */
-    userSearchRetrieve(requestParameters: UserSearchApiUserSearchRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StaffDashboardUser, any>>;
+    userSearchRetrieve(requestParameters: UserSearchApiUserSearchRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StaffDashboardUser, any, {}>>;
+}
+/**
+ * UserinfoApi - axios parameter creator
+ * @export
+ */
+export declare const UserinfoApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Retrieve the current user\'s info only if they have an edx_username, otherwise return 409  This is to prevent issues with Open edX OAuth client that expect an edx_username to be present
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userinfoRetrieve: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * UserinfoApi - functional programming interface
+ * @export
+ */
+export declare const UserinfoApiFp: (configuration?: Configuration) => {
+    /**
+     * Retrieve the current user\'s info only if they have an edx_username, otherwise return 409  This is to prevent issues with Open edX OAuth client that expect an edx_username to be present
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userinfoRetrieve(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>>;
+};
+/**
+ * UserinfoApi - factory interface
+ * @export
+ */
+export declare const UserinfoApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Retrieve the current user\'s info only if they have an edx_username, otherwise return 409  This is to prevent issues with Open edX OAuth client that expect an edx_username to be present
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    userinfoRetrieve(options?: RawAxiosRequestConfig): AxiosPromise<User>;
+};
+/**
+ * UserinfoApi - object-oriented interface
+ * @export
+ * @class UserinfoApi
+ * @extends {BaseAPI}
+ */
+export declare class UserinfoApi extends BaseAPI {
+    /**
+     * Retrieve the current user\'s info only if they have an edx_username, otherwise return 409  This is to prevent issues with Open edX OAuth client that expect an edx_username to be present
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserinfoApi
+     */
+    userinfoRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any, {}>>;
 }
 /**
  * UsersApi - axios parameter creator
@@ -7561,14 +7827,14 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    usersCurrentUserPartialUpdate(requestParameters?: UsersApiUsersCurrentUserPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    usersCurrentUserPartialUpdate(requestParameters?: UsersApiUsersCurrentUserPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any, {}>>;
     /**
      * User retrieve and update viewsets for the current user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    usersCurrentUserRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    usersCurrentUserRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any, {}>>;
     /**
      * User retrieve and update viewsets for the current user
      * @param {UsersApiUsersMePartialUpdateRequest} requestParameters Request parameters.
@@ -7576,14 +7842,14 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    usersMePartialUpdate(requestParameters?: UsersApiUsersMePartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    usersMePartialUpdate(requestParameters?: UsersApiUsersMePartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any, {}>>;
     /**
      * User retrieve and update viewsets for the current user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    usersMeRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    usersMeRetrieve(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any, {}>>;
     /**
      * User retrieve viewsets
      * @param {UsersApiUsersRetrieveRequest} requestParameters Request parameters.
@@ -7591,6 +7857,6 @@ export declare class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    usersRetrieve(requestParameters: UsersApiUsersRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PublicUser, any>>;
+    usersRetrieve(requestParameters: UsersApiUsersRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PublicUser, any, {}>>;
 }
 //# sourceMappingURL=api.d.ts.map
