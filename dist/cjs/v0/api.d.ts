@@ -4759,20 +4759,16 @@ export interface V2UserProgramEnrollmentDetail {
     'program': V2Program;
     /**
      *
-     * @type {Array<{ [key: string]: any; }>}
+     * @type {V2ProgramCertificate}
      * @memberof V2UserProgramEnrollmentDetail
      */
-    'enrollments': Array<{
-        [key: string]: any;
-    }>;
+    'certificate': V2ProgramCertificate | null;
     /**
      *
-     * @type {{ [key: string]: any; }}
+     * @type {Array<CourseRunEnrollmentRequestV2>}
      * @memberof V2UserProgramEnrollmentDetail
      */
-    'certificate': {
-        [key: string]: any;
-    } | null;
+    'enrollments': Array<CourseRunEnrollmentRequestV2>;
 }
 /**
  * * `None` - ---- * `2` - Less than 2 years * `5` - 2-5 years * `10` - 6 - 10 years * `15` - 11 - 15 years * `20` - 16 - 20 years * `21` - More than 20 years * `0` - Prefer not to say
