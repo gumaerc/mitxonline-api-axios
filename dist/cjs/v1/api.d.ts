@@ -30,6 +30,199 @@ export declare const AvailabilityEnum: {
 };
 export type AvailabilityEnum = typeof AvailabilityEnum[keyof typeof AvailabilityEnum];
 /**
+ * Basket model serializer
+ * @export
+ * @interface Basket
+ */
+export interface Basket {
+    /**
+     *
+     * @type {number}
+     * @memberof Basket
+     */
+    'id': number;
+    /**
+     *
+     * @type {number}
+     * @memberof Basket
+     */
+    'user': number;
+    /**
+     *
+     * @type {Array<BasketItem>}
+     * @memberof Basket
+     */
+    'basket_items': Array<BasketItem>;
+}
+/**
+ * BasketDiscount model serializer
+ * @export
+ * @interface BasketDiscountDetail
+ */
+export interface BasketDiscountDetail {
+    /**
+     *
+     * @type {Discount}
+     * @memberof BasketDiscountDetail
+     */
+    'redeemed_discount': Discount;
+    /**
+     *
+     * @type {Basket}
+     * @memberof BasketDiscountDetail
+     */
+    'redeemed_basket': Basket;
+}
+/**
+ * BasketItem model serializer
+ * @export
+ * @interface BasketItem
+ */
+export interface BasketItem {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketItem
+     */
+    'basket': number;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketItem
+     */
+    'product': number;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketItem
+     */
+    'id': number;
+}
+/**
+ * BasketItem model serializer
+ * @export
+ * @interface BasketItemRequest
+ */
+export interface BasketItemRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketItemRequest
+     */
+    'basket': number;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketItemRequest
+     */
+    'product': number;
+}
+/**
+ * Serializer for Basket model with product details
+ * @export
+ * @interface BasketWithProduct
+ */
+export interface BasketWithProduct {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketWithProduct
+     */
+    'id': number;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketWithProduct
+     */
+    'user': number;
+    /**
+     *
+     * @type {Array<BasketWithProductBasketItemsInner>}
+     * @memberof BasketWithProduct
+     */
+    'basket_items': Array<BasketWithProductBasketItemsInner>;
+    /**
+     * Get total price of all items in basket before discounts
+     * @type {number}
+     * @memberof BasketWithProduct
+     */
+    'total_price': number;
+    /**
+     * Get total price after any discounts are applied
+     * @type {number}
+     * @memberof BasketWithProduct
+     */
+    'discounted_price': number;
+    /**
+     *
+     * @type {Array<BasketDiscountDetail>}
+     * @memberof BasketWithProduct
+     */
+    'discounts': Array<BasketDiscountDetail>;
+}
+/**
+ *
+ * @export
+ * @interface BasketWithProductBasketItemsInner
+ */
+export interface BasketWithProductBasketItemsInner {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketWithProductBasketItemsInner
+     */
+    'basket'?: number;
+    /**
+     *
+     * @type {BasketWithProductBasketItemsInnerProduct}
+     * @memberof BasketWithProductBasketItemsInner
+     */
+    'product'?: BasketWithProductBasketItemsInnerProduct;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketWithProductBasketItemsInner
+     */
+    'id'?: number;
+}
+/**
+ *
+ * @export
+ * @interface BasketWithProductBasketItemsInnerProduct
+ */
+export interface BasketWithProductBasketItemsInnerProduct {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketWithProductBasketItemsInnerProduct
+     */
+    'id'?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketWithProductBasketItemsInnerProduct
+     */
+    'price'?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof BasketWithProductBasketItemsInnerProduct
+     */
+    'description'?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof BasketWithProductBasketItemsInnerProduct
+     */
+    'is_active'?: boolean;
+    /**
+     *
+     * @type {object}
+     * @memberof BasketWithProductBasketItemsInnerProduct
+     */
+    'purchasable_object'?: object;
+}
+/**
  *
  * @export
  * @enum {string}
@@ -870,7 +1063,7 @@ export interface CourseRunGrade {
      */
     'set_by_admin'?: boolean;
     /**
-     * Returns the grade field value as a number out of 100 (or None if the value is None)
+     * Returns the grade field value as a number out of 100 (or Decimal(0) if the value is None)
      * @type {number}
      * @memberof CourseRunGrade
      */
@@ -1182,6 +1375,56 @@ export interface CreateB2BEnrollment {
      * @memberof CreateB2BEnrollment
      */
     'checkout_result'?: GenerateCheckoutPayload;
+}
+/**
+ * Defines the schema for a product ID and quantity in the CreateBasketWithProductsSerializer.
+ * @export
+ * @interface CreateBasketWithProductIDRequest
+ */
+export interface CreateBasketWithProductIDRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof CreateBasketWithProductIDRequest
+     */
+    'product_id': number;
+    /**
+     *
+     * @type {number}
+     * @memberof CreateBasketWithProductIDRequest
+     */
+    'quantity': number;
+}
+/**
+ * Serializer for creating a basket with products. (For OpenAPI spec.)
+ * @export
+ * @interface CreateBasketWithProductsRequest
+ */
+export interface CreateBasketWithProductsRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CreateBasketWithProductsRequest
+     */
+    'system_slug': string;
+    /**
+     *
+     * @type {Array<CreateBasketWithProductIDRequest>}
+     * @memberof CreateBasketWithProductsRequest
+     */
+    'product_ids': Array<CreateBasketWithProductIDRequest>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CreateBasketWithProductsRequest
+     */
+    'checkout': boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateBasketWithProductsRequest
+     */
+    'discount_code': string;
 }
 /**
  * Department model serializer
@@ -2274,6 +2517,25 @@ export interface PartnerSchoolRequest {
     'email': string;
 }
 /**
+ * BasketItem model serializer
+ * @export
+ * @interface PatchedBasketItemRequest
+ */
+export interface PatchedBasketItemRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof PatchedBasketItemRequest
+     */
+    'basket'?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof PatchedBasketItemRequest
+     */
+    'product'?: number;
+}
+/**
  * Serializer for confirming a user email change
  * @export
  * @interface PatchedChangeEmailRequestUpdateRequest
@@ -3263,10 +3525,10 @@ export interface UserProgramEnrollmentDetail {
     'enrollments': Array<CourseRunEnrollment>;
     /**
      *
-     * @type {ProgramCertificate}
+     * @type {V1ProgramCertificate}
      * @memberof UserProgramEnrollmentDetail
      */
-    'certificate': ProgramCertificate | null;
+    'certificate': V1ProgramCertificate | null;
 }
 /**
  * CourseRun model serializer
@@ -3730,6 +3992,25 @@ export interface V1Program {
     'live'?: boolean;
 }
 /**
+ * ProgramCertificate model serializer
+ * @export
+ * @interface V1ProgramCertificate
+ */
+export interface V1ProgramCertificate {
+    /**
+     *
+     * @type {string}
+     * @memberof V1ProgramCertificate
+     */
+    'uuid': string;
+    /**
+     * Get the link at which this certificate will be served Format: /certificate/program/<uuid>/ Example: /certificate/program/93ebd74e-5f88-4b47-bb09-30a6d575328f/
+     * @type {string}
+     * @memberof V1ProgramCertificate
+     */
+    'link': string;
+}
+/**
  * Serializer for a ProgramRequirement
  * @export
  * @interface V1ProgramRequirement
@@ -4039,6 +4320,12 @@ export interface V2CourseRunCertificate {
      * @memberof V2CourseRunCertificate
      */
     'certificate_page': CertificatePageModel;
+    /**
+     *
+     * @type {any}
+     * @memberof V2CourseRunCertificate
+     */
+    'verifiable_credential_json': any;
     /**
      *
      * @type {V2CourseRunWithCourse}
@@ -4477,6 +4764,12 @@ export interface V2ProgramCertificate {
     'certificate_page': CertificatePageModel;
     /**
      *
+     * @type {any}
+     * @memberof V2ProgramCertificate
+     */
+    'verifiable_credential_json': any;
+    /**
+     *
      * @type {V2Program}
      * @memberof V2ProgramCertificate
      */
@@ -4759,16 +5052,16 @@ export interface V2UserProgramEnrollmentDetail {
     'program': V2Program;
     /**
      *
-     * @type {V2ProgramCertificate}
-     * @memberof V2UserProgramEnrollmentDetail
-     */
-    'certificate': V2ProgramCertificate | null;
-    /**
-     *
      * @type {Array<CourseRunEnrollmentRequestV2>}
      * @memberof V2UserProgramEnrollmentDetail
      */
     'enrollments': Array<CourseRunEnrollmentRequestV2>;
+    /**
+     *
+     * @type {ProgramCertificate}
+     * @memberof V2UserProgramEnrollmentDetail
+     */
+    'certificate': ProgramCertificate | null;
 }
 /**
  * * `None` - ---- * `2` - Less than 2 years * `5` - 2-5 years * `10` - 6 - 10 years * `15` - 11 - 15 years * `20` - 16 - 20 years * `21` - More than 20 years * `0` - Prefer not to say
@@ -5253,6 +5546,585 @@ export declare class B2bApi extends BaseAPI {
     b2bOrganizationsRetrieve(requestParameters: B2bApiB2bOrganizationsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<OrganizationPage, any, {}>>;
 }
 /**
+ * BasketitemsApi - axios parameter creator
+ * @export
+ */
+export declare const BasketitemsApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketItemRequest} BasketItemRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsCreate: (BasketItemRequest: BasketItemRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsDestroy: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsList: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {PatchedBasketItemRequest} [PatchedBasketItemRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsPartialUpdate: (id: number, PatchedBasketItemRequest?: PatchedBasketItemRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsRetrieve: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {BasketItemRequest} BasketItemRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsUpdate: (id: number, BasketItemRequest: BasketItemRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * BasketitemsApi - functional programming interface
+ * @export
+ */
+export declare const BasketitemsApiFp: (configuration?: Configuration) => {
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketItemRequest} BasketItemRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsCreate(BasketItemRequest: BasketItemRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketItem>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsDestroy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<BasketItem>>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {PatchedBasketItemRequest} [PatchedBasketItemRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsPartialUpdate(id: number, PatchedBasketItemRequest?: PatchedBasketItemRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketItem>>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketItem>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {number} id A unique integer value identifying this basket item.
+     * @param {BasketItemRequest} BasketItemRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsUpdate(id: number, BasketItemRequest: BasketItemRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketItem>>;
+};
+/**
+ * BasketitemsApi - factory interface
+ * @export
+ */
+export declare const BasketitemsApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsCreate(requestParameters: BasketitemsApiBasketitemsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketItem>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsDestroy(requestParameters: BasketitemsApiBasketitemsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsList(options?: RawAxiosRequestConfig): AxiosPromise<Array<BasketItem>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsPartialUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsPartialUpdate(requestParameters: BasketitemsApiBasketitemsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketItem>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {BasketitemsApiBasketitemsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsRetrieve(requestParameters: BasketitemsApiBasketitemsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketItem>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketitemsUpdate(requestParameters: BasketitemsApiBasketitemsUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketItem>;
+};
+/**
+ * Request parameters for basketitemsCreate operation in BasketitemsApi.
+ * @export
+ * @interface BasketitemsApiBasketitemsCreateRequest
+ */
+export interface BasketitemsApiBasketitemsCreateRequest {
+    /**
+     *
+     * @type {BasketItemRequest}
+     * @memberof BasketitemsApiBasketitemsCreate
+     */
+    readonly BasketItemRequest: BasketItemRequest;
+}
+/**
+ * Request parameters for basketitemsDestroy operation in BasketitemsApi.
+ * @export
+ * @interface BasketitemsApiBasketitemsDestroyRequest
+ */
+export interface BasketitemsApiBasketitemsDestroyRequest {
+    /**
+     * A unique integer value identifying this basket item.
+     * @type {number}
+     * @memberof BasketitemsApiBasketitemsDestroy
+     */
+    readonly id: number;
+}
+/**
+ * Request parameters for basketitemsPartialUpdate operation in BasketitemsApi.
+ * @export
+ * @interface BasketitemsApiBasketitemsPartialUpdateRequest
+ */
+export interface BasketitemsApiBasketitemsPartialUpdateRequest {
+    /**
+     * A unique integer value identifying this basket item.
+     * @type {number}
+     * @memberof BasketitemsApiBasketitemsPartialUpdate
+     */
+    readonly id: number;
+    /**
+     *
+     * @type {PatchedBasketItemRequest}
+     * @memberof BasketitemsApiBasketitemsPartialUpdate
+     */
+    readonly PatchedBasketItemRequest?: PatchedBasketItemRequest;
+}
+/**
+ * Request parameters for basketitemsRetrieve operation in BasketitemsApi.
+ * @export
+ * @interface BasketitemsApiBasketitemsRetrieveRequest
+ */
+export interface BasketitemsApiBasketitemsRetrieveRequest {
+    /**
+     * A unique integer value identifying this basket item.
+     * @type {number}
+     * @memberof BasketitemsApiBasketitemsRetrieve
+     */
+    readonly id: number;
+}
+/**
+ * Request parameters for basketitemsUpdate operation in BasketitemsApi.
+ * @export
+ * @interface BasketitemsApiBasketitemsUpdateRequest
+ */
+export interface BasketitemsApiBasketitemsUpdateRequest {
+    /**
+     * A unique integer value identifying this basket item.
+     * @type {number}
+     * @memberof BasketitemsApiBasketitemsUpdate
+     */
+    readonly id: number;
+    /**
+     *
+     * @type {BasketItemRequest}
+     * @memberof BasketitemsApiBasketitemsUpdate
+     */
+    readonly BasketItemRequest: BasketItemRequest;
+}
+/**
+ * BasketitemsApi - object-oriented interface
+ * @export
+ * @class BasketitemsApi
+ * @extends {BaseAPI}
+ */
+export declare class BasketitemsApi extends BaseAPI {
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsCreate(requestParameters: BasketitemsApiBasketitemsCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketItem, any, {}>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsDestroy(requestParameters: BasketitemsApiBasketitemsDestroyRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketItem[], any, {}>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsPartialUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsPartialUpdate(requestParameters: BasketitemsApiBasketitemsPartialUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketItem, any, {}>>;
+    /**
+     * Returns the basket items for the current user.
+     * @param {BasketitemsApiBasketitemsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsRetrieve(requestParameters: BasketitemsApiBasketitemsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketItem, any, {}>>;
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsUpdate(requestParameters: BasketitemsApiBasketitemsUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketItem, any, {}>>;
+}
+/**
+ * BasketsApi - axios parameter creator
+ * @export
+ */
+export declare const BasketsApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Creates or updates a basket for the current user, adding the discount if valid.
+     * @param {string} discount_code
+     * @param {string} system_slug
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsAddDiscountCreate: (discount_code: string, system_slug: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Clears the basket for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsClearDestroy: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {number} product_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsCreateFromProductCreate: (product_id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {CreateBasketWithProductsRequest} CreateBasketWithProductsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsCreateWithProductsCreate: (CreateBasketWithProductsRequest: CreateBasketWithProductsRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Retrives the current user\'s baskets.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsList: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Retrieve a basket for the current user.
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsRetrieve: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product and discount.
+     * @param {string} discount_code
+     * @param {number} product_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBasketFromProductWithDiscount: (discount_code: string, product_id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * BasketsApi - functional programming interface
+ * @export
+ */
+export declare const BasketsApiFp: (configuration?: Configuration) => {
+    /**
+     * Creates or updates a basket for the current user, adding the discount if valid.
+     * @param {string} discount_code
+     * @param {string} system_slug
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsAddDiscountCreate(discount_code: string, system_slug: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketWithProduct>>;
+    /**
+     * Clears the basket for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsClearDestroy(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {number} product_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsCreateFromProductCreate(product_id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketWithProduct>>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {CreateBasketWithProductsRequest} CreateBasketWithProductsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsCreateWithProductsCreate(CreateBasketWithProductsRequest: CreateBasketWithProductsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketWithProduct>>;
+    /**
+     * Retrives the current user\'s baskets.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsList(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<BasketWithProduct>>>;
+    /**
+     * Retrieve a basket for the current user.
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketWithProduct>>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product and discount.
+     * @param {string} discount_code
+     * @param {number} product_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBasketFromProductWithDiscount(discount_code: string, product_id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BasketWithProduct>>;
+};
+/**
+ * BasketsApi - factory interface
+ * @export
+ */
+export declare const BasketsApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Creates or updates a basket for the current user, adding the discount if valid.
+     * @param {BasketsApiBasketsAddDiscountCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsAddDiscountCreate(requestParameters: BasketsApiBasketsAddDiscountCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketWithProduct>;
+    /**
+     * Clears the basket for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsClearDestroy(options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {BasketsApiBasketsCreateFromProductCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsCreateFromProductCreate(requestParameters: BasketsApiBasketsCreateFromProductCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketWithProduct>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {BasketsApiBasketsCreateWithProductsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsCreateWithProductsCreate(requestParameters: BasketsApiBasketsCreateWithProductsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketWithProduct>;
+    /**
+     * Retrives the current user\'s baskets.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsList(options?: RawAxiosRequestConfig): AxiosPromise<Array<BasketWithProduct>>;
+    /**
+     * Retrieve a basket for the current user.
+     * @param {BasketsApiBasketsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    basketsRetrieve(requestParameters: BasketsApiBasketsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketWithProduct>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product and discount.
+     * @param {BasketsApiCreateBasketFromProductWithDiscountRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBasketFromProductWithDiscount(requestParameters: BasketsApiCreateBasketFromProductWithDiscountRequest, options?: RawAxiosRequestConfig): AxiosPromise<BasketWithProduct>;
+};
+/**
+ * Request parameters for basketsAddDiscountCreate operation in BasketsApi.
+ * @export
+ * @interface BasketsApiBasketsAddDiscountCreateRequest
+ */
+export interface BasketsApiBasketsAddDiscountCreateRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof BasketsApiBasketsAddDiscountCreate
+     */
+    readonly discount_code: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BasketsApiBasketsAddDiscountCreate
+     */
+    readonly system_slug: string;
+}
+/**
+ * Request parameters for basketsCreateFromProductCreate operation in BasketsApi.
+ * @export
+ * @interface BasketsApiBasketsCreateFromProductCreateRequest
+ */
+export interface BasketsApiBasketsCreateFromProductCreateRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketsApiBasketsCreateFromProductCreate
+     */
+    readonly product_id: number;
+}
+/**
+ * Request parameters for basketsCreateWithProductsCreate operation in BasketsApi.
+ * @export
+ * @interface BasketsApiBasketsCreateWithProductsCreateRequest
+ */
+export interface BasketsApiBasketsCreateWithProductsCreateRequest {
+    /**
+     *
+     * @type {CreateBasketWithProductsRequest}
+     * @memberof BasketsApiBasketsCreateWithProductsCreate
+     */
+    readonly CreateBasketWithProductsRequest: CreateBasketWithProductsRequest;
+}
+/**
+ * Request parameters for basketsRetrieve operation in BasketsApi.
+ * @export
+ * @interface BasketsApiBasketsRetrieveRequest
+ */
+export interface BasketsApiBasketsRetrieveRequest {
+    /**
+     *
+     * @type {number}
+     * @memberof BasketsApiBasketsRetrieve
+     */
+    readonly id: number;
+}
+/**
+ * Request parameters for createBasketFromProductWithDiscount operation in BasketsApi.
+ * @export
+ * @interface BasketsApiCreateBasketFromProductWithDiscountRequest
+ */
+export interface BasketsApiCreateBasketFromProductWithDiscountRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof BasketsApiCreateBasketFromProductWithDiscount
+     */
+    readonly discount_code: string;
+    /**
+     *
+     * @type {number}
+     * @memberof BasketsApiCreateBasketFromProductWithDiscount
+     */
+    readonly product_id: number;
+}
+/**
+ * BasketsApi - object-oriented interface
+ * @export
+ * @class BasketsApi
+ * @extends {BaseAPI}
+ */
+export declare class BasketsApi extends BaseAPI {
+    /**
+     * Creates or updates a basket for the current user, adding the discount if valid.
+     * @param {BasketsApiBasketsAddDiscountCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsAddDiscountCreate(requestParameters: BasketsApiBasketsAddDiscountCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketWithProduct, any, {}>>;
+    /**
+     * Clears the basket for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsClearDestroy(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {BasketsApiBasketsCreateFromProductCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsCreateFromProductCreate(requestParameters: BasketsApiBasketsCreateFromProductCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketWithProduct, any, {}>>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {BasketsApiBasketsCreateWithProductsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsCreateWithProductsCreate(requestParameters: BasketsApiBasketsCreateWithProductsCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketWithProduct, any, {}>>;
+    /**
+     * Retrives the current user\'s baskets.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsList(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketWithProduct[], any, {}>>;
+    /**
+     * Retrieve a basket for the current user.
+     * @param {BasketsApiBasketsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsRetrieve(requestParameters: BasketsApiBasketsRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketWithProduct, any, {}>>;
+    /**
+     * Creates or updates a basket for the current user, adding the selected product and discount.
+     * @param {BasketsApiCreateBasketFromProductWithDiscountRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    createBasketFromProductWithDiscount(requestParameters: BasketsApiCreateBasketFromProductWithDiscountRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<BasketWithProduct, any, {}>>;
+}
+/**
  * ChangeEmailsApi - axios parameter creator
  * @export
  */
@@ -5684,6 +6556,7 @@ export declare const CoursesApiAxiosParamCreator: (configuration?: Configuration
     apiV1CoursesRetrieve: (id: number, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * List all courses - API v2
+     * @param {number} [contract_id] Only show courses belonging to this B2B contract
      * @param {boolean} [courserun_is_enrollable] Course Run Is Enrollable
      * @param {Array<number>} [id] Multiple values may be separated by commas.
      * @param {boolean} [include_approved_financial_aid] Include approved financial assistance information
@@ -5696,7 +6569,7 @@ export declare const CoursesApiAxiosParamCreator: (configuration?: Configuration
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesList: (courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    apiV2CoursesList: (contract_id?: number, courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Retrieve a specific course - API v2
      * @param {number} id A unique integer value identifying this course.
@@ -5732,6 +6605,7 @@ export declare const CoursesApiFp: (configuration?: Configuration) => {
     apiV1CoursesRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CourseWithCourseRuns>>;
     /**
      * List all courses - API v2
+     * @param {number} [contract_id] Only show courses belonging to this B2B contract
      * @param {boolean} [courserun_is_enrollable] Course Run Is Enrollable
      * @param {Array<number>} [id] Multiple values may be separated by commas.
      * @param {boolean} [include_approved_financial_aid] Include approved financial assistance information
@@ -5744,7 +6618,7 @@ export declare const CoursesApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    apiV2CoursesList(courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCourseWithCourseRunsSerializerV2List>>;
+    apiV2CoursesList(contract_id?: number, courserun_is_enrollable?: boolean, id?: Array<number>, include_approved_financial_aid?: boolean, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCourseWithCourseRunsSerializerV2List>>;
     /**
      * Retrieve a specific course - API v2
      * @param {number} id A unique integer value identifying this course.
@@ -5855,6 +6729,12 @@ export interface CoursesApiApiV1CoursesRetrieveRequest {
  * @interface CoursesApiApiV2CoursesListRequest
  */
 export interface CoursesApiApiV2CoursesListRequest {
+    /**
+     * Only show courses belonging to this B2B contract
+     * @type {number}
+     * @memberof CoursesApiApiV2CoursesList
+     */
+    readonly contract_id?: number;
     /**
      * Course Run Is Enrollable
      * @type {boolean}
@@ -7220,6 +8100,7 @@ export declare const ProgramsApiAxiosParamCreator: (configuration?: Configuratio
     programsListV1: (id?: number, live?: boolean, page?: number, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * List Programs - v2
+     * @param {number} [contract_id]
      * @param {Array<number>} [id] Multiple values may be separated by commas.
      * @param {boolean} [live]
      * @param {number} [org_id]
@@ -7230,7 +8111,7 @@ export declare const ProgramsApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programsListV2: (id?: Array<number>, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    programsListV2: (contract_id?: number, id?: Array<number>, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * API view set for Programs - v1
      * @param {number} id A unique integer value identifying this program.
@@ -7264,6 +8145,7 @@ export declare const ProgramsApiFp: (configuration?: Configuration) => {
     programsListV1(id?: number, live?: boolean, page?: number, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV1ProgramList>>;
     /**
      * List Programs - v2
+     * @param {number} [contract_id]
      * @param {Array<number>} [id] Multiple values may be separated by commas.
      * @param {boolean} [live]
      * @param {number} [org_id]
@@ -7274,7 +8156,7 @@ export declare const ProgramsApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    programsListV2(id?: Array<number>, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV2ProgramList>>;
+    programsListV2(contract_id?: number, id?: Array<number>, live?: boolean, org_id?: number, page?: number, page__live?: boolean, page_size?: number, readable_id?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedV2ProgramList>>;
     /**
      * API view set for Programs - v1
      * @param {number} id A unique integer value identifying this program.
@@ -7367,6 +8249,12 @@ export interface ProgramsApiProgramsListV1Request {
  * @interface ProgramsApiProgramsListV2Request
  */
 export interface ProgramsApiProgramsListV2Request {
+    /**
+     *
+     * @type {number}
+     * @memberof ProgramsApiProgramsListV2
+     */
+    readonly contract_id?: number;
     /**
      * Multiple values may be separated by commas.
      * @type {Array<number>}
@@ -7854,5 +8742,141 @@ export declare class UsersApi extends BaseAPI {
      * @memberof UsersApi
      */
     usersRetrieve(requestParameters: UsersApiUsersRetrieveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PublicUser, any, {}>>;
+}
+/**
+ * VerifiableCourseCredentialApi - axios parameter creator
+ * @export
+ */
+export declare const VerifiableCourseCredentialApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {string} credential_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    verifiableCourseCredentialDownloadList: (credential_id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * VerifiableCourseCredentialApi - functional programming interface
+ * @export
+ */
+export declare const VerifiableCourseCredentialApiFp: (configuration?: Configuration) => {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {string} credential_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    verifiableCourseCredentialDownloadList(credential_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * VerifiableCourseCredentialApi - factory interface
+ * @export
+ */
+export declare const VerifiableCourseCredentialApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    verifiableCourseCredentialDownloadList(requestParameters: VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+};
+/**
+ * Request parameters for verifiableCourseCredentialDownloadList operation in VerifiableCourseCredentialApi.
+ * @export
+ * @interface VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest
+ */
+export interface VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadList
+     */
+    readonly credential_id: string;
+}
+/**
+ * VerifiableCourseCredentialApi - object-oriented interface
+ * @export
+ * @class VerifiableCourseCredentialApi
+ * @extends {BaseAPI}
+ */
+export declare class VerifiableCourseCredentialApi extends BaseAPI {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VerifiableCourseCredentialApi
+     */
+    verifiableCourseCredentialDownloadList(requestParameters: VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
+}
+/**
+ * VerifiableProgramCredentialApi - axios parameter creator
+ * @export
+ */
+export declare const VerifiableProgramCredentialApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {string} credential_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    verifiableProgramCredentialDownloadList: (credential_id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * VerifiableProgramCredentialApi - functional programming interface
+ * @export
+ */
+export declare const VerifiableProgramCredentialApiFp: (configuration?: Configuration) => {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {string} credential_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    verifiableProgramCredentialDownloadList(credential_id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * VerifiableProgramCredentialApi - factory interface
+ * @export
+ */
+export declare const VerifiableProgramCredentialApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    verifiableProgramCredentialDownloadList(requestParameters: VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+};
+/**
+ * Request parameters for verifiableProgramCredentialDownloadList operation in VerifiableProgramCredentialApi.
+ * @export
+ * @interface VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest
+ */
+export interface VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadList
+     */
+    readonly credential_id: string;
+}
+/**
+ * VerifiableProgramCredentialApi - object-oriented interface
+ * @export
+ * @class VerifiableProgramCredentialApi
+ * @extends {BaseAPI}
+ */
+export declare class VerifiableProgramCredentialApi extends BaseAPI {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VerifiableProgramCredentialApi
+     */
+    verifiableProgramCredentialDownloadList(requestParameters: VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any, {}>>;
 }
 //# sourceMappingURL=api.d.ts.map

@@ -1062,6 +1062,883 @@ export class B2bApi extends BaseAPI {
     }
 }
 /**
+ * BasketitemsApi - axios parameter creator
+ * @export
+ */
+export const BasketitemsApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {BasketItemRequest} BasketItemRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsCreate: (BasketItemRequest_1, ...args_1) => __awaiter(this, [BasketItemRequest_1, ...args_1], void 0, function* (BasketItemRequest, options = {}) {
+            // verify required parameter 'BasketItemRequest' is not null or undefined
+            assertParamExists('basketitemsCreate', 'BasketItemRequest', BasketItemRequest);
+            const localVarPath = `/api/v0/basketitems/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = serializeDataIfNeeded(BasketItemRequest, localVarRequestOptions, configuration);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsDestroy: (id_1, ...args_1) => __awaiter(this, [id_1, ...args_1], void 0, function* (id, options = {}) {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('basketitemsDestroy', 'id', id);
+            const localVarPath = `/api/v0/basketitems/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'DELETE' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns the basket items for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsList: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v0/basketitems/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {PatchedBasketItemRequest} [PatchedBasketItemRequest]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsPartialUpdate: (id_1, PatchedBasketItemRequest_1, ...args_1) => __awaiter(this, [id_1, PatchedBasketItemRequest_1, ...args_1], void 0, function* (id, PatchedBasketItemRequest, options = {}) {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('basketitemsPartialUpdate', 'id', id);
+            const localVarPath = `/api/v0/basketitems/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'PATCH' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = serializeDataIfNeeded(PatchedBasketItemRequest, localVarRequestOptions, configuration);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Returns the basket items for the current user.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsRetrieve: (id_1, ...args_1) => __awaiter(this, [id_1, ...args_1], void 0, function* (id, options = {}) {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('basketitemsRetrieve', 'id', id);
+            const localVarPath = `/api/v0/basketitems/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {BasketItemRequest} BasketItemRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsUpdate: (id_1, BasketItemRequest_1, ...args_1) => __awaiter(this, [id_1, BasketItemRequest_1, ...args_1], void 0, function* (id, BasketItemRequest, options = {}) {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('basketitemsUpdate', 'id', id);
+            // verify required parameter 'BasketItemRequest' is not null or undefined
+            assertParamExists('basketitemsUpdate', 'BasketItemRequest', BasketItemRequest);
+            const localVarPath = `/api/v0/basketitems/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'PUT' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = serializeDataIfNeeded(BasketItemRequest, localVarRequestOptions, configuration);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+/**
+ * BasketitemsApi - functional programming interface
+ * @export
+ */
+export const BasketitemsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = BasketitemsApiAxiosParamCreator(configuration);
+    return {
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {BasketItemRequest} BasketItemRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsCreate(BasketItemRequest, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketitemsCreate(BasketItemRequest, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketitemsApi.basketitemsCreate']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsDestroy(id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketitemsDestroy(id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketitemsApi.basketitemsDestroy']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Returns the basket items for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsList(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketitemsList(options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketitemsApi.basketitemsList']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {PatchedBasketItemRequest} [PatchedBasketItemRequest]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsPartialUpdate(id, PatchedBasketItemRequest, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketitemsPartialUpdate(id, PatchedBasketItemRequest, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketitemsApi.basketitemsPartialUpdate']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Returns the basket items for the current user.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsRetrieve(id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketitemsRetrieve(id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketitemsApi.basketitemsRetrieve']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {number} id A unique integer value identifying this basket item.
+         * @param {BasketItemRequest} BasketItemRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsUpdate(id, BasketItemRequest, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketitemsUpdate(id, BasketItemRequest, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketitemsApi.basketitemsUpdate']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+    };
+};
+/**
+ * BasketitemsApi - factory interface
+ * @export
+ */
+export const BasketitemsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = BasketitemsApiFp(configuration);
+    return {
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {BasketitemsApiBasketitemsCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsCreate(requestParameters, options) {
+            return localVarFp.basketitemsCreate(requestParameters.BasketItemRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {BasketitemsApiBasketitemsDestroyRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsDestroy(requestParameters, options) {
+            return localVarFp.basketitemsDestroy(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns the basket items for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsList(options) {
+            return localVarFp.basketitemsList(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {BasketitemsApiBasketitemsPartialUpdateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsPartialUpdate(requestParameters, options) {
+            return localVarFp.basketitemsPartialUpdate(requestParameters.id, requestParameters.PatchedBasketItemRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns the basket items for the current user.
+         * @param {BasketitemsApiBasketitemsRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsRetrieve(requestParameters, options) {
+            return localVarFp.basketitemsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * ViewSet for handling BasketItem operations.
+         * @param {BasketitemsApiBasketitemsUpdateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketitemsUpdate(requestParameters, options) {
+            return localVarFp.basketitemsUpdate(requestParameters.id, requestParameters.BasketItemRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+/**
+ * BasketitemsApi - object-oriented interface
+ * @export
+ * @class BasketitemsApi
+ * @extends {BaseAPI}
+ */
+export class BasketitemsApi extends BaseAPI {
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsCreate(requestParameters, options) {
+        return BasketitemsApiFp(this.configuration).basketitemsCreate(requestParameters.BasketItemRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsDestroy(requestParameters, options) {
+        return BasketitemsApiFp(this.configuration).basketitemsDestroy(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns the basket items for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsList(options) {
+        return BasketitemsApiFp(this.configuration).basketitemsList(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsPartialUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsPartialUpdate(requestParameters, options) {
+        return BasketitemsApiFp(this.configuration).basketitemsPartialUpdate(requestParameters.id, requestParameters.PatchedBasketItemRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns the basket items for the current user.
+     * @param {BasketitemsApiBasketitemsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsRetrieve(requestParameters, options) {
+        return BasketitemsApiFp(this.configuration).basketitemsRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * ViewSet for handling BasketItem operations.
+     * @param {BasketitemsApiBasketitemsUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketitemsApi
+     */
+    basketitemsUpdate(requestParameters, options) {
+        return BasketitemsApiFp(this.configuration).basketitemsUpdate(requestParameters.id, requestParameters.BasketItemRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+/**
+ * BasketsApi - axios parameter creator
+ * @export
+ */
+export const BasketsApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Creates or updates a basket for the current user, adding the discount if valid.
+         * @param {string} discount_code
+         * @param {string} system_slug
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsAddDiscountCreate: (discount_code_1, system_slug_1, ...args_1) => __awaiter(this, [discount_code_1, system_slug_1, ...args_1], void 0, function* (discount_code, system_slug, options = {}) {
+            // verify required parameter 'discount_code' is not null or undefined
+            assertParamExists('basketsAddDiscountCreate', 'discount_code', discount_code);
+            // verify required parameter 'system_slug' is not null or undefined
+            assertParamExists('basketsAddDiscountCreate', 'system_slug', system_slug);
+            const localVarPath = `/api/v0/baskets/add_discount/`
+                .replace(`{${"system_slug"}}`, encodeURIComponent(String(system_slug)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            if (discount_code !== undefined) {
+                localVarQueryParameter['discount_code'] = discount_code;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Clears the basket for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsClearDestroy: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v0/baskets/clear/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'DELETE' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Creates or updates a basket for the current user, adding the selected product.
+         * @param {number} product_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsCreateFromProductCreate: (product_id_1, ...args_1) => __awaiter(this, [product_id_1, ...args_1], void 0, function* (product_id, options = {}) {
+            // verify required parameter 'product_id' is not null or undefined
+            assertParamExists('basketsCreateFromProductCreate', 'product_id', product_id);
+            const localVarPath = `/api/v0/baskets/create_from_product/{product_id}/`
+                .replace(`{${"product_id"}}`, encodeURIComponent(String(product_id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Creates or updates a basket for the current user, adding the selected product.
+         * @param {CreateBasketWithProductsRequest} CreateBasketWithProductsRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsCreateWithProductsCreate: (CreateBasketWithProductsRequest_1, ...args_1) => __awaiter(this, [CreateBasketWithProductsRequest_1, ...args_1], void 0, function* (CreateBasketWithProductsRequest, options = {}) {
+            // verify required parameter 'CreateBasketWithProductsRequest' is not null or undefined
+            assertParamExists('basketsCreateWithProductsCreate', 'CreateBasketWithProductsRequest', CreateBasketWithProductsRequest);
+            const localVarPath = `/api/v0/baskets/create_with_products/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = serializeDataIfNeeded(CreateBasketWithProductsRequest, localVarRequestOptions, configuration);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Retrives the current user\'s baskets.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsList: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
+            const localVarPath = `/api/v0/baskets/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Retrieve a basket for the current user.
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsRetrieve: (id_1, ...args_1) => __awaiter(this, [id_1, ...args_1], void 0, function* (id, options = {}) {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('basketsRetrieve', 'id', id);
+            const localVarPath = `/api/v0/baskets/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         * Creates or updates a basket for the current user, adding the selected product and discount.
+         * @param {string} discount_code
+         * @param {number} product_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createBasketFromProductWithDiscount: (discount_code_1, product_id_1, ...args_1) => __awaiter(this, [discount_code_1, product_id_1, ...args_1], void 0, function* (discount_code, product_id, options = {}) {
+            // verify required parameter 'discount_code' is not null or undefined
+            assertParamExists('createBasketFromProductWithDiscount', 'discount_code', discount_code);
+            // verify required parameter 'product_id' is not null or undefined
+            assertParamExists('createBasketFromProductWithDiscount', 'product_id', product_id);
+            const localVarPath = `/api/v0/baskets/create_from_product/{product_id}/{discount_code}/`
+                .replace(`{${"discount_code"}}`, encodeURIComponent(String(discount_code)))
+                .replace(`{${"product_id"}}`, encodeURIComponent(String(product_id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+/**
+ * BasketsApi - functional programming interface
+ * @export
+ */
+export const BasketsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = BasketsApiAxiosParamCreator(configuration);
+    return {
+        /**
+         * Creates or updates a basket for the current user, adding the discount if valid.
+         * @param {string} discount_code
+         * @param {string} system_slug
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsAddDiscountCreate(discount_code, system_slug, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketsAddDiscountCreate(discount_code, system_slug, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.basketsAddDiscountCreate']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Clears the basket for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsClearDestroy(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketsClearDestroy(options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.basketsClearDestroy']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Creates or updates a basket for the current user, adding the selected product.
+         * @param {number} product_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsCreateFromProductCreate(product_id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketsCreateFromProductCreate(product_id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.basketsCreateFromProductCreate']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Creates or updates a basket for the current user, adding the selected product.
+         * @param {CreateBasketWithProductsRequest} CreateBasketWithProductsRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsCreateWithProductsCreate(CreateBasketWithProductsRequest, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketsCreateWithProductsCreate(CreateBasketWithProductsRequest, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.basketsCreateWithProductsCreate']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Retrives the current user\'s baskets.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsList(options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketsList(options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.basketsList']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Retrieve a basket for the current user.
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsRetrieve(id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.basketsRetrieve(id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.basketsRetrieve']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+        /**
+         * Creates or updates a basket for the current user, adding the selected product and discount.
+         * @param {string} discount_code
+         * @param {number} product_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createBasketFromProductWithDiscount(discount_code, product_id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.createBasketFromProductWithDiscount(discount_code, product_id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['BasketsApi.createBasketFromProductWithDiscount']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+    };
+};
+/**
+ * BasketsApi - factory interface
+ * @export
+ */
+export const BasketsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = BasketsApiFp(configuration);
+    return {
+        /**
+         * Creates or updates a basket for the current user, adding the discount if valid.
+         * @param {BasketsApiBasketsAddDiscountCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsAddDiscountCreate(requestParameters, options) {
+            return localVarFp.basketsAddDiscountCreate(requestParameters.discount_code, requestParameters.system_slug, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Clears the basket for the current user.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsClearDestroy(options) {
+            return localVarFp.basketsClearDestroy(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates or updates a basket for the current user, adding the selected product.
+         * @param {BasketsApiBasketsCreateFromProductCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsCreateFromProductCreate(requestParameters, options) {
+            return localVarFp.basketsCreateFromProductCreate(requestParameters.product_id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates or updates a basket for the current user, adding the selected product.
+         * @param {BasketsApiBasketsCreateWithProductsCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsCreateWithProductsCreate(requestParameters, options) {
+            return localVarFp.basketsCreateWithProductsCreate(requestParameters.CreateBasketWithProductsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrives the current user\'s baskets.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsList(options) {
+            return localVarFp.basketsList(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a basket for the current user.
+         * @param {BasketsApiBasketsRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        basketsRetrieve(requestParameters, options) {
+            return localVarFp.basketsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates or updates a basket for the current user, adding the selected product and discount.
+         * @param {BasketsApiCreateBasketFromProductWithDiscountRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createBasketFromProductWithDiscount(requestParameters, options) {
+            return localVarFp.createBasketFromProductWithDiscount(requestParameters.discount_code, requestParameters.product_id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+/**
+ * BasketsApi - object-oriented interface
+ * @export
+ * @class BasketsApi
+ * @extends {BaseAPI}
+ */
+export class BasketsApi extends BaseAPI {
+    /**
+     * Creates or updates a basket for the current user, adding the discount if valid.
+     * @param {BasketsApiBasketsAddDiscountCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsAddDiscountCreate(requestParameters, options) {
+        return BasketsApiFp(this.configuration).basketsAddDiscountCreate(requestParameters.discount_code, requestParameters.system_slug, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Clears the basket for the current user.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsClearDestroy(options) {
+        return BasketsApiFp(this.configuration).basketsClearDestroy(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {BasketsApiBasketsCreateFromProductCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsCreateFromProductCreate(requestParameters, options) {
+        return BasketsApiFp(this.configuration).basketsCreateFromProductCreate(requestParameters.product_id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Creates or updates a basket for the current user, adding the selected product.
+     * @param {BasketsApiBasketsCreateWithProductsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsCreateWithProductsCreate(requestParameters, options) {
+        return BasketsApiFp(this.configuration).basketsCreateWithProductsCreate(requestParameters.CreateBasketWithProductsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Retrives the current user\'s baskets.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsList(options) {
+        return BasketsApiFp(this.configuration).basketsList(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Retrieve a basket for the current user.
+     * @param {BasketsApiBasketsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    basketsRetrieve(requestParameters, options) {
+        return BasketsApiFp(this.configuration).basketsRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Creates or updates a basket for the current user, adding the selected product and discount.
+     * @param {BasketsApiCreateBasketFromProductWithDiscountRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BasketsApi
+     */
+    createBasketFromProductWithDiscount(requestParameters, options) {
+        return BasketsApiFp(this.configuration).createBasketFromProductWithDiscount(requestParameters.discount_code, requestParameters.product_id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+/**
  * ChangeEmailsApi - axios parameter creator
  * @export
  */
@@ -1728,6 +2605,7 @@ export const CoursesApiAxiosParamCreator = function (configuration) {
         }),
         /**
          * List all courses - API v2
+         * @param {number} [contract_id] Only show courses belonging to this B2B contract
          * @param {boolean} [courserun_is_enrollable] Course Run Is Enrollable
          * @param {Array<number>} [id] Multiple values may be separated by commas.
          * @param {boolean} [include_approved_financial_aid] Include approved financial assistance information
@@ -1740,7 +2618,7 @@ export const CoursesApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV2CoursesList: (courserun_is_enrollable_1, id_1, include_approved_financial_aid_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1) => __awaiter(this, [courserun_is_enrollable_1, id_1, include_approved_financial_aid_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1], void 0, function* (courserun_is_enrollable, id, include_approved_financial_aid, live, org_id, page, page__live, page_size, readable_id, options = {}) {
+        apiV2CoursesList: (contract_id_1, courserun_is_enrollable_1, id_1, include_approved_financial_aid_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1) => __awaiter(this, [contract_id_1, courserun_is_enrollable_1, id_1, include_approved_financial_aid_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1], void 0, function* (contract_id, courserun_is_enrollable, id, include_approved_financial_aid, live, org_id, page, page__live, page_size, readable_id, options = {}) {
             const localVarPath = `/api/v2/courses/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1751,6 +2629,9 @@ export const CoursesApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            if (contract_id !== undefined) {
+                localVarQueryParameter['contract_id'] = contract_id;
+            }
             if (courserun_is_enrollable !== undefined) {
                 localVarQueryParameter['courserun_is_enrollable'] = courserun_is_enrollable;
             }
@@ -1861,6 +2742,7 @@ export const CoursesApiFp = function (configuration) {
         },
         /**
          * List all courses - API v2
+         * @param {number} [contract_id] Only show courses belonging to this B2B contract
          * @param {boolean} [courserun_is_enrollable] Course Run Is Enrollable
          * @param {Array<number>} [id] Multiple values may be separated by commas.
          * @param {boolean} [include_approved_financial_aid] Include approved financial assistance information
@@ -1873,10 +2755,10 @@ export const CoursesApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV2CoursesList(courserun_is_enrollable, id, include_approved_financial_aid, live, org_id, page, page__live, page_size, readable_id, options) {
+        apiV2CoursesList(contract_id, courserun_is_enrollable, id, include_approved_financial_aid, live, org_id, page, page__live, page_size, readable_id, options) {
             return __awaiter(this, void 0, void 0, function* () {
                 var _a, _b, _c;
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.apiV2CoursesList(courserun_is_enrollable, id, include_approved_financial_aid, live, org_id, page, page__live, page_size, readable_id, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.apiV2CoursesList(contract_id, courserun_is_enrollable, id, include_approved_financial_aid, live, org_id, page, page__live, page_size, readable_id, options);
                 const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const operationBasePath = (_c = (_b = operationServerMap['CoursesApi.apiV2CoursesList']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -1931,7 +2813,7 @@ export const CoursesApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         apiV2CoursesList(requestParameters = {}, options) {
-            return localVarFp.apiV2CoursesList(requestParameters.courserun_is_enrollable, requestParameters.id, requestParameters.include_approved_financial_aid, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(axios, basePath));
+            return localVarFp.apiV2CoursesList(requestParameters.contract_id, requestParameters.courserun_is_enrollable, requestParameters.id, requestParameters.include_approved_financial_aid, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a specific course - API v2
@@ -1979,7 +2861,7 @@ export class CoursesApi extends BaseAPI {
      * @memberof CoursesApi
      */
     apiV2CoursesList(requestParameters = {}, options) {
-        return CoursesApiFp(this.configuration).apiV2CoursesList(requestParameters.courserun_is_enrollable, requestParameters.id, requestParameters.include_approved_financial_aid, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(this.axios, this.basePath));
+        return CoursesApiFp(this.configuration).apiV2CoursesList(requestParameters.contract_id, requestParameters.courserun_is_enrollable, requestParameters.id, requestParameters.include_approved_financial_aid, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve a specific course - API v2
@@ -3925,6 +4807,7 @@ export const ProgramsApiAxiosParamCreator = function (configuration) {
         }),
         /**
          * List Programs - v2
+         * @param {number} [contract_id]
          * @param {Array<number>} [id] Multiple values may be separated by commas.
          * @param {boolean} [live]
          * @param {number} [org_id]
@@ -3935,7 +4818,7 @@ export const ProgramsApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        programsListV2: (id_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1) => __awaiter(this, [id_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1], void 0, function* (id, live, org_id, page, page__live, page_size, readable_id, options = {}) {
+        programsListV2: (contract_id_1, id_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1) => __awaiter(this, [contract_id_1, id_1, live_1, org_id_1, page_1, page__live_1, page_size_1, readable_id_1, ...args_1], void 0, function* (contract_id, id, live, org_id, page, page__live, page_size, readable_id, options = {}) {
             const localVarPath = `/api/v2/programs/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3946,6 +4829,9 @@ export const ProgramsApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            if (contract_id !== undefined) {
+                localVarQueryParameter['contract_id'] = contract_id;
+            }
             if (id) {
                 localVarQueryParameter['id'] = id.join(COLLECTION_FORMATS.csv);
             }
@@ -4061,6 +4947,7 @@ export const ProgramsApiFp = function (configuration) {
         },
         /**
          * List Programs - v2
+         * @param {number} [contract_id]
          * @param {Array<number>} [id] Multiple values may be separated by commas.
          * @param {boolean} [live]
          * @param {number} [org_id]
@@ -4071,10 +4958,10 @@ export const ProgramsApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        programsListV2(id, live, org_id, page, page__live, page_size, readable_id, options) {
+        programsListV2(contract_id, id, live, org_id, page, page__live, page_size, readable_id, options) {
             return __awaiter(this, void 0, void 0, function* () {
                 var _a, _b, _c;
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.programsListV2(id, live, org_id, page, page__live, page_size, readable_id, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.programsListV2(contract_id, id, live, org_id, page, page__live, page_size, readable_id, options);
                 const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const operationBasePath = (_c = (_b = operationServerMap['ProgramsApi.programsListV2']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -4135,7 +5022,7 @@ export const ProgramsApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         programsListV2(requestParameters = {}, options) {
-            return localVarFp.programsListV2(requestParameters.id, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(axios, basePath));
+            return localVarFp.programsListV2(requestParameters.contract_id, requestParameters.id, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(axios, basePath));
         },
         /**
          * API view set for Programs - v1
@@ -4182,7 +5069,7 @@ export class ProgramsApi extends BaseAPI {
      * @memberof ProgramsApi
      */
     programsListV2(requestParameters = {}, options) {
-        return ProgramsApiFp(this.configuration).programsListV2(requestParameters.id, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(this.axios, this.basePath));
+        return ProgramsApiFp(this.configuration).programsListV2(requestParameters.contract_id, requestParameters.id, requestParameters.live, requestParameters.org_id, requestParameters.page, requestParameters.page__live, requestParameters.page_size, requestParameters.readable_id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * API view set for Programs - v1
@@ -4788,6 +5675,198 @@ export class UsersApi extends BaseAPI {
      */
     usersRetrieve(requestParameters, options) {
         return UsersApiFp(this.configuration).usersRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+/**
+ * VerifiableCourseCredentialApi - axios parameter creator
+ * @export
+ */
+export const VerifiableCourseCredentialApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Returns the json for the verifiable credential with the given ID
+         * @param {string} credential_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verifiableCourseCredentialDownloadList: (credential_id_1, ...args_1) => __awaiter(this, [credential_id_1, ...args_1], void 0, function* (credential_id, options = {}) {
+            // verify required parameter 'credential_id' is not null or undefined
+            assertParamExists('verifiableCourseCredentialDownloadList', 'credential_id', credential_id);
+            const localVarPath = `/api/v2/verifiable_course_credential/{credential_id}/download/`
+                .replace(`{${"credential_id"}}`, encodeURIComponent(String(credential_id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+/**
+ * VerifiableCourseCredentialApi - functional programming interface
+ * @export
+ */
+export const VerifiableCourseCredentialApiFp = function (configuration) {
+    const localVarAxiosParamCreator = VerifiableCourseCredentialApiAxiosParamCreator(configuration);
+    return {
+        /**
+         * Returns the json for the verifiable credential with the given ID
+         * @param {string} credential_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verifiableCourseCredentialDownloadList(credential_id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.verifiableCourseCredentialDownloadList(credential_id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['VerifiableCourseCredentialApi.verifiableCourseCredentialDownloadList']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+    };
+};
+/**
+ * VerifiableCourseCredentialApi - factory interface
+ * @export
+ */
+export const VerifiableCourseCredentialApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = VerifiableCourseCredentialApiFp(configuration);
+    return {
+        /**
+         * Returns the json for the verifiable credential with the given ID
+         * @param {VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verifiableCourseCredentialDownloadList(requestParameters, options) {
+            return localVarFp.verifiableCourseCredentialDownloadList(requestParameters.credential_id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+/**
+ * VerifiableCourseCredentialApi - object-oriented interface
+ * @export
+ * @class VerifiableCourseCredentialApi
+ * @extends {BaseAPI}
+ */
+export class VerifiableCourseCredentialApi extends BaseAPI {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {VerifiableCourseCredentialApiVerifiableCourseCredentialDownloadListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VerifiableCourseCredentialApi
+     */
+    verifiableCourseCredentialDownloadList(requestParameters, options) {
+        return VerifiableCourseCredentialApiFp(this.configuration).verifiableCourseCredentialDownloadList(requestParameters.credential_id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+/**
+ * VerifiableProgramCredentialApi - axios parameter creator
+ * @export
+ */
+export const VerifiableProgramCredentialApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         * Returns the json for the verifiable credential with the given ID
+         * @param {string} credential_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verifiableProgramCredentialDownloadList: (credential_id_1, ...args_1) => __awaiter(this, [credential_id_1, ...args_1], void 0, function* (credential_id, options = {}) {
+            // verify required parameter 'credential_id' is not null or undefined
+            assertParamExists('verifiableProgramCredentialDownloadList', 'credential_id', credential_id);
+            const localVarPath = `/api/v2/verifiable_program_credential/{credential_id}/download/`
+                .replace(`{${"credential_id"}}`, encodeURIComponent(String(credential_id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+/**
+ * VerifiableProgramCredentialApi - functional programming interface
+ * @export
+ */
+export const VerifiableProgramCredentialApiFp = function (configuration) {
+    const localVarAxiosParamCreator = VerifiableProgramCredentialApiAxiosParamCreator(configuration);
+    return {
+        /**
+         * Returns the json for the verifiable credential with the given ID
+         * @param {string} credential_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verifiableProgramCredentialDownloadList(credential_id, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.verifiableProgramCredentialDownloadList(credential_id, options);
+                const index = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const operationBasePath = (_c = (_b = operationServerMap['VerifiableProgramCredentialApi.verifiableProgramCredentialDownloadList']) === null || _b === void 0 ? void 0 : _b[index]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            });
+        },
+    };
+};
+/**
+ * VerifiableProgramCredentialApi - factory interface
+ * @export
+ */
+export const VerifiableProgramCredentialApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = VerifiableProgramCredentialApiFp(configuration);
+    return {
+        /**
+         * Returns the json for the verifiable credential with the given ID
+         * @param {VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        verifiableProgramCredentialDownloadList(requestParameters, options) {
+            return localVarFp.verifiableProgramCredentialDownloadList(requestParameters.credential_id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+/**
+ * VerifiableProgramCredentialApi - object-oriented interface
+ * @export
+ * @class VerifiableProgramCredentialApi
+ * @extends {BaseAPI}
+ */
+export class VerifiableProgramCredentialApi extends BaseAPI {
+    /**
+     * Returns the json for the verifiable credential with the given ID
+     * @param {VerifiableProgramCredentialApiVerifiableProgramCredentialDownloadListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VerifiableProgramCredentialApi
+     */
+    verifiableProgramCredentialDownloadList(requestParameters, options) {
+        return VerifiableProgramCredentialApiFp(this.configuration).verifiableProgramCredentialDownloadList(requestParameters.credential_id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 //# sourceMappingURL=api.js.map
